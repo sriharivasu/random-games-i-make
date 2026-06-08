@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ecosystem Simulator</title>
+
+    <link rel="stylesheet" href="eco_sim.css"
+</head>
+<body>
+
+<div id="panel">
+
+    <h1>🌎 Ecosystem Simulator</h1>
+
+    <p>🌦️ Weather: <span id="weather">Sunny</span></p>
+
+    <p>🌱 Grass: <span id="grass">100</span></p>
+    <p>🐛 Caterpillars: <span id="caterpillars">0</span></p>
+    <p>🦋 Butterflies: <span id="butterflies">0</span></p>
+    <p>🐇 Rabbits: <span id="rabbits">0</span></p>
+    <p>🦊 Foxes: <span id="foxes">0</span></p>
+
+    <p>📅 Day: <span id="day">1</span></p>
+
+    <hr>
+
+    <p>⏱️ Time Since Started:
+        <span id="timer">0</span> seconds
+    </p>
+
+    <button onclick="nextDay()">
+        Advance One Day
+    </button>
+
+    <br>
+
+    <button
+        id="buyCaterpillar"
+        style="display:none"
+        onclick="buyCaterpillar()">
+
+        Buy Caterpillar
+        (250 Grass)
+
+    </button>
+
+    <button
+        id="buyRabbit"
+        style="display:none"
+        onclick="buyRabbit()">
+
+        Buy Rabbit
+        (1000 Grass)
+
+    </button>
+
+    <button
+        id="buyFox"
+        style="display:none"
+        onclick="buyFox()">
+
+        Buy Fox
+        (10 Rabbits)
+
+    </button>
+
+    <hr>
+
+    <button onclick="toggleLog()">
+        Show / Hide Extinction Log
+    </button>
+
+    <div id="logBox">
+
+        <h3>Extinction Log</h3>
+
+        <ul id="logList"></ul>
+
+    </div>
+
+</div>
+
+<script>
+
+let grass = 100;
+let caterpillars = 0;
+let butterflies = 0;
+let rabbits = 0;
+let foxes = 0;
+
+let caterpillarAges = [];
+
+let day = 1;
+
+let weather = "Sunny";
+
+let extinctLog = [];
+
+let startTime = Date.now();
+
+const weatherTypes = [
+    "Sunny",
+    "Rainy",
+    "Cloudy",
+    "Drought"
+];
+
+function updateDisplay() {
+
+    document.getElementById("grass").textContent =
+        Math.floor(grass);
+
+    document.getElementById("caterpillars").textContent =
+        caterpillars;
+
+    document.getElementById("butterflies").textContent =
+        butterflies;
+
+    document.getElementById("rabbits").textContent =
+        rabbits;
+
+    document.getElementById("foxes").textContent =
+        foxes;
+
+    document.getElementById("day").textContent =
+        day;
+
+    document.getElementById("weather").textContent =
+        weather;
+
+    if(grass >= 500) {
+        document.getElementById(
+            "buyCaterpillar"
+        ).style.display = "inline-block";
+    }
+
+    if(butterflies >= 5) {
+        document.getElementById(
+            "buyRabbit"
+        ).style.display = "inline-block";
+    }
+
+    if(rabbits >= 25) {
+        document.getElementById(
+            "buyFox"
+        ).style.display = "inline-block";
+    }
+}
+
+function randomWeather() {
+
+    weather =
+        weatherTypes[
+            Math.floor(
+                Math.random() *
+                weatherTypes.length
+            )
+        ];
+}
+
+function buyCaterpillar() {
+
+    if(grass >= 250) {
+
+        grass -= 250;
+
+        caterpillars++;
+
+        caterpillarAges.push(0);
+
+        updateDisplay();
+    }
+}
+
+function buyRabbit() {
+
+    if(grass >= 1000) {
+
+        grass -= 1000;
+
+        rabbits++;
+
+        updateDisplay();
+    }
+}
+
+function buyFox() {
+
+    if(rabbits >= 10) {
+
+        rabbits -= 10;
+
+        foxes++;
+
+        updateDisplay();
+    }
+}
+
+function addExtinction(species) {
+
+    extinctLog.push(
+        `Day ${day}: ${species} went extinct`
+    );
+
+    renderLog();
+}
+
+function renderLog() {
+
+    const list =
+        document.getElementById(
+            "logList"
+        );
+
+    list.innerHTML = "";
+
+    extinctLog.forEach(item => {
+
+        const li =
+            document.createElement("li");
+
+        li.textContent = item;
+
+        list.appendChild(li);
+    });
+}
+
+function toggleLog() {
+
+    const box =
+        document.getElementById(
+            "logBox"
+        );
+
+    box.style.display =
+        box.style.display === "none"
+        ? "block"
+        : "none";
+}
+
+function nextDay() {
+
+    day++;
+
+    randomWeather();
+
+    let grassGrowth = 0;
+
+    switch(weather) {
+
+        case "Sunny":
+            grassGrowth = 30;
+            break;
+
+        case "Rainy":
+            grassGrowth = 80;
+            break;
+
+        case "Cloudy":
+            grassGrowth = 15;
+            break;
+
+        case "Drought":
+            grassGrowth = -40;
+            break;
+    }
+
+    grass += grassGrowth;
+
+    grass += butterflies * 5;
+
+    for(
+        let i =
+        caterpillarAges.length - 1;
+        i >= 0;
+        i--
+    ) {
+
+        caterpillarAges[i]++;
+
+        if(caterpillarAges[i] >= 5) {
+
+            caterpillarAges.splice(i,1);
+
+            caterpillars--;
+
+            butterflies++;
+        }
+    }
+
+    if(rabbits > 0) {
+
+        let grassNeeded =
+            rabbits * 2;
+
+        if(grass >= grassNeeded) {
+
+            grass -= grassNeeded;
+
+            rabbits +=
+                Math.max(
+                    1,
+                    Math.floor(
+                        rabbits * 0.08
+                    )
+                );
+
+        } else {
+
+            rabbits -=
+                Math.ceil(
+                    rabbits * 0.05
+                );
+        }
+    }
+
+    if(foxes > 0) {
+
+        let rabbitsNeeded =
+            foxes;
+
+        if(rabbits >= rabbitsNeeded) {
+
+            rabbits -= rabbitsNeeded;
+
+            foxes +=
+                Math.floor(
+                    foxes * 0.02
+                );
+
+        } else {
+
+            foxes -=
+                Math.ceil(
+                    foxes * 0.10
+                );
+        }
+    }
+
+    grass =
+        Math.max(
+            0,
+            Math.floor(grass)
+        );
+
+    rabbits =
+        Math.max(
+            0,
+            rabbits
+        );
+
+    foxes =
+        Math.max(
+            0,
+            foxes
+        );
+
+    updateDisplay();
+}
+
+setInterval(() => {
+
+    let seconds =
+        Math.floor(
+            (
+                Date.now()
+                - startTime
+            ) / 1000
+        );
+
+    document.getElementById(
+        "timer"
+    ).textContent =
+        seconds;
+
+}, 1000);
+
+updateDisplay();
+
+</script>
+
+</body>
+</html>
