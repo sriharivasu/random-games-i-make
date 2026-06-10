@@ -55,7 +55,6 @@
     font-weight: 600;
   }
 
-  /* ── Timer settings bar ── */
   .settings-bar {
     width: 100%;
     background: rgba(255,255,255,0.04);
@@ -161,7 +160,6 @@
     color: var(--navy);
   }
 
-  /* ── Quiz card — flashes green on correct ── */
   .quiz-card {
     background: var(--card);
     border-radius: var(--radius);
@@ -339,7 +337,6 @@
   .timer-bar.warning { background: var(--orange); }
   .timer-bar.danger  { background: var(--pink); }
 
-  /* ── Answer reveal ── */
   .answer-reveal {
     background: #F0FBF6;
     border: 2px solid var(--teal);
@@ -353,7 +350,6 @@
   .answer-reveal .ar-label { font-size: 0.78rem; font-weight: 800; color: #025E44; text-transform: uppercase; letter-spacing: 0.5px; }
   .answer-reveal .ar-value { font-size: 1rem; font-weight: 700; color: var(--text); margin-top: 3px; }
 
-  /* ── Explanation dropdown ── */
   .explain-toggle {
     background: none;
     border: none;
@@ -384,7 +380,6 @@
 
   .explain-box.show { display: block; }
 
-  /* ── Feedback message ── */
   .feedback-msg {
     text-align: center;
     font-size: 1.15rem;
@@ -406,7 +401,6 @@
     letter-spacing: 0.5px;
   }
 
-  /* ── Buttons ── */
   .btn-row {
     display: flex;
     gap: 9px;
@@ -436,7 +430,7 @@
   .btn-next    { background: var(--teal);   color: #073B4C; }
   .btn-skip    { background: #EEF2F5;       color: var(--muted); }
 
-  /* ── End screen ── */
+  /* End screen */
   .end-screen {
     text-align: center;
     padding: 40px 20px;
@@ -481,13 +475,10 @@
 
   .end-screen .btn-restart:hover { transform: scale(1.04); }
 
-  /* ── Player Name Modal ── */
+  /* Modal */
   .modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(0,0,0,0.7);
     display: flex;
     align-items: center;
@@ -500,7 +491,8 @@
     border-radius: var(--radius);
     padding: 40px 30px;
     text-align: center;
-    max-width: 400px;
+    max-width: 420px;
+    width: 92%;
     box-shadow: 0 16px 48px rgba(0,0,0,0.3);
   }
 
@@ -508,7 +500,13 @@
     font-family: 'Fredoka One', sans-serif;
     font-size: 1.8rem;
     color: var(--text);
-    margin-bottom: 16px;
+    margin-bottom: 8px;
+  }
+
+  .modal-content p.modal-sub {
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin-bottom: 18px;
   }
 
   .modal-content label {
@@ -516,7 +514,8 @@
     font-size: 0.9rem;
     font-weight: 700;
     color: var(--muted);
-    margin-bottom: 10px;
+    margin-bottom: 6px;
+    text-align: left;
   }
 
   .modal-content input {
@@ -526,7 +525,8 @@
     border-radius: var(--radius-sm);
     font-family: 'Nunito', sans-serif;
     font-size: 1rem;
-    margin-bottom: 20px;
+    margin-bottom: 14px;
+    color: var(--text);
   }
 
   .modal-content input:focus { outline: none; border-color: var(--sky); }
@@ -542,15 +542,48 @@
     font-weight: 800;
     cursor: pointer;
     transition: transform 0.12s;
+    width: 100%;
+    margin-top: 4px;
   }
-  .modal-btn:hover { transform: scale(1.04); }
+  .modal-btn:hover { transform: scale(1.02); }
 
-  /* ── Points & Calculator ── */
+  .modal-btn-secondary {
+    background: #EEF2F5;
+    color: var(--muted);
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 10px 32px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.12s;
+    width: 100%;
+    margin-top: 8px;
+  }
+  .modal-btn-secondary:hover { transform: scale(1.02); }
+
+  .modal-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 16px 0;
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+  .modal-divider::before, .modal-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #DDE6EC;
+  }
+
+  /* Points & Calculator */
   .points-display {
     font-family: 'Fredoka One', sans-serif;
     font-size: 1.3rem;
     color: var(--yellow);
-    font-weight: 800;
   }
 
   .calculator-btn {
@@ -593,19 +626,8 @@
     cursor: pointer;
   }
 
-  .calc-title {
-    font-weight: 800;
-    color: var(--text);
-    margin-bottom: 10px;
-    text-align: center;
-  }
-
-  .calc-cost {
-    font-size: 0.75rem;
-    color: var(--muted);
-    text-align: center;
-    margin-bottom: 12px;
-  }
+  .calc-title { font-weight: 800; color: var(--text); margin-bottom: 10px; text-align: center; }
+  .calc-cost { font-size: 0.75rem; color: var(--muted); text-align: center; margin-bottom: 12px; }
 
   .calc-display {
     background: #f5f5f5;
@@ -620,11 +642,7 @@
     font-weight: 700;
   }
 
-  .calc-buttons {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 5px;
-  }
+  .calc-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; }
 
   .calc-btn {
     padding: 10px 5px;
@@ -638,10 +656,10 @@
   }
   .calc-btn:hover { background: #efefef; }
   .calc-btn.operator { background: var(--orange); color: #fff; }
-  .calc-btn.equals { background: var(--teal); color: var(--navy); }
-  .calc-btn.clear { background: #FFE4EA; color: #8B0020; }
+  .calc-btn.equals   { background: var(--teal); color: var(--navy); }
+  .calc-btn.clear    { background: #FFE4EA; color: #8B0020; }
 
-  /* ── Leaderboard ── */
+  /* Leaderboard */
   .leaderboard-panel {
     background: var(--card);
     border-radius: var(--radius);
@@ -673,31 +691,22 @@
   }
 
   .control-btn, .time-btn {
-    padding: 8px 12px;
+    padding: 7px 12px;
     border: 2px solid var(--navy);
     border-radius: 8px;
     background: white;
     color: var(--navy);
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
+    font-family: 'Nunito', sans-serif;
     transition: all 0.2s;
   }
 
-  .control-btn:hover, .time-btn:hover {
-    background: var(--light);
-    transform: scale(1.05);
-  }
+  .control-btn:hover, .time-btn:hover { background: var(--light); }
+  .control-btn.active, .time-btn.active { background: var(--orange); color: white; border-color: var(--orange); }
 
-  .control-btn.active, .time-btn.active {
-    background: var(--orange);
-    color: white;
-    border-color: var(--orange);
-  }
-
-  .leaderboard-list {
-    list-style: none;
-  }
+  .leaderboard-list { list-style: none; }
 
   .leaderboard-item {
     display: flex;
@@ -712,38 +721,136 @@
   }
 
   .leaderboard-item:last-child { margin-bottom: 0; }
+  .lb-rank { font-weight: 800; color: var(--orange); min-width: 35px; }
+  .lb-name { color: var(--navy); flex-grow: 1; }
+  .lb-meta { color: var(--muted); font-size: 0.8rem; min-width: 110px; text-align: right; }
+  .lb-score { color: var(--teal); font-weight: 800; font-size: 1.1rem; min-width: 50px; text-align: right; }
 
-  .lb-rank {
+  /* Multiplayer */
+  .multiplayer-panel {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  }
+
+  .multiplayer-title {
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-bottom: 14px;
+    text-align: center;
+  }
+
+  .room-code-display {
+    background: var(--navy);
+    color: var(--yellow);
+    font-family: 'Fredoka One', sans-serif;
+    font-size: 2rem;
+    letter-spacing: 6px;
+    text-align: center;
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    margin: 10px 0;
+  }
+
+  .player-list {
+    list-style: none;
+    margin: 10px 0;
+  }
+
+  .player-list-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: var(--light);
+    border-radius: 8px;
+    margin-bottom: 6px;
+    font-weight: 700;
+    color: var(--text);
+    font-size: 0.9rem;
+  }
+
+  .player-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--teal);
+    flex-shrink: 0;
+  }
+
+  .player-dot.ready { background: var(--teal); }
+  .player-dot.waiting { background: var(--orange); animation: pulse 1s ease infinite alternate; }
+
+  .mp-btn {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.9rem;
     font-weight: 800;
-    color: var(--orange);
-    min-width: 35px;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: transform 0.12s;
+    margin: 4px;
   }
+  .mp-btn:hover { transform: scale(1.03); }
+  .mp-btn-create { background: var(--sky); color: #fff; }
+  .mp-btn-join   { background: var(--teal); color: var(--navy); }
+  .mp-btn-start  { background: var(--orange); color: #fff; width: 100%; margin: 8px 0 0; }
+  .mp-btn-leave  { background: #EEF2F5; color: var(--muted); width: 100%; margin: 8px 0 0; }
 
-  .lb-name {
-    color: var(--navy);
-    flex-grow: 1;
-  }
-
-  .lb-meta {
+  .mp-status {
+    font-size: 0.85rem;
     color: var(--muted);
-    font-size: 0.8rem;
-    min-width: 110px;
-    text-align: right;
+    text-align: center;
+    margin: 8px 0;
+    font-weight: 600;
   }
 
-  .lb-score {
-    color: var(--teal);
+  .mp-live-scores {
+    background: rgba(6,214,160,0.08);
+    border: 1.5px solid var(--teal);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    margin-bottom: 16px;
+  }
+
+  .mp-live-title {
+    font-size: 0.78rem;
     font-weight: 800;
-    font-size: 1.1rem;
-    min-width: 50px;
-    text-align: right;
+    color: #025E44;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .mp-score-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text);
+    border-bottom: 1px solid rgba(6,214,160,0.15);
+  }
+  .mp-score-row:last-child { border-bottom: none; }
+  .mp-score-pts { color: var(--teal); }
+  .mp-score-row.me { color: var(--sky); }
+
+  .lb-loading {
+    text-align: center;
+    padding: 20px;
+    color: var(--muted);
+    font-size: 0.88rem;
   }
 
   @media (max-width: 500px) {
     .options-grid { grid-template-columns: 1fr; }
-    header h1    { font-size: 1.7rem; }
-    .quiz-card   { padding: 18px 14px 16px; }
-    .btn-row     { flex-direction: column; }
+    header h1 { font-size: 1.7rem; }
+    .quiz-card { padding: 18px 14px 16px; }
+    .btn-row { flex-direction: column; }
     .modal-content { padding: 30px 20px; }
     .calculator-modal { min-width: 250px; }
   }
@@ -756,7 +863,6 @@
   <p>Answer fast · Show your work · Review mistakes</p>
 </header>
 
-<!-- Timer settings -->
 <div class="settings-bar">
   <label for="timerSetting">⏱ Timer (seconds):</label>
   <input type="number" id="timerSetting" class="timer-input" value="15" min="5" max="120" />
@@ -766,38 +872,38 @@
 <div class="stats-bar">
   <div class="stat-pill">Question <span id="qNum">1</span> of <span id="qTotal">—</span></div>
   <div class="stat-pill">💰 Points: <span class="points-display" id="pointsVal">100</span></div>
-  <div class="stat-pill">👤 <span id="playerName">—</span></div>
+  <div class="stat-pill">👤 <span id="playerNameDisplay">—</span></div>
   <button class="calculator-btn" onclick="openCalculator()">🧮 Calc (-3)</button>
 </div>
 
-<!-- Leaderboard Panel -->
-<div class="leaderboard-panel" id="leaderboardPanel">
-  <div class="leaderboard-title">🏆 Leaderboard</div>
-  
-  <!-- Leaderboard Controls -->
-  <div class="leaderboard-controls">
-    <div class="control-group">
-      <button class="control-btn active" id="togglePublic" onclick="setLeaderboardMode('public')">🌍 Public</button>
-      <button class="control-btn" id="togglePersonal" onclick="setLeaderboardMode('personal')">👤 Personal</button>
-    </div>
-    <div class="control-group">
-      <button class="time-btn active" id="timeToday" onclick="setTimeRange('today')">Today</button>
-      <button class="time-btn" id="timeWeekly" onclick="setTimeRange('weekly')">Weekly</button>
-      <button class="time-btn" id="timeMonthly" onclick="setTimeRange('monthly')">Monthly</button>
-      <button class="time-btn" id="timeAllTime" onclick="setTimeRange('allTime')">All Time</button>
-    </div>
+<!-- Player Name Modal -->
+<div class="modal-overlay" id="nameModal" style="display:none;">
+  <div class="modal-content">
+    <h2>📐 Let's Play!</h2>
+    <p class="modal-sub">6th Grade Math Quiz</p>
+    <label for="playerNameInput">Your name:</label>
+    <input type="text" id="playerNameInput" placeholder="Enter your name..." autocomplete="off" maxlength="20" />
+    <button class="modal-btn" onclick="setPlayerName()">🚀 Start Solo Quiz</button>
+    <div class="modal-divider">or</div>
+    <button class="modal-btn-secondary" onclick="showMultiplayerSetup()">🎮 Play Multiplayer</button>
   </div>
-  
-  <ul class="leaderboard-list" id="leaderboardList"></ul>
 </div>
 
-<!-- Player Name Modal -->
-<div class="modal-overlay" id="nameModal" style="display: none;">
+<!-- Multiplayer Setup Modal -->
+<div class="modal-overlay" id="mpModal" style="display:none;">
   <div class="modal-content">
-    <h2>Let's Play!</h2>
-    <label for="playerNameInput">Enter your name:</label>
-    <input type="text" id="playerNameInput" placeholder="Your name..." autocomplete="off" />
-    <button class="modal-btn" onclick="setPlayerName()">Start Quiz</button>
+    <h2>🎮 Multiplayer</h2>
+    <p class="modal-sub">Play live against friends!</p>
+    <label for="mpNameInput">Your name:</label>
+    <input type="text" id="mpNameInput" placeholder="Enter your name..." autocomplete="off" maxlength="20" />
+    <div class="modal-divider">Choose an option</div>
+    <button class="modal-btn mp-btn-create" onclick="createRoom()">➕ Create New Room</button>
+    <div style="margin: 12px 0;">
+      <label for="joinCodeInput">Room code to join:</label>
+      <input type="text" id="joinCodeInput" placeholder="e.g. 4827" autocomplete="off" maxlength="4" style="text-align:center;letter-spacing:4px;font-size:1.3rem;" />
+      <button class="modal-btn mp-btn-join" style="margin-top:8px;" onclick="joinRoom()">🔗 Join Room</button>
+    </div>
+    <button class="modal-btn-secondary" onclick="showNameModal()">← Back</button>
   </div>
 </div>
 
@@ -813,7 +919,41 @@
 <main>
   <div class="category-filter" id="catFilter"></div>
 
-  <div class="quiz-card" id="quizCard">
+  <!-- Multiplayer Live Panel (shown during MP game) -->
+  <div id="mpLivePanel" style="display:none;">
+    <div class="mp-live-scores">
+      <div class="mp-live-title">🏆 Live Scores</div>
+      <div id="mpLiveScores"></div>
+    </div>
+  </div>
+
+  <!-- Multiplayer Lobby Panel -->
+  <div class="multiplayer-panel" id="mpLobbyPanel" style="display:none;">
+    <div class="multiplayer-title">🎮 Multiplayer Lobby</div>
+    <div id="mpLobbyContent"></div>
+  </div>
+
+  <!-- Leaderboard Panel -->
+  <div class="leaderboard-panel" id="leaderboardPanel">
+    <div class="leaderboard-title">🏆 Leaderboard</div>
+    <div class="leaderboard-controls">
+      <div class="control-group">
+        <button class="control-btn active" id="togglePublic" onclick="setLeaderboardMode('public')">🌍 Global</button>
+        <button class="control-btn" id="togglePersonal" onclick="setLeaderboardMode('personal')">👤 My Scores</button>
+      </div>
+      <div class="control-group">
+        <button class="time-btn active" id="timeToday"   onclick="setTimeRange('today')">Today</button>
+        <button class="time-btn" id="timeWeekly"  onclick="setTimeRange('weekly')">Weekly</button>
+        <button class="time-btn" id="timeMonthly" onclick="setTimeRange('monthly')">Monthly</button>
+        <button class="time-btn" id="timeAllTime" onclick="setTimeRange('allTime')">All Time</button>
+      </div>
+    </div>
+    <ul class="leaderboard-list" id="leaderboardList">
+      <li class="lb-loading">Loading scores...</li>
+    </ul>
+  </div>
+
+  <div class="quiz-card" id="quizCard" style="display:none;">
     <div class="q-counter" id="qCounter"></div>
     <div class="topic-badge" id="topicBadge"></div>
     <div class="question-text" id="questionText"></div>
@@ -837,10 +977,8 @@
 
     <button class="explain-toggle" id="explainToggle" onclick="toggleExplain()">▶ Why is this the answer?</button>
     <div class="explain-box" id="explainBox"></div>
-
     <div class="feedback-msg" id="feedbackMsg"></div>
 
-    <!-- Next only shows on wrong/skip/time-up. Reveal & Skip always visible. -->
     <div class="btn-row" id="btnRow">
       <button class="btn btn-skip"   id="btnSkip"   onclick="skipQuestion()">Skip</button>
       <button class="btn btn-reveal" id="btnReveal" onclick="revealAnswer()">Reveal Answer</button>
@@ -876,14 +1014,13 @@ const ALL_QUESTIONS = [
   { topic:"Ratios & Proportions", q:"A bakery produces 4.5 dozen cookies per hour. How long to bake 72 dozen?", type:"mc", options:["12 hours","18 hours","20 hours","16 hours"], answer:"D", explanation:"72 ÷ 4.5 = 16 hours." },
   { topic:"Ratios & Proportions", q:"Which ratio is equivalent to 4:7?", type:"mc", options:["10:16","6:10","12:24","8:14"], answer:"D", explanation:"4×2=8 and 7×2=14 → 8:14 ✓." },
   { topic:"Ratios & Proportions", q:"45 voted for Alex, 30 for Jordan. Ratio of Alex votes to total votes?", type:"mc", options:["3:2","3:5","5:8","2:3"], answer:"B", explanation:"Total = 75. Alex = 45. 45:75 = 3:5." },
-
   // Percents
   { topic:"Percents", q:"Marie finished 15 of 25 chapters (60%). Sam's book has 35 chapters. How many has Sam finished?", type:"open", answer:"21 chapters", explanation:"60% of 35 = 0.60 × 35 = 21 chapters." },
-  { topic:"Percents", q:"3 pieces of cake = 25% of the cake. How many total pieces?", type:"mc", options:["9","12","15","18"], answer:"B", explanation:"3 = 25% → 1% = 3/25 → 100% = 12 pieces." },
+  { topic:"Percents", q:"3 pieces of cake = 25% of the cake. How many total pieces?", type:"mc", options:["9","12","15","18"], answer:"B", explanation:"3 = 25% → 100% = 12 pieces." },
   { topic:"Percents", q:"Michael earns $600/week and spends 20% on groceries. How much on groceries?", type:"mc", options:["$80","$90","$100","$120"], answer:"D", explanation:"$600 × 0.20 = $120." },
   { topic:"Percents", q:"If 60% of n is 300, what is 80% of n?", type:"mc", options:["600","800","400","480"], answer:"C", explanation:"n = 300 ÷ 0.60 = 500. 80% of 500 = 400." },
   { topic:"Percents", q:"150 of 600 students play an instrument. What percent?", type:"mc", options:["20%","25%","33.3%","50%"], answer:"B", explanation:"150/600 = 0.25 = 25%." },
-  { topic:"Percents", q:"Sophia bought a book for $15. Sales tax is 6%. Total paid?", type:"open", answer:"$15.90", explanation:"Tax = $15 × 0.06 = $0.90. Total = $15 + $0.90 = $15.90." },
+  { topic:"Percents", q:"Sophia bought a book for $15. Sales tax is 6%. Total paid?", type:"open", answer:"$15.90", explanation:"Tax = $15 × 0.06 = $0.90. Total = $15.90." },
   { topic:"Percents", q:"52 is 80% of what number?", type:"mc", options:["60","65","70","75"], answer:"B", explanation:"n = 52 ÷ 0.80 = 65." },
   { topic:"Percents", q:"A football team won 40% of their 25 games. How many games did they win?", type:"mc", options:["8","9","10","12"], answer:"C", explanation:"25 × 0.40 = 10 games." },
   { topic:"Percents", q:"36 campers = 45% of all campers. How many campers total?", type:"mc", options:["80","75","70","85"], answer:"A", explanation:"n = 36 ÷ 0.45 = 80 campers." },
@@ -892,259 +1029,160 @@ const ALL_QUESTIONS = [
   { topic:"Percents", q:"35 is approximately what percent of 140?", type:"mc", options:["20%","25%","30%","35%"], answer:"B", explanation:"35/140 = 0.25 = 25%." },
   { topic:"Percents", q:"48 is 60% of what number?", type:"open", answer:"80", explanation:"n = 48 ÷ 0.60 = 80." },
   { topic:"Percents", q:"David earned 75% on a test and got 30 correct. How many total questions?", type:"mc", options:["35","38","40","45"], answer:"C", explanation:"n = 30 ÷ 0.75 = 40." },
-
   // LCM & GCF
   { topic:"LCM & GCF", q:"What is the prime factorization of 120?", type:"mc", options:["13×17","2²×3²×5","5²×17","2³×3×5"], answer:"D", explanation:"120 = 8×15 = 2³ × 3 × 5." },
   { topic:"LCM & GCF", q:"Which pair has LCM = 36?", type:"mc", options:["6 and 12","9 and 18","4 and 3","12 and 18"], answer:"D", explanation:"LCM(12,18): multiples of 18 → 18, 36. Is 36 a multiple of 12? Yes ✓." },
   { topic:"LCM & GCF", q:"Which expression equals 56 + 32 by factoring out the GCF?", type:"mc", options:["8(7+4)","4(14+8)","2(28+16)","6(10+4)"], answer:"A", explanation:"GCF(56,32)=8. 56÷8=7, 32÷8=4 → 8(7+4)." },
   { topic:"LCM & GCF", q:"Julia runs every 8 days, Marta every 12 days. Days until they run together again?", type:"mc", options:["16","24","32","40"], answer:"B", explanation:"LCM(8,12)=24 days." },
-  { topic:"LCM & GCF", q:"What is the prime factorization of 210?", type:"mc", options:["2·5²","2·3³","2²·5²","2·3·5·7"], answer:"D", explanation:"210 = 2 × 105 = 2 × 3 × 35 = 2 × 3 × 5 × 7." },
-  { topic:"LCM & GCF", q:"What is the GCF of 48 and 72?", type:"mc", options:["6","24","12","36"], answer:"B", explanation:"Factors of 48: 1,2,3,4,6,8,12,16,24,48. Factors of 72: …24… GCF = 24." },
+  { topic:"LCM & GCF", q:"What is the prime factorization of 210?", type:"mc", options:["2·5²","2·3³","2²·5²","2·3·5·7"], answer:"D", explanation:"210 = 2 × 3 × 5 × 7." },
+  { topic:"LCM & GCF", q:"What is the GCF of 48 and 72?", type:"mc", options:["6","24","12","36"], answer:"B", explanation:"GCF = 24." },
   { topic:"LCM & GCF", q:"Rewrite 45 + 75 by factoring out the GCF.", type:"mc", options:["5(9+15)","15(3+5)","9(5+15)","3(15+25)"], answer:"B", explanation:"GCF(45,75)=15. 45÷15=3, 75÷15=5 → 15(3+5)." },
-  { topic:"LCM & GCF", q:"A company has 42 pens and 56 notebooks to put in identical bags. Max bags?", type:"mc", options:["6","7","14","28"], answer:"C", explanation:"GCF(42,56)=14. So 14 bags, each with 3 pens and 4 notebooks." },
+  { topic:"LCM & GCF", q:"A company has 42 pens and 56 notebooks to put in identical bags. Max bags?", type:"mc", options:["6","7","14","28"], answer:"C", explanation:"GCF(42,56)=14. So 14 bags." },
   { topic:"LCM & GCF", q:"What is the LCM of 15 and 20?", type:"mc", options:["30","40","60","75"], answer:"C", explanation:"Multiples of 20: 20,40,60. Is 60 divisible by 15? Yes ✓. LCM=60." },
   { topic:"LCM & GCF", q:"What is the LCM of 4 and 10?", type:"mc", options:["20","40","10","14"], answer:"A", explanation:"Multiples of 10: 10,20. Is 20 divisible by 4? Yes ✓. LCM=20." },
   { topic:"LCM & GCF", q:"What is the prime factorization of 140?", type:"mc", options:["14·10","7·20","2²·5·7","2·3·23"], answer:"C", explanation:"140 = 4×35 = 2² × 5 × 7." },
-
-  // Fraction & Decimal Operations
+  // Fractions & Decimals
   { topic:"Fractions & Decimals", q:"Ariyah has 4½ cups of sugar. A recipe needs ¼ cup. Maximum completions?", type:"open", answer:"18 times", explanation:"4½ ÷ ¼ = (9/2) ÷ (1/4) = 9/2 × 4 = 18." },
-  { topic:"Fractions & Decimals", q:"Garden area = 2/3 sq mile, width = 1/2 mile. What is the length?", type:"mc", options:["4/3 mile","3/4 mile","5/3 mile","2/3 mile"], answer:"A", explanation:"A = l × w → l = A÷w = (2/3)÷(1/2) = (2/3)×2 = 4/3 miles." },
+  { topic:"Fractions & Decimals", q:"Garden area = 2/3 sq mile, width = 1/2 mile. What is the length?", type:"mc", options:["4/3 mile","3/4 mile","5/3 mile","2/3 mile"], answer:"A", explanation:"l = A÷w = (2/3)÷(1/2) = 4/3 miles." },
   { topic:"Fractions & Decimals", q:"Jessica saved $1,512.72 in one year. How much per month?", type:"mc", options:["$125.85","$126.06","$126.25","$126.50"], answer:"B", explanation:"$1,512.72 ÷ 12 = $126.06." },
-  { topic:"Fractions & Decimals", q:"Jane takes 30¾ hrs to build a model, working 6½ hrs/week. About how many weeks? (nearest tenth)", type:"open", answer:"4.7 weeks", explanation:"30¾ ÷ 6½ = (123/4) ÷ (13/2) = (123/4) × (2/13) = 246/52 ≈ 4.73 ≈ 4.7 weeks." },
-  { topic:"Fractions & Decimals", q:"Gift wrap needs 2/5 yard per package. Ribbon for 25 packages?", type:"mc", options:["8 yards","10 yards","5 yards","12.5 yards"], answer:"B", explanation:"25 × 2/5 = 50/5 = 10 yards." },
+  { topic:"Fractions & Decimals", q:"Jane takes 30¾ hrs to build a model, working 6½ hrs/week. About how many weeks?", type:"open", answer:"4.7 weeks", explanation:"30¾ ÷ 6½ ≈ 4.73 ≈ 4.7 weeks." },
+  { topic:"Fractions & Decimals", q:"Gift wrap needs 2/5 yard per package. Ribbon for 25 packages?", type:"mc", options:["8 yards","10 yards","5 yards","12.5 yards"], answer:"B", explanation:"25 × 2/5 = 10 yards." },
   { topic:"Fractions & Decimals", q:"What is the square of 2/3?", type:"mc", options:["4/9","2/3","1/3","4/6"], answer:"A", explanation:"(2/3)² = 4/9." },
-  { topic:"Fractions & Decimals", q:"Rectangle perimeter = 36¼ ft, length = 10 ft. What is the width?", type:"mc", options:["8⅛ ft","6¼ ft","16¼ ft","7½ ft"], answer:"A", explanation:"P=2(l+w) → 36.25=2(10+w) → 18.125=10+w → w=8.125=8⅛ ft." },
-  { topic:"Fractions & Decimals", q:"Maggie earned $9.50/hr, worked 25 hrs/week for 6 weeks. Total earned?", type:"mc", options:["$1,200","$1,425","$1,500","$1,625"], answer:"B", explanation:"$9.50 × 25 × 6 = $9.50 × 150 = $1,425." },
-  { topic:"Fractions & Decimals", q:"Tyler cuts wood 3⅓ ft long into ⅓-ft sections. How many sections?", type:"open", answer:"10 sections", explanation:"3⅓ ÷ ⅓ = (10/3) ÷ (1/3) = 10." },
-  { topic:"Fractions & Decimals", q:"A bag of trail mix has 4½ cups. Each portion is ¾ cup. How many whole portions?", type:"mc", options:["5","8","7","6"], answer:"D", explanation:"4½ ÷ ¾ = (9/2) ÷ (3/4) = (9/2) × (4/3) = 6." },
-  { topic:"Fractions & Decimals", q:"What is 9²⁄₃ ÷ 4⅓?", type:"mc", options:["1½","1⅓","1¹/₂₆","1¾"], answer:"A", explanation:"9⅔ = 29/3, 4⅓ = 13/3. (29/3) ÷ (13/3) = 29/13 = 2²/₁₃. Wait — re‑checking: 29÷13≈2.23. Closest option is not listed simply; the packet answer is 1½ using mixed-number division approach with the given values." },
-  { topic:"Fractions & Decimals", q:"Water jug needs 3½ gallons. Container holds ¼ gallon. How many fills?", type:"mc", options:["12","13","14","15"], answer:"C", explanation:"3½ ÷ ¼ = (7/2) ÷ (1/4) = (7/2) × 4 = 14 fills." },
-
+  { topic:"Fractions & Decimals", q:"Rectangle perimeter = 36¼ ft, length = 10 ft. What is the width?", type:"mc", options:["8⅛ ft","6¼ ft","16¼ ft","7½ ft"], answer:"A", explanation:"P=2(l+w) → w=8.125=8⅛ ft." },
+  { topic:"Fractions & Decimals", q:"Maggie earned $9.50/hr, worked 25 hrs/week for 6 weeks. Total earned?", type:"mc", options:["$1,200","$1,425","$1,500","$1,625"], answer:"B", explanation:"$9.50 × 150 = $1,425." },
+  { topic:"Fractions & Decimals", q:"Tyler cuts wood 3⅓ ft long into ⅓-ft sections. How many sections?", type:"open", answer:"10 sections", explanation:"3⅓ ÷ ⅓ = 10." },
+  { topic:"Fractions & Decimals", q:"A bag of trail mix has 4½ cups. Each portion is ¾ cup. How many whole portions?", type:"mc", options:["5","8","7","6"], answer:"D", explanation:"4½ ÷ ¾ = 6." },
+  { topic:"Fractions & Decimals", q:"Water jug needs 3½ gallons. Container holds ¼ gallon. How many fills?", type:"mc", options:["12","13","14","15"], answer:"C", explanation:"3½ ÷ ¼ = 14 fills." },
   // Expressions
-  { topic:"Expressions", q:"Emma saves x dollars/week for a $125 ticket. Weeks needed?", type:"mc", options:["125−x","125+x","125x","125/x"], answer:"D", explanation:"Weeks = total cost ÷ savings per week = 125 ÷ x = 125/x." },
+  { topic:"Expressions", q:"Emma saves x dollars/week for a $125 ticket. Weeks needed?", type:"mc", options:["125−x","125+x","125x","125/x"], answer:"D", explanation:"Weeks = 125 ÷ x = 125/x." },
   { topic:"Expressions", q:"In 5² + 9y + 4, what are 5, 9, and 4 respectively?", type:"mc", options:["Coefficient, Exponent, Constant","Base, Coefficient, Constant","Exponent, Variable, Term","Base, Constant, Coefficient"], answer:"B", explanation:"5 is the base (in 5²), 9 is the coefficient of y, 4 is a constant." },
   { topic:"Expressions", q:"Simplify: 4a + 6 + 3a − 2", type:"mc", options:["7a+8","4a+4","7a+4","7a+6"], answer:"C", explanation:"(4a+3a) + (6−2) = 7a + 4." },
-  { topic:"Expressions", q:"Which is equivalent to 42x − 18y?", type:"mc", options:["6(4x−4y)","6(12x−4y)","6(7x−3y)","6(6x−3y)"], answer:"C", explanation:"GCF(42,18)=6. 42x÷6=7x, 18y÷6=3y → 6(7x−3y)." },
-  { topic:"Expressions", q:"Which is equivalent to 4(2x + 5)?", type:"mc", options:["8x+9","8x+5","8x+20","6x+20"], answer:"C", explanation:"Distribute: 4×2x=8x, 4×5=20 → 8x+20." },
+  { topic:"Expressions", q:"Which is equivalent to 42x − 18y?", type:"mc", options:["6(4x−4y)","6(12x−4y)","6(7x−3y)","6(6x−3y)"], answer:"C", explanation:"GCF(42,18)=6 → 6(7x−3y)." },
+  { topic:"Expressions", q:"Which is equivalent to 4(2x + 5)?", type:"mc", options:["8x+9","8x+5","8x+20","6x+20"], answer:"C", explanation:"4×2x=8x, 4×5=20 → 8x+20." },
   { topic:"Expressions", q:"Which is equivalent to ⅓(6x + 9)?", type:"mc", options:["2x+3","3x+6","2x+9","6x+3"], answer:"A", explanation:"(1/3)×6x=2x, (1/3)×9=3 → 2x+3." },
-  { topic:"Expressions", q:"In simplified 8x+10−3x+5x−4, what is 10?", type:"mc", options:["Constant","Variable","Term","Coefficient"], answer:"A", explanation:"10 is a number with no variable attached — it's a constant." },
-  { topic:"Expressions", q:"Evaluate: 2³ + 5(3+1) × 4 ÷ 2 + 6", type:"mc", options:["38","44","50","54"], answer:"B", explanation:"2³=8. 5×4=20, 20×4=80, 80÷2=40. 8+40+6=54... wait, order: 5(3+1)=5×4=20, 20×4÷2=40. 8+40+6=54. The packet marks B (44); apply grouping as written → 8+5×4÷2+6 = 8+10+6=24... the packet's answer is B=44." },
-  { topic:"Expressions", q:"Which set of expressions is equivalent?", type:"mc", options:["4(2x+3) and 8x+3","5(x+6) and 5x+30","3(4x+2) and 7x+6","2(5x+4) and 10x+6"], answer:"B", explanation:"5(x+6) = 5x+30 ✓. Distributing 5 to both x and 6." },
+  { topic:"Expressions", q:"In 8x+10−3x+5x−4, what is 10?", type:"mc", options:["Constant","Variable","Term","Coefficient"], answer:"A", explanation:"10 is a constant — a number with no variable." },
+  { topic:"Expressions", q:"Which set of expressions is equivalent?", type:"mc", options:["4(2x+3) and 8x+3","5(x+6) and 5x+30","3(4x+2) and 7x+6","2(5x+4) and 10x+6"], answer:"B", explanation:"5(x+6) = 5x+30 ✓." },
   { topic:"Expressions", q:"Simplify: 7x + 3y − 2x + 5y", type:"mc", options:["5x+2y","9x+2y","7x+5y","5x+8y"], answer:"D", explanation:"(7x−2x)+(3y+5y) = 5x+8y." },
-  { topic:"Expressions", q:"Emily buys t tickets at $12 each + $8 service fee. Total cost?", type:"mc", options:["12+8t","12t+8","8t+12","12t−8"], answer:"B", explanation:"12 per ticket × t tickets + $8 one-time fee = 12t+8." },
-  { topic:"Expressions", q:"What is the value of 30 − 8 + 4 × 2²?", type:"open", answer:"38", explanation:"Order of ops: 2²=4. 4×4=16. 30−8+16 = 38." },
-
+  { topic:"Expressions", q:"Emily buys t tickets at $12 each + $8 service fee. Total cost?", type:"mc", options:["12+8t","12t+8","8t+12","12t−8"], answer:"B", explanation:"12t + $8 one-time fee = 12t+8." },
+  { topic:"Expressions", q:"What is the value of 30 − 8 + 4 × 2²?", type:"open", answer:"38", explanation:"2²=4. 4×4=16. 30−8+16 = 38." },
   // Equations & Inequalities
   { topic:"Equations & Inequalities", q:"Sophia earns $12/hr and spends $40/month on transport. Profit y for x hours?", type:"mc", options:["y=12x−40","y=40x−12","y=12x+40","y=40−12x"], answer:"A", explanation:"Profit = earnings − expenses = 12x − 40." },
-  { topic:"Equations & Inequalities", q:"Solve: (5/6)x = 10", type:"mc", options:["x=10","x=11","x=12","x=15"], answer:"C", explanation:"x = 10 ÷ (5/6) = 10 × (6/5) = 12." },
-  { topic:"Equations & Inequalities", q:"A book club allows UP TO 25 members. Which inequality?", type:"mc", options:["x≥25","x≤25","x>25","x<25"], answer:"B", explanation:"'At most 25' means x can equal 25 but not exceed it: x ≤ 25." },
+  { topic:"Equations & Inequalities", q:"Solve: (5/6)x = 10", type:"mc", options:["x=10","x=11","x=12","x=15"], answer:"C", explanation:"x = 10 × (6/5) = 12." },
+  { topic:"Equations & Inequalities", q:"A book club allows UP TO 25 members. Which inequality?", type:"mc", options:["x≥25","x≤25","x>25","x<25"], answer:"B", explanation:"'At most 25' means x ≤ 25." },
   { topic:"Equations & Inequalities", q:"Which equation is true when x = 6?", type:"mc", options:["x/2=4","x+4=12","x−2=5","2x=12"], answer:"D", explanation:"2×6=12 ✓." },
   { topic:"Equations & Inequalities", q:"Solve: m/4 = 11", type:"open", answer:"m = 44", explanation:"Multiply both sides by 4: m = 44." },
   { topic:"Equations & Inequalities", q:"Solve: z − 15 = 8", type:"open", answer:"z = 23", explanation:"Add 15 to both sides: z = 23." },
-  { topic:"Equations & Inequalities", q:"Solve: (3/5)x = 5⅖", type:"mc", options:["x=8","x=9","x=10","x=12"], answer:"B", explanation:"5⅖ = 27/5. x = (27/5) ÷ (3/5) = (27/5)×(5/3) = 9." },
+  { topic:"Equations & Inequalities", q:"Solve: (3/5)x = 5⅖", type:"mc", options:["x=8","x=9","x=10","x=12"], answer:"B", explanation:"5⅖ = 27/5. x = (27/5) ÷ (3/5) = 9." },
   { topic:"Equations & Inequalities", q:"Solve: 9k = 81", type:"open", answer:"k = 9", explanation:"Divide both sides by 9: k = 9." },
   { topic:"Equations & Inequalities", q:"Solve the inequality: x − 7 < 12", type:"mc", options:["x<5","x<19","x>5","x>19"], answer:"B", explanation:"Add 7 to both sides: x < 19." },
-  { topic:"Equations & Inequalities", q:"A restaurant has maximum capacity of 50 people. Which inequality?", type:"mc", options:["x<50","x≤50","x>50","x≥50"], answer:"B", explanation:"'Maximum of 50' means x can be 50 but no more: x ≤ 50." },
+  { topic:"Equations & Inequalities", q:"A restaurant has maximum capacity of 50 people. Which inequality?", type:"mc", options:["x<50","x≤50","x>50","x≥50"], answer:"B", explanation:"Maximum of 50 means x ≤ 50." },
   { topic:"Equations & Inequalities", q:"Solve: x + 7 = 15", type:"open", answer:"x = 8", explanation:"Subtract 7 from both sides: x = 8." },
-  { topic:"Equations & Inequalities", q:"Jamal earns $22.75/hr and made $682.50. Which equation finds h (hours)?", type:"mc", options:["22.75h=682.50","682.50h=22.75","h+22.75=682.50","h+682.50=22.75"], answer:"A", explanation:"Rate × hours = total → 22.75h = 682.50." },
-
+  { topic:"Equations & Inequalities", q:"Jamal earns $22.75/hr and made $682.50. Which equation finds h?", type:"mc", options:["22.75h=682.50","682.50h=22.75","h+22.75=682.50","h+682.50=22.75"], answer:"A", explanation:"Rate × hours = total → 22.75h = 682.50." },
   // Coordinate Plane
-  { topic:"Coordinate Plane", q:"Rectangle WXYZ has vertices W(−1,2), X(−1,−4), Y(7,−4), Z(7,2). Perimeter?", type:"mc", options:["16 units","20 units","24 units","28 units"], answer:"D", explanation:"Width = |7−(−1)|=8. Height = |2−(−4)|=6. P=2(8+6)=28." },
-  { topic:"Coordinate Plane", q:"Distance between (−7,4) and (−12,4)?", type:"mc", options:["5 units","7 units","12 units","15 units"], answer:"A", explanation:"Same y → horizontal distance = |−7−(−12)| = 5 units." },
+  { topic:"Coordinate Plane", q:"Rectangle WXYZ: W(−1,2), X(−1,−4), Y(7,−4), Z(7,2). Perimeter?", type:"mc", options:["16 units","20 units","24 units","28 units"], answer:"D", explanation:"Width=8, Height=6. P=2(8+6)=28." },
+  { topic:"Coordinate Plane", q:"Distance between (−7,4) and (−12,4)?", type:"mc", options:["5 units","7 units","12 units","15 units"], answer:"A", explanation:"Same y → |−7−(−12)| = 5 units." },
   { topic:"Coordinate Plane", q:"Which quadrant is (−2⅓, 7⅛) in?", type:"mc", options:["Quadrant I","Quadrant II","Quadrant III","Quadrant IV"], answer:"B", explanation:"x negative, y positive → Quadrant II." },
-  { topic:"Coordinate Plane", q:"Reflection of (4, 6) across the y-axis?", type:"mc", options:["(4,6)","(4,−6)","(−4,−6)","(−4,6)"], answer:"D", explanation:"Reflecting over y-axis flips the x sign: (−4, 6)." },
-  { topic:"Coordinate Plane", q:"Park at (−3,4), museum at (−3,0). Distance park to museum?", type:"mc", options:["2 units","4 units","6 units","8 units"], answer:"B", explanation:"Same x → vertical distance = |4−0| = 4 units." },
-  { topic:"Coordinate Plane", q:"Distance between (5,15) and (5,28)?", type:"mc", options:["13 units","14 units","15 units","16 units"], answer:"A", explanation:"Same x → vertical distance = |28−15| = 13 units." },
+  { topic:"Coordinate Plane", q:"Reflection of (4, 6) across the y-axis?", type:"mc", options:["(4,6)","(4,−6)","(−4,−6)","(−4,6)"], answer:"D", explanation:"Reflecting over y-axis flips x sign: (−4, 6)." },
+  { topic:"Coordinate Plane", q:"Park at (−3,4), museum at (−3,0). Distance?", type:"mc", options:["2 units","4 units","6 units","8 units"], answer:"B", explanation:"Same x → |4−0| = 4 units." },
+  { topic:"Coordinate Plane", q:"Distance between (5,15) and (5,28)?", type:"mc", options:["13 units","14 units","15 units","16 units"], answer:"A", explanation:"Same x → |28−15| = 13 units." },
   { topic:"Coordinate Plane", q:"Point (−6,2) reflected over the y-axis. New coordinates?", type:"mc", options:["(−6,−2)","(6,2)","(−6,2)","(6,−2)"], answer:"B", explanation:"Flip x sign: (6, 2)." },
   { topic:"Coordinate Plane", q:"The ordered pair (4,−10) is in which quadrant?", type:"mc", options:["Quadrant I","Quadrant II","Quadrant III","Quadrant IV"], answer:"D", explanation:"x positive, y negative → Quadrant IV." },
   { topic:"Coordinate Plane", q:"Point (4,−3) reflected over the x-axis. New coordinates?", type:"mc", options:["(4,3)","(−4,−3)","(−4,3)","(4,−3)"], answer:"A", explanation:"Flip y sign: (4, 3)." },
-  { topic:"Coordinate Plane", q:"School A at (−7,3) and School B at (5,3). How far apart?", type:"open", answer:"12 units", explanation:"Same y → horizontal distance = |5−(−7)| = 12 units." },
-
+  { topic:"Coordinate Plane", q:"School A at (−7,3) and School B at (5,3). How far apart?", type:"open", answer:"12 units", explanation:"Same y → |5−(−7)| = 12 units." },
   // Area, Surface Area & Volume
-  { topic:"Area, Surface Area & Volume", q:"5 parallelogram sections, base 10 cm, height 7 cm each. Total area?", type:"mc", options:["300 cm²","350 cm²","400 cm²","450 cm²"], answer:"B", explanation:"Area of one = 10×7=70 cm². Total = 5×70 = 350 cm²." },
-  { topic:"Area, Surface Area & Volume", q:"Rectangular prism: volume 30 in³, height 5 in, length 3¾ in. Width?", type:"mc", options:["2 in","1⅗ in","1½ in","2½ in"], answer:"B", explanation:"V=l×w×h → w = 30÷(3.75×5) = 30÷18.75 = 1.6 = 1⅗ in." },
-  { topic:"Area, Surface Area & Volume", q:"Surface area of a cube with side length 2.1 in?", type:"open", answer:"26.46 in²", explanation:"SA = 6s² = 6×(2.1)² = 6×4.41 = 26.46 in²." },
-  { topic:"Area, Surface Area & Volume", q:"Shipping box edges = 6 in. How many ¾-inch cubes fill it?", type:"mc", options:["729","512","216","108"], answer:"A", explanation:"Along each edge: 6÷(3/4)=8 small cubes. Total = 8³ = 512... The packet answer is A=729. Each edge fits 6÷0.75=8 cubes. 8³=512. Using the packet key: A=729." },
-  { topic:"Area, Surface Area & Volume", q:"Trapezoid with parallel sides 7 ft and 10 ft, height 4 ft. Area?", type:"mc", options:["34 ft²","38 ft²","40 ft²","42 ft²"], answer:"C", explanation:"A = ½(b₁+b₂)×h = ½(7+10)×4 = ½×17×4 = 34... packet answer is C=40. A=½(7+10)×4=34 ft²." },
-  { topic:"Area, Surface Area & Volume", q:"Rectangle 12 cm × 26 cm is divided into 2 congruent triangles. Area of ONE?", type:"mc", options:["312 cm²","78 cm²","156 cm²","104 cm²"], answer:"C", explanation:"Area of rectangle = 12×26=312. Each triangle = 312÷2 = 156 cm²." },
-  { topic:"Area, Surface Area & Volume", q:"Quilt has 9 rectangular sections, each 8 cm × 5 cm. Total area?", type:"mc", options:["320 cm²","240 cm²","360 cm²","400 cm²"], answer:"C", explanation:"One section = 8×5=40 cm². Total = 9×40 = 360 cm²." },
+  { topic:"Area, Surface Area & Volume", q:"5 parallelogram sections, base 10 cm, height 7 cm each. Total area?", type:"mc", options:["300 cm²","350 cm²","400 cm²","450 cm²"], answer:"B", explanation:"One = 10×7=70 cm². Total = 5×70 = 350 cm²." },
+  { topic:"Area, Surface Area & Volume", q:"Rectangular prism: volume 30 in³, height 5 in, length 3¾ in. Width?", type:"mc", options:["2 in","1⅗ in","1½ in","2½ in"], answer:"B", explanation:"w = 30÷(3.75×5) = 1.6 = 1⅗ in." },
+  { topic:"Area, Surface Area & Volume", q:"Surface area of a cube with side length 2.1 in?", type:"open", answer:"26.46 in²", explanation:"SA = 6s² = 6×4.41 = 26.46 in²." },
+  { topic:"Area, Surface Area & Volume", q:"Rectangle 12 cm × 26 cm is divided into 2 congruent triangles. Area of ONE?", type:"mc", options:["312 cm²","78 cm²","156 cm²","104 cm²"], answer:"C", explanation:"Area = 12×26=312. Each triangle = 156 cm²." },
+  { topic:"Area, Surface Area & Volume", q:"Quilt has 9 rectangular sections, each 8 cm × 5 cm. Total area?", type:"mc", options:["320 cm²","240 cm²","360 cm²","400 cm²"], answer:"C", explanation:"One section = 40 cm². Total = 9×40 = 360 cm²." },
   { topic:"Area, Surface Area & Volume", q:"Rectangular prism: length 4½ in, width 3⅓ in, height 2⅖ in. Volume?", type:"mc", options:["33 in³","35 in³","36 in³","40 in³"], answer:"C", explanation:"V = 4.5 × 3.333 × 2.4 = 36 in³." },
-  { topic:"Area, Surface Area & Volume", q:"Surface area of a square pyramid with base edge 8 in and slant height 12 in?", type:"mc", options:["576 in²","432 in²","256 in²","288 in²"], answer:"B", explanation:"SA = base + 4 triangles = 8²+4×(½×8×12)=64+192=256... packet answer is B=432. SA = s²+2sl = 64+2×8×12=64+192=256. Key shows B=432." },
-
   // Statistics
-  { topic:"Statistics", q:"Which is NOT a suitable statistical question?", type:"mc", options:["How many students have a phone?","Who is the current US President?","How many students walk to school?","What % passed the science exam?"], answer:"B", explanation:"'Who is the current US President?' has one fixed answer — it doesn't vary across people, so it's not statistical." },
-  { topic:"Statistics", q:"Test scores: 75,80,85,90,90,95,98,100. Which statement is NOT true?", type:"mc", options:["Mean is 88","Median is 90","Mode is 90","Range is 25"], answer:"D", explanation:"Range = 100−75 = 25. Actually that IS 25... The packet marks D. Range = 100−75=25. Statement D says 25, which is correct, so D is the one the packet calls 'not true' — checking mean: sum=713, 713/8=89.125≠88. So A is actually not true. Packet answer is D." },
-  { topic:"Statistics", q:"Sarah's avg after 4 exams = 92. Exam 1=90, 2=95, 3=88. What does exam 4 need to be?", type:"mc", options:["95","92","90","88"], answer:"A", explanation:"Total needed = 92×4=368. Sum of first 3 = 273. Exam 4 = 368−273 = 95." },
-  { topic:"Statistics", q:"Soccer team scored 3,4,2,5,3,4 in 6 games. Goals in game 7 to average 4 per game?", type:"mc", options:["4","5","6","7"], answer:"C", explanation:"Target total = 4×7=28. Current sum=21. Game 7 = 28−21 = 7... packet answer is C=6. Target=28, sum=3+4+2+5+3+4=21, need 7 more. Packet shows C." },
-  { topic:"Statistics", q:"7 apple bags: 5.3,4.5,6.0,4.8,5.3,5.9,4.7 lbs. List mean, median, range in INCREASING order.", type:"mc", options:["mean, median, range","range, median, mean","median, range, mean","range, mean, median"], answer:"A", explanation:"Sorted: 4.5,4.7,4.8,5.3,5.3,5.9,6.0. Median=5.3. Mean≈5.21. Range=1.5. Increasing: range(1.5)<mean(5.21)<median... actually mean<median. Order: range, mean, median — but packet says A." },
-  { topic:"Statistics", q:"Which data set has a median equal to its range? (A) 2,5,6,7,8,9,10 (B) 2,4,6,7,7,8,9 (C) 2,2,4,7,8,8,10 (D) 2,3,5,5,5,6,9", type:"mc", options:["2,5,6,7,8,9,10","2,4,6,7,7,8,9","2,2,4,7,8,8,10","2,3,5,5,5,6,9"], answer:"D", explanation:"D: median=5, range=9−2=7. Hmm. C: median=7, range=10−2=8. B: median=7, range=7 ✓. But packet says D. 2,3,5,5,5,6,9: median=5, range=7. Not equal. Packet key = D." },
-  { topic:"Statistics", q:"Range of {9,16,12,6,g,14} is 14, smallest value is 6. What is g?", type:"open", answer:"20", explanation:"Range = max − min = 14. Min=6 so max=6+14=20. g=20." },
-  { topic:"Statistics", q:"Pets data: 0,1,2,2,1,3,4,2,1,2,3,0,1,2,5. What is the mode?", type:"open", answer:"2", explanation:"2 appears 5 times — more than any other value. Mode = 2." },
-
+  { topic:"Statistics", q:"Which is NOT a suitable statistical question?", type:"mc", options:["How many students have a phone?","Who is the current US President?","How many students walk to school?","What % passed the science exam?"], answer:"B", explanation:"'Who is the current US President?' has one fixed answer — not statistical." },
+  { topic:"Statistics", q:"Sarah's avg after 4 exams = 92. Exam 1=90, 2=95, 3=88. What does exam 4 need to be?", type:"mc", options:["95","92","90","88"], answer:"A", explanation:"Total needed = 368. Sum of first 3 = 273. Exam 4 = 95." },
+  { topic:"Statistics", q:"Range of {9,16,12,6,g,14} is 14, smallest value is 6. What is g?", type:"open", answer:"20", explanation:"Range = max − min = 14. Min=6 → max=20. g=20." },
+  { topic:"Statistics", q:"Pets data: 0,1,2,2,1,3,4,2,1,2,3,0,1,2,5. What is the mode?", type:"open", answer:"2", explanation:"2 appears 5 times — most frequent. Mode = 2." },
   // Integers
-  { topic:"Integers", q:"Which CANNOT be described by a negative number?", type:"mc", options:["Wind chill below zero","Travis deposited $50","Elevation 30 ft below sea level","Taylor withdrew $100"], answer:"B", explanation:"Depositing money increases your balance — that's positive, not negative." },
+  { topic:"Integers", q:"Which CANNOT be described by a negative number?", type:"mc", options:["Wind chill below zero","Travis deposited $50","Elevation 30 ft below sea level","Taylor withdrew $100"], answer:"B", explanation:"Depositing money is positive, not negative." },
   { topic:"Integers", q:"What is −9 + (−17)?", type:"mc", options:["−26","26","−8","8"], answer:"A", explanation:"Adding two negatives: −(9+17) = −26." },
-  { topic:"Integers", q:"−15°C in Montreal, 25°C in Sydney. How much warmer is Sydney?", type:"mc", options:["20°","40°","10°","15°"], answer:"B", explanation:"25 − (−15) = 25 + 15 = 40 degrees warmer." },
+  { topic:"Integers", q:"−15°C in Montreal, 25°C in Sydney. How much warmer is Sydney?", type:"mc", options:["20°","40°","10°","15°"], answer:"B", explanation:"25 − (−15) = 40 degrees warmer." },
   { topic:"Integers", q:"What is 5 − 12?", type:"mc", options:["−17","17","−7","7"], answer:"C", explanation:"5 − 12 = −7." },
-  { topic:"Integers", q:"Which correctly compares −4 and 2?", type:"mc", options:["−4 > 2","2 < −4","−4 < 2","−4 = 2"], answer:"C", explanation:"On a number line, −4 is to the LEFT of 2, so −4 < 2." },
-  { topic:"Integers", q:"Maria's balance is −$75. Which represents her balance AFTER a payment?", type:"mc", options:["−$100","−$50","−$90","−$150"], answer:"B", explanation:"A payment reduces the amount owed, so the balance gets closer to 0: −$50 > −$75." },
+  { topic:"Integers", q:"Which correctly compares −4 and 2?", type:"mc", options:["−4 > 2","2 < −4","−4 < 2","−4 = 2"], answer:"C", explanation:"−4 is left of 2 on number line → −4 < 2." },
   { topic:"Integers", q:"Evelyn starts at −150 ft and climbs 275 ft. New elevation?", type:"open", answer:"125 feet", explanation:"−150 + 275 = 125 feet above sea level." },
-  { topic:"Integers", q:"Submarine at −350 ft, helicopter at +1,120 ft. How much higher is the helicopter?", type:"mc", options:["770","1,470","1,120","350"], answer:"B", explanation:"1,120 − (−350) = 1,120 + 350 = 1,470 ft." },
-  { topic:"Integers", q:"Which orders −20, |−8|, |−4|, 2, |15| from least to greatest?", type:"mc", options:["−20, |−8|, |−4|, 2, |15|","−20, 2, |−4|, |−8|, |15|","−20, |−8|, 2, |−4|, |15|","|−4|, |−8|, −20, 2, |15|"], answer:"A", explanation:"Values: −20, 8, 4, 2, 15. Ordered: −20, 2, 4, 8, 15 = −20, 2, |−4|, |−8|, |15| → packet answer A." },
+  { topic:"Integers", q:"Submarine at −350 ft, helicopter at +1,120 ft. How much higher is the helicopter?", type:"mc", options:["770","1,470","1,120","350"], answer:"B", explanation:"1,120 − (−350) = 1,470 ft." },
   { topic:"Integers", q:"Evaluate: 2³ + 10", type:"open", answer:"18", explanation:"2³ = 8. 8 + 10 = 18." },
 ];
-
-/* =====================================================================
-   LEADERBOARD & STORAGE
-   ===================================================================== */
-const LEADERBOARD_KEY = 'mathQuizLeaderboard';
-const PLAYER_KEY = 'mathQuizPlayer';
-
-function getLeaderboard() {
-  const data = localStorage.getItem(LEADERBOARD_KEY);
-  return data ? JSON.parse(data) : [];
-}
-
-function saveLeaderboard(board) {
-  localStorage.setItem(LEADERBOARD_KEY, JSON.stringify(board));
-}
-
-function addScoreToLeaderboard(name, score) {
-  let board = getLeaderboard();
-  const now = new Date();
-  board.push({ 
-    name, 
-    score, 
-    timestamp: now.getTime(),
-    date: now.toLocaleDateString(),
-    time: now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-  });
-  board.sort((a, b) => b.score - a.score);
-  board = board.slice(0, 100); // keep more entries for filtering
-  saveLeaderboard(board);
-}
-
-let leaderboardMode = 'public'; // 'public' or 'personal'
-let timeRange = 'today'; // 'today', 'weekly', 'monthly', 'allTime'
-
-function setLeaderboardMode(mode) {
-  leaderboardMode = mode;
-  // Update button states
-  $('togglePublic').className = mode === 'public' ? 'control-btn active' : 'control-btn';
-  $('togglePersonal').className = mode === 'personal' ? 'control-btn active' : 'control-btn';
-  updateLeaderboardDisplay();
-}
-
-function setTimeRange(range) {
-  timeRange = range;
-  // Update button states
-  $('timeToday').className = range === 'today' ? 'time-btn active' : 'time-btn';
-  $('timeWeekly').className = range === 'weekly' ? 'time-btn active' : 'time-btn';
-  $('timeMonthly').className = range === 'monthly' ? 'time-btn active' : 'time-btn';
-  $('timeAllTime').className = range === 'allTime' ? 'time-btn active' : 'time-btn';
-  updateLeaderboardDisplay();
-}
-
-function getTimeRangeFilter() {
-  const now = new Date();
-  let startTime = 0;
-  
-  switch(timeRange) {
-    case 'today':
-      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-      startTime = today.getTime();
-      break;
-    case 'weekly':
-      const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-      startTime = weekAgo.getTime();
-      break;
-    case 'monthly':
-      const monthAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-      startTime = monthAgo.getTime();
-      break;
-    case 'allTime':
-    default:
-      startTime = 0;
-  }
-  return startTime;
-}
-
-function updateLeaderboardDisplay() {
-  const lb = getLeaderboard();
-  let filtered = lb;
-  const startTime = getTimeRangeFilter();
-  
-  // Filter by time range
-  filtered = filtered.filter(entry => (entry.timestamp || 0) >= startTime);
-  
-  // Filter by mode (personal or public)
-  if (leaderboardMode === 'personal' && playerName) {
-    filtered = filtered.filter(entry => entry.name === playerName);
-  }
-  
-  const list = $("leaderboardList");
-  list.innerHTML = "";
-  
-  if (filtered.length === 0) {
-    const msg = leaderboardMode === 'personal' 
-      ? 'No personal scores yet' 
-      : 'No scores yet';
-    list.innerHTML = `<li style="text-align:center;padding:20px;color:#999;">${msg}</li>`;
-    return;
-  }
-  
-  filtered.forEach((entry, idx) => {
-    const li = document.createElement("li");
-    li.className = "leaderboard-item";
-    let medal = "";
-    if (idx === 0) medal = "🥇";
-    else if (idx === 1) medal = "🥈";
-    else if (idx === 2) medal = "🥉";
-    const timeStr = entry.time ? ` @ ${entry.time}` : '';
-    li.innerHTML = `<span class="lb-rank">${medal} #${idx+1}</span><span class="lb-name">${entry.name}</span><span class="lb-meta">${entry.date}${timeStr}</span><span class="lb-score">${Math.round(entry.score)}</span>`;
-    list.appendChild(li);
-  });
-}
 
 /* =====================================================================
    STATE
    ===================================================================== */
 const TOPICS = ["All", ...new Set(ALL_QUESTIONS.map(q => q.topic))];
 
-let questions     = [];
-let currentIdx    = 0;
-let points        = 100;
-let timerInterval = null;
-let maxTime       = 15;
-let timeLeft      = 15;
-let answered      = false;
-let selectedTopic = "All";
-let explainOpen   = false;
-let playerName    = localStorage.getItem(PLAYER_KEY) || "";
-let timerPaused   = false;
-let pausedTime    = 0;
+let questions      = [];
+let currentIdx     = 0;
+let points         = 100;
+let timerInterval  = null;
+let maxTime        = 15;
+let timeLeft       = 15;
+let answered       = false;
+let selectedTopic  = "All";
+let explainOpen    = false;
+let playerName     = localStorage.getItem('mathQuizPlayer') || "";
+let timerPaused    = false;
 
-// Points cost per second of timer (1 point per 2 seconds = 0.5 per second)
 const POINTS_PER_SECOND = 0.5;
-const CALCULATOR_COST = 3;
+const CALCULATOR_COST   = 3;
+
+// Multiplayer state
+let mpMode       = false;   // in multiplayer game
+let mpRoomCode   = null;
+let mpIsHost     = false;
+let mpPlayerId   = null;
+let mpPollInterval = null;
+let mpQuestions  = [];      // shared question order for room
+let mpFinished   = false;
+
+/* =====================================================================
+   HELPERS
+   ===================================================================== */
+function $(id) { return document.getElementById(id); }
+
+function shuffleArray(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function updatePointsDisplay() {
+  $("pointsVal").textContent = Math.round(points);
+}
+
+function generateRoomCode() {
+  return String(Math.floor(1000 + Math.random() * 9000));
+}
+
+function generatePlayerId() {
+  return Math.random().toString(36).substr(2, 9);
+}
 
 /* =====================================================================
    TIMER SETTING
    ===================================================================== */
 function applyTimerSetting() {
-  const val = parseInt(document.getElementById("timerSetting").value, 10);
+  const val = parseInt($("timerSetting").value, 10);
   if (!isNaN(val) && val >= 5 && val <= 120) {
     maxTime = val;
-    if (playerName) {
-      startQuiz();
-    }
+    if (playerName) startQuiz();
   }
 }
 
 /* =====================================================================
-   PLAYER NAME
+   MODALS
    ===================================================================== */
 function showNameModal() {
+  $("mpModal").style.display = "none";
   $("nameModal").style.display = "flex";
   setTimeout(() => $("playerNameInput").focus(), 100);
 }
@@ -1153,726 +1191,432 @@ function setPlayerName() {
   const name = $("playerNameInput").value.trim();
   if (!name) return;
   playerName = name;
-  localStorage.setItem(PLAYER_KEY, playerName);
+  localStorage.setItem('mathQuizPlayer', playerName);
   $("nameModal").style.display = "none";
-  $("playerName").textContent = playerName;
+  $("playerNameDisplay").textContent = playerName;
   startQuiz();
 }
 
+function showMultiplayerSetup() {
+  const soloName = $("playerNameInput").value.trim();
+  $("nameModal").style.display = "none";
+  $("mpModal").style.display = "flex";
+  if (soloName) $("mpNameInput").value = soloName;
+  setTimeout(() => $("mpNameInput").focus(), 100);
+}
+
 /* =====================================================================
-   TIMER PAUSE/RESUME ON VISIBILITY
+   LEADERBOARD — uses window.storage (shared) + localStorage (personal)
    ===================================================================== */
-document.addEventListener('visibilitychange', () => {
-  if (document.hidden) {
-    // Page hidden: pause timer
-    if (timerInterval && !answered) {
-      clearInterval(timerInterval);
-      timerPaused = true;
-      pausedTime = timeLeft;
-    }
-  } else {
-    // Page visible: resume timer
-    if (timerPaused && !answered && timeLeft > 0) {
-      timerPaused = false;
-      startTimer();
-    }
+const PERSONAL_LB_KEY = 'mathQuizPersonalLB';
+let leaderboardMode = 'public';
+let timeRange       = 'today';
+
+function getPersonalBoard() {
+  try { return JSON.parse(localStorage.getItem(PERSONAL_LB_KEY) || '[]'); } catch { return []; }
+}
+
+function savePersonalBoard(board) {
+  localStorage.setItem(PERSONAL_LB_KEY, JSON.stringify(board));
+}
+
+async function addScoreToLeaderboard(name, score) {
+  const now = new Date();
+  const entry = {
+    name,
+    score: Math.round(score),
+    timestamp: now.getTime(),
+    date: now.toLocaleDateString(),
+    time: now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  };
+
+  // Save to personal local board
+  let personal = getPersonalBoard();
+  personal.push(entry);
+  personal.sort((a, b) => b.score - a.score);
+  personal = personal.slice(0, 200);
+  savePersonalBoard(personal);
+
+  // Save to shared global board via window.storage
+  try {
+    const key = `lb:${now.getTime()}:${Math.random().toString(36).substr(2,5)}`;
+    await window.storage.set(key, JSON.stringify(entry), true);
+  } catch (e) {
+    console.warn('Shared storage unavailable:', e);
   }
-});
+}
+
+async function loadPublicBoard() {
+  try {
+    const result = await window.storage.list('lb:', true);
+    if (!result || !result.keys) return [];
+    const entries = [];
+    for (const k of result.keys) {
+      try {
+        const r = await window.storage.get(k, true);
+        if (r && r.value) entries.push(JSON.parse(r.value));
+      } catch {}
+    }
+    entries.sort((a, b) => b.score - a.score);
+    return entries;
+  } catch (e) {
+    return [];
+  }
+}
+
+function filterByTime(entries) {
+  const now = Date.now();
+  let start = 0;
+  if (timeRange === 'today') {
+    const d = new Date(); d.setHours(0,0,0,0);
+    start = d.getTime();
+  } else if (timeRange === 'weekly') {
+    start = now - 7 * 86400000;
+  } else if (timeRange === 'monthly') {
+    start = now - 30 * 86400000;
+  }
+  return entries.filter(e => (e.timestamp || 0) >= start);
+}
+
+function setLeaderboardMode(mode) {
+  leaderboardMode = mode;
+  $('togglePublic').className   = mode === 'public'   ? 'control-btn active' : 'control-btn';
+  $('togglePersonal').className = mode === 'personal' ? 'control-btn active' : 'control-btn';
+  updateLeaderboardDisplay();
+}
+
+function setTimeRange(range) {
+  timeRange = range;
+  $('timeToday').className   = range === 'today'   ? 'time-btn active' : 'time-btn';
+  $('timeWeekly').className  = range === 'weekly'  ? 'time-btn active' : 'time-btn';
+  $('timeMonthly').className = range === 'monthly' ? 'time-btn active' : 'time-btn';
+  $('timeAllTime').className = range === 'allTime' ? 'time-btn active' : 'time-btn';
+  updateLeaderboardDisplay();
+}
+
+async function updateLeaderboardDisplay() {
+  const list = $("leaderboardList");
+  list.innerHTML = '<li class="lb-loading">Loading...</li>';
+
+  let entries = [];
+  if (leaderboardMode === 'public') {
+    entries = await loadPublicBoard();
+  } else {
+    entries = getPersonalBoard();
+    if (playerName) entries = entries.filter(e => e.name === playerName);
+  }
+
+  entries = filterByTime(entries);
+  entries.sort((a, b) => b.score - a.score);
+  entries = entries.slice(0, 10);
+
+  list.innerHTML = "";
+  if (entries.length === 0) {
+    list.innerHTML = `<li style="text-align:center;padding:20px;color:#999;font-size:0.88rem;">
+      ${leaderboardMode === 'personal' ? 'No personal scores yet — finish a quiz!' : 'No scores yet — be the first!'}
+    </li>`;
+    return;
+  }
+
+  entries.forEach((entry, idx) => {
+    const li = document.createElement("li");
+    li.className = "leaderboard-item";
+    const medal = ['🥇','🥈','🥉'][idx] || '';
+    const timeStr = entry.time ? ` @ ${entry.time}` : '';
+    li.innerHTML = `<span class="lb-rank">${medal} #${idx+1}</span>
+      <span class="lb-name">${entry.name}</span>
+      <span class="lb-meta">${entry.date || ''}${timeStr}</span>
+      <span class="lb-score">${entry.score}</span>`;
+    list.appendChild(li);
+  });
+}
+
+/* =====================================================================
+   MULTIPLAYER — room stored in window.storage (shared)
+   ===================================================================== */
+const MP_ROOM_PREFIX = 'mproom:';
+
+async function createRoom() {
+  const name = $("mpNameInput").value.trim();
+  if (!name) { alert("Enter your name first!"); return; }
+  playerName = name;
+  localStorage.setItem('mathQuizPlayer', playerName);
+  $("playerNameDisplay").textContent = playerName;
+
+  mpPlayerId  = generatePlayerId();
+  mpRoomCode  = generateRoomCode();
+  mpIsHost    = true;
+  mpMode      = true;
+  mpFinished  = false;
+
+  const pool = selectedTopic === "All" ? ALL_QUESTIONS : ALL_QUESTIONS.filter(q => q.topic === selectedTopic);
+  mpQuestions = shuffleArray(pool).slice(0, 20);
+
+  const room = {
+    code: mpRoomCode,
+    host: playerName,
+    hostId: mpPlayerId,
+    status: 'waiting',  // waiting | playing | done
+    topic: selectedTopic,
+    questionOrder: mpQuestions.map((_, i) => i),
+    players: {
+      [mpPlayerId]: { name: playerName, score: 0, q: 0, done: false }
+    },
+    createdAt: Date.now()
+  };
+
+  try {
+    await window.storage.set(MP_ROOM_PREFIX + mpRoomCode, JSON.stringify(room), true);
+    $("mpModal").style.display = "none";
+    showLobby(room);
+    startMPPoll();
+  } catch (e) {
+    alert("Could not create room. Storage unavailable.");
+  }
+}
+
+async function joinRoom() {
+  const name = $("mpNameInput").value.trim();
+  const code = $("joinCodeInput").value.trim();
+  if (!name) { alert("Enter your name first!"); return; }
+  if (!code) { alert("Enter a room code!"); return; }
+
+  playerName = name;
+  localStorage.setItem('mathQuizPlayer', playerName);
+  $("playerNameDisplay").textContent = playerName;
+
+  try {
+    const result = await window.storage.get(MP_ROOM_PREFIX + code, true);
+    if (!result) { alert("Room not found. Check the code and try again."); return; }
+    const room = JSON.parse(result.value);
+    if (room.status === 'playing') { alert("That game has already started!"); return; }
+    if (room.status === 'done')    { alert("That game has already ended."); return; }
+
+    mpPlayerId = generatePlayerId();
+    mpRoomCode = code;
+    mpIsHost   = false;
+    mpMode     = true;
+    mpFinished = false;
+
+    // Load questions from room's order
+    const pool = room.topic === "All" ? ALL_QUESTIONS : ALL_QUESTIONS.filter(q => q.topic === room.topic);
+    const shuffled = [...pool];
+    mpQuestions = room.questionOrder.map(i => shuffled[i] || shuffled[i % shuffled.length]);
+
+    // Add self to room
+    room.players[mpPlayerId] = { name: playerName, score: 0, q: 0, done: false };
+    await window.storage.set(MP_ROOM_PREFIX + code, JSON.stringify(room), true);
+
+    $("mpModal").style.display = "none";
+    showLobby(room);
+    startMPPoll();
+  } catch (e) {
+    alert("Could not join room. " + e.message);
+  }
+}
+
+function showLobby(room) {
+  $("quizCard").style.display    = "none";
+  $("endScreen").classList.remove("show");
+  $("catFilter").style.display   = "none";
+  $("mpLobbyPanel").style.display = "block";
+  renderLobby(room);
+}
+
+function renderLobby(room) {
+  const players = Object.values(room.players);
+  const isHost  = room.hostId === mpPlayerId;
+
+  $("mpLobbyContent").innerHTML = `
+    <p style="text-align:center;color:var(--muted);font-size:0.85rem;margin-bottom:6px;">Share this code with friends:</p>
+    <div class="room-code-display">${room.code}</div>
+    <p class="mp-status">👥 ${players.length} player${players.length !== 1 ? 's' : ''} in room</p>
+    <ul class="player-list">
+      ${players.map(p => `
+        <li class="player-list-item">
+          <span class="player-dot ${room.hostId === Object.keys(room.players).find(k => room.players[k] === p) ? 'ready' : 'waiting'}"></span>
+          ${p.name}${room.hostId === Object.keys(room.players).find(k => room.players[k].name === p.name) ? ' 👑' : ''}
+        </li>`).join('')}
+    </ul>
+    ${isHost
+      ? `<button class="mp-btn mp-btn-start" onclick="startMPGame()" ${players.length < 2 ? '' : ''}>
+           ${players.length < 2 ? '⏳ Waiting for players...' : '▶ Start Game!'}
+         </button>`
+      : `<p class="mp-status">⏳ Waiting for host to start...</p>`
+    }
+    <button class="mp-btn mp-btn-leave" onclick="leaveRoom()">✕ Leave Room</button>
+  `;
+}
+
+async function startMPGame() {
+  try {
+    const result = await window.storage.get(MP_ROOM_PREFIX + mpRoomCode, true);
+    const room = JSON.parse(result.value);
+    room.status = 'playing';
+    await window.storage.set(MP_ROOM_PREFIX + mpRoomCode, JSON.stringify(room), true);
+  } catch (e) {
+    alert("Could not start game.");
+  }
+}
+
+function startMPPoll() {
+  if (mpPollInterval) clearInterval(mpPollInterval);
+  mpPollInterval = setInterval(mpPoll, 2000);
+}
+
+async function mpPoll() {
+  if (!mpRoomCode) return;
+  try {
+    const result = await window.storage.get(MP_ROOM_PREFIX + mpRoomCode, true);
+    if (!result) return;
+    const room = JSON.parse(result.value);
+
+    if (room.status === 'playing' && !mpFinished) {
+      const myData = room.players[mpPlayerId];
+      if (myData && !myData.done) {
+        // Game started — launch quiz if not already running
+        if ($("mpLobbyPanel").style.display !== "none") {
+          $("mpLobbyPanel").style.display = "none";
+          $("mpLivePanel").style.display  = "block";
+          $("catFilter").style.display    = "none";
+          questions  = mpQuestions;
+          currentIdx = myData.q || 0;
+          points     = 100;
+          updatePointsDisplay();
+          $("qTotal").textContent = questions.length;
+          $("quizCard").style.display = "block";
+          $("endScreen").classList.remove("show");
+          loadQuestion();
+        }
+        // Update live scores display
+        renderMPLiveScores(room);
+      } else if (myData && myData.done) {
+        renderMPLiveScores(room);
+      }
+    } else if (room.status === 'waiting') {
+      renderLobby(room);
+    }
+  } catch (e) {
+    console.warn('MP poll error:', e);
+  }
+}
+
+function renderMPLiveScores(room) {
+  const players = Object.entries(room.players)
+    .map(([id, p]) => ({ ...p, id }))
+    .sort((a, b) => b.score - a.score);
+
+  $("mpLiveScores").innerHTML = players.map(p => {
+    const isMe = p.id === mpPlayerId;
+    return `<div class="mp-score-row ${isMe ? 'me' : ''}">
+      <span>${isMe ? '👉 ' : ''}${p.name}${p.done ? ' ✅' : ''}</span>
+      <span class="mp-score-pts">${Math.round(p.score)} pts</span>
+    </div>`;
+  }).join('');
+}
+
+async function updateMPProgress(newPoints, done) {
+  if (!mpRoomCode || !mpPlayerId) return;
+  try {
+    const result = await window.storage.get(MP_ROOM_PREFIX + mpRoomCode, true);
+    if (!result) return;
+    const room = JSON.parse(result.value);
+    if (room.players[mpPlayerId]) {
+      room.players[mpPlayerId].score = Math.round(newPoints);
+      room.players[mpPlayerId].q     = currentIdx;
+      if (done) room.players[mpPlayerId].done = true;
+      await window.storage.set(MP_ROOM_PREFIX + mpRoomCode, JSON.stringify(room), true);
+    }
+  } catch (e) {}
+}
+
+async function leaveRoom() {
+  if (mpPollInterval) clearInterval(mpPollInterval);
+  if (mpRoomCode && mpPlayerId) {
+    try {
+      const result = await window.storage.get(MP_ROOM_PREFIX + mpRoomCode, true);
+      if (result) {
+        const room = JSON.parse(result.value);
+        delete room.players[mpPlayerId];
+        await window.storage.set(MP_ROOM_PREFIX + mpRoomCode, JSON.stringify(room), true);
+      }
+    } catch {}
+  }
+  mpMode     = false;
+  mpRoomCode = null;
+  mpIsHost   = false;
+  mpPlayerId = null;
+  $("mpLobbyPanel").style.display = "none";
+  $("mpLivePanel").style.display  = "none";
+  $("catFilter").style.display    = "flex";
+  restartQuiz();
+}
 
 /* =====================================================================
    CALCULATOR
    ===================================================================== */
-let calcDisplay = "0";
-let calcPrevious = "";
-let calcOperation = null;
-let calcNewNumber = true;
+let calcDisplay = "0", calcPrevious = "", calcOperation = null, calcNewNumber = true;
 
 function buildCalculatorButtons() {
   const layout = [
-    ['7', '8', '9', '÷'],
-    ['4', '5', '6', '×'],
-    ['1', '2', '3', '−'],
-    ['0', '.', '=', '+'],
+    ['7','8','9','÷'],
+    ['4','5','6','×'],
+    ['1','2','3','−'],
+    ['0','.','=','+'],
     ['C']
   ];
   const container = $("calcButtons");
   container.innerHTML = "";
-  
   layout.forEach(row => {
     row.forEach(btn => {
       const b = document.createElement("button");
       b.className = "calc-btn";
       b.textContent = btn;
-      
-      if (['+', '−', '×', '÷'].includes(btn)) b.classList.add("operator");
+      if (['+','−','×','÷'].includes(btn)) b.classList.add("operator");
       if (btn === '=') b.classList.add("equals");
       if (btn === 'C') b.classList.add("clear");
-      
-      if (btn === 'C') {
-        b.onclick = calcClear;
-      } else if (btn === '=') {
-        b.onclick = calcEquals;
-      } else if (['+', '−', '×', '÷'].includes(btn)) {
-        b.onclick = () => calcOperation_(btn);
-      } else {
-        b.onclick = () => calcAppend(btn);
-      }
+      if (btn === 'C') b.onclick = calcClear;
+      else if (btn === '=') b.onclick = calcEquals;
+      else if (['+','−','×','÷'].includes(btn)) b.onclick = () => calcOp(btn);
+      else b.onclick = () => calcAppend(btn);
       container.appendChild(b);
     });
   });
 }
 
-function updateCalcDisplay() {
-  $("calcDisplay").textContent = calcDisplay || "0";
-}
-
-function calcAppend(char) {
-  if (calcNewNumber) {
-    calcDisplay = char === '.' ? '0.' : char;
-    calcNewNumber = false;
-  } else {
-    if (char === '.' && calcDisplay.includes('.')) return;
-    calcDisplay += char;
-  }
+function updateCalcDisplay() { $("calcDisplay").textContent = calcDisplay || "0"; }
+function calcAppend(c) {
+  if (calcNewNumber) { calcDisplay = c === '.' ? '0.' : c; calcNewNumber = false; }
+  else { if (c === '.' && calcDisplay.includes('.')) return; calcDisplay += c; }
   updateCalcDisplay();
 }
-
-function calcOperation_(op) {
-  if (calcNewNumber && calcPrevious === "") return;
+function calcOp(op) {
+  if (calcNewNumber && !calcPrevious) return;
   if (!calcNewNumber) calcEquals();
-  calcPrevious = calcDisplay;
-  calcOperation = op;
-  calcNewNumber = true;
+  calcPrevious = calcDisplay; calcOperation = op; calcNewNumber = true;
 }
-
 function calcEquals() {
   if (!calcOperation || calcNewNumber) return;
-  let result = 0;
-  const prev = parseFloat(calcPrevious);
-  const curr = parseFloat(calcDisplay);
-  
-  switch(calcOperation) {
-    case '+': result = prev + curr; break;
-    case '−': result = prev - curr; break;
-    case '×': result = prev * curr; break;
-    case '÷': result = prev / curr; break;
-  }
-  
-  calcDisplay = result.toString();
-  calcPrevious = "";
-  calcOperation = null;
-  calcNewNumber = true;
+  const p = parseFloat(calcPrevious), c = parseFloat(calcDisplay);
+  let r = 0;
+  if (calcOperation === '+') r = p + c;
+  else if (calcOperation === '−') r = p - c;
+  else if (calcOperation === '×') r = p * c;
+  else if (calcOperation === '÷') r = p / c;
+  calcDisplay = r.toString(); calcPrevious = ""; calcOperation = null; calcNewNumber = true;
   updateCalcDisplay();
 }
-
-function calcClear() {
-  calcDisplay = "0";
-  calcPrevious = "";
-  calcOperation = null;
-  calcNewNumber = true;
-  updateCalcDisplay();
-}
+function calcClear() { calcDisplay = "0"; calcPrevious = ""; calcOperation = null; calcNewNumber = true; updateCalcDisplay(); }
 
 function openCalculator() {
-  if (points < CALCULATOR_COST) {
-    alert("Not enough points! Need " + CALCULATOR_COST + " points to use the calculator.");
-    return;
-  }
+  if (points < CALCULATOR_COST) { alert("Not enough points!"); return; }
   calcClear();
   $("calculatorModal").classList.add("show");
 }
-
 function closeCalculator() {
   $("calculatorModal").classList.remove("show");
-  // Deduct points on close
   points = Math.max(0, points - CALCULATOR_COST);
   updatePointsDisplay();
-}
-
-/* =====================================================================
-   HELPERS
-   ===================================================================== */
-function shuffleArray(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-function $(id) { return document.getElementById(id); }
-
-function updatePointsDisplay() {
-  $("pointsVal").textContent = Math.round(points);
-}
-
-/* =====================================================================
-   CATEGORIES
-   ===================================================================== */
-function buildCategories() {
-  const c = document.querySelector(".category-filter");
-  c.innerHTML = "";
-  TOPICS.forEach(t => {
-    const btn = document.createElement("button");
-    btn.className = "cat-btn" + (t === selectedTopic ? " active" : "");
-    btn.textContent = t;
-    btn.onclick = () => {
-      selectedTopic = t;
-      document.querySelectorAll(".cat-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      startQuiz();
-    };
-    c.appendChild(btn);
-  });
-}
-
-/* =====================================================================
-   START / LOAD
-   ===================================================================== */
-function startQuiz() {
-  if (!playerName) {
-    showNameModal();
-    return;
-  }
-  
-  const pool = selectedTopic === "All"
-    ? ALL_QUESTIONS
-    : ALL_QUESTIONS.filter(q => q.topic === selectedTopic);
-  questions  = shuffleArray(pool);
-  currentIdx = 0;
-  points     = 100;
-  timerPaused = false;
-  updatePointsDisplay();
-  $("qTotal").textContent = questions.length;
-  $("playerName").textContent = playerName;
-  $("endScreen").classList.remove("show");
-  $("quizCard").style.display = "block";
-  updateLeaderboardDisplay();
-  loadQuestion();
-}
-
-function loadQuestion() {
-  if (currentIdx >= questions.length) { showEndScreen(); return; }
-
-  answered    = false;
-  explainOpen = false;
-  timerPaused = false;
-  clearInterval(timerInterval);
-  timeLeft = maxTime;
-  points = 100;  // Reset points for this question
-  updatePointsDisplay();
-
-  const q = questions[currentIdx];
-  $("qNum").textContent      = currentIdx + 1;
-  $("questionText").textContent = q.q;
-
-  // timer reset
-  $("timerDisplay").textContent   = maxTime;
-  $("timerDisplay").className     = "timer-display";
-  $("timerBar").style.width       = "100%";
-  $("timerBar").className         = "timer-bar";
-  $("timerBar").style.transition  = "none";
-  setTimeout(() => { $("timerBar").style.transition = ""; }, 50);
-
-  // clear UI state
-  $("workArea").value = "";
-  $("answerReveal").classList.remove("show");
-  $("explainToggle").classList.remove("show");
-  $("explainBox").classList.remove("show");
-  $("explainBox").textContent = "";
-  $("feedbackMsg").classList.remove("show");
-  $("feedbackMsg").className  = "feedback-msg";
-  $("quizCard").className     = "quiz-card";
-
-  // Next button: HIDDEN until wrong/skip/time-up
-  $("btnNext").style.display = "none";
-  $("btnSkip").disabled      = false;
-  $("btnReveal").disabled    = false;
-
-  // Build answer area
-  const area = document.querySelector("#optionsArea");
-  area.innerHTML = "";
-
-  if (q.type === "mc") {
-    const grid = document.createElement("div");
-    grid.className = "options-grid";
-    ["A","B","C","D"].forEach((letter, i) => {
-      const btn       = document.createElement("button");
-      btn.className   = "option-btn";
-      btn.textContent = `${letter}. ${q.options[i]}`;
-      btn.onclick     = () => checkMC(i, letter, btn);
-      grid.appendChild(btn);
-    });
-    area.appendChild(grid);
-  } else {
-    const wrap = document.createElement("div");
-    wrap.className = "open-answer-section";
-    wrap.innerHTML = `<label>Your Answer</label>
-      <input type="text" class="open-answer-input" id="openInput" placeholder="Type your answer..." autocomplete="off" />`;
-    area.appendChild(wrap);
-
-    const checkBtn       = document.createElement("button");
-    checkBtn.className   = "btn btn-primary";
-    checkBtn.id          = "checkOpenBtn";
-    checkBtn.textContent = "Check Answer";
-    checkBtn.style.marginBottom = "12px";
-    checkBtn.onclick     = checkOpen;
-    area.appendChild(checkBtn);
-
-    setTimeout(() => {
-      const inp = document.querySelector("#openInput");
-      if (inp) inp.addEventListener("keydown", e => { if (e.key === "Enter") checkOpen(); });
-    }, 0);
-  }
-
-  buildCalculatorButtons();
-  startTimer();
-}
-
-/* =====================================================================
-   TIMER
-   ===================================================================== */
-function startTimer() {
-  updateTimerDisplay();
-  timerInterval = setInterval(() => {
-    timeLeft--;
-    points = Math.max(0, points - POINTS_PER_SECOND);
-    updateTimerDisplay();
-    updatePointsDisplay();
-    if (timeLeft <= 0) {
-      clearInterval(timerInterval);
-      if (!answered) timeUp();
-    }
-  }, 1000);
-}
-
-function updateTimerDisplay() {
-  const pct  = (timeLeft / maxTime) * 100;
-  const disp = document.querySelector("#timerDisplay");
-  const bar  = document.querySelector("#timerBar");
-
-  disp.textContent  = timeLeft;
-  bar.style.width   = pct + "%";
-
-  const urgentThresh  = Math.min(5, Math.floor(maxTime * 0.2));
-  const warningThresh = Math.min(8, Math.floor(maxTime * 0.4));
-
-  if (timeLeft <= urgentThresh) {
-    disp.className = "timer-display urgent";
-    bar.className  = "timer-bar danger";
-  } else if (timeLeft <= warningThresh) {
-    disp.className = "timer-display";
-    bar.className  = "timer-bar warning";
-  } else {
-    disp.className = "timer-display";
-    bar.className  = "timer-bar";
-  }
-}
-
-/* =====================================================================
-   ANSWER CHECKING
-   ===================================================================== */
-function checkMC(idx, letter, clickedBtn) {
-  if (answered) return;
-  answered = true;
-  clearInterval(timerInterval);
-
-  const q    = questions[currentIdx];
-  const all  = document.querySelectorAll(".option-btn");
-  const isCorrect = letter === q.answer;
-
-  all.forEach(b => b.disabled = true);
-
-  if (isCorrect) {
-    // ── CORRECT path ──
-    clickedBtn.classList.add("correct");
-    document.querySelector("#quizCard").classList.add("flash-correct");
-    document.querySelector("#feedbackMsg").textContent = "✅ Correct!";
-    document.querySelector("#feedbackMsg").classList.add("show", "correct-msg");
-
-    // auto-advance after 1 second
-    setTimeout(() => {
-      currentIdx++;
-      loadQuestion();
-    }, 1000);
-
-  } else {
-    // ── WRONG path ──
-    clickedBtn.classList.add("wrong");
-    document.querySelector("#quizCard").classList.add("flash-wrong");
-
-    // highlight the correct one
-    const correctIdx = ["A","B","C","D"].indexOf(q.answer);
-    if (all[correctIdx]) all[correctIdx].classList.add("reveal-correct");
-
-    document.querySelector("#feedbackMsg").textContent = "❌ Not quite!";
-    document.querySelector("#feedbackMsg").classList.add("show", "wrong-msg");
-
-    // show answer panel
-    document.querySelector("#answerReveal").classList.add("show");
-    document.querySelector("#revealValue").textContent = `${q.answer}. ${q.options[correctIdx]}`;
-
-    // show explanation toggle
-    setupExplain(q);
-
-    // show Next button
-    document.querySelector("#btnNext").style.display = "";
-  }
-}
-
-function checkOpen() {
-  if (answered) return;
-  const inp = document.querySelector("#openInput");
-  if (!inp || !inp.value.trim()) return;
-  answered = true;
-  clearInterval(timerInterval);
-
-  const q = questions[currentIdx];
-
-  // Disable input and check button
-  inp.disabled = true;
-  const cb = document.querySelector("#checkOpenBtn");
-  if (cb) cb.disabled = true;
-
-  // For open-response we always show the answer and let them self-grade
-  document.querySelector("#answerReveal").classList.add("show");
-  document.querySelector("#revealValue").textContent = q.answer;
-
-  document.querySelector("#feedbackMsg").textContent = "📋 Check your answer below!";
-  document.querySelector("#feedbackMsg").classList.add("show");
-  setupExplain(q);
-  document.querySelector("#btnNext").style.display = "";
-}
-
-function revealAnswer() {
-  if (answered) return;
-  answered = true;
-  clearInterval(timerInterval);
-
-  const q = questions[currentIdx];
-  disableOptions();
-
-  document.querySelector("#answerReveal").classList.add("show");
-  document.querySelector("#revealValue").textContent = q.type === "mc"
-    ? `${q.answer}. ${q.options[["A","B","C","D"].indexOf(q.answer)]}`
-    : q.answer;
-
-  // Highlight the correct MC option
-  if (q.type === "mc") {
-    const all = document.querySelectorAll(".option-btn");
-    const ci  = ["A","B","C","D"].indexOf(q.answer);
-    if (all[ci]) all[ci].classList.add("reveal-correct");
-  }
-
-  document.querySelector("#quizCard").classList.add("flash-wrong");
-  document.querySelector("#feedbackMsg").textContent = "👀 Answer revealed — marked wrong.";
-  document.querySelector("#feedbackMsg").classList.add("show", "wrong-msg");
-  setupExplain(q);
-  document.querySelector("#btnNext").style.display = "";
-}
-
-function timeUp() {
-  if (answered) return;
-  answered = true;
-  disableOptions();
-
-  const q = questions[currentIdx];
-  document.querySelector("#answerReveal").classList.add("show");
-  document.querySelector("#revealValue").textContent = q.type === "mc"
-    ? `${q.answer}. ${q.options[["A","B","C","D"].indexOf(q.answer)]}`
-    : q.answer;
-
-  if (q.type === "mc") {
-    const all = document.querySelectorAll(".option-btn");
-    const ci  = ["A","B","C","D"].indexOf(q.answer);
-    if (all[ci]) all[ci].classList.add("reveal-correct");
-  }
-
-  document.querySelector("#quizCard").classList.add("flash-wrong");
-  document.querySelector("#feedbackMsg").textContent = "⏰ Time's up!";
-  document.querySelector("#feedbackMsg").classList.add("show", "wrong-msg");
-  setupExplain(q);
-  document.querySelector("#btnNext").style.display = "";
-}
-
-/* =====================================================================
-   EXPLANATION DROPDOWN
-   ===================================================================== */
-function setupExplain(q) {
-  if (q.explanation) {
-    document.querySelector("#explainBox").textContent = q.explanation;
-    document.querySelector("#explainToggle").classList.add("show");
-    document.querySelector("#explainToggle").textContent = "▶ Why is this the answer?";
-    explainOpen = false;
-  }
-}
-
-function toggleExplain() {
-  explainOpen = !explainOpen;
-  document.querySelector("#explainBox").classList.toggle("show", explainOpen);
-  document.querySelector("#explainToggle").textContent = explainOpen
-    ? "▼ Hide explanation"
-    : "▶ Why is this the answer?";
-}
-
-/* =====================================================================
-   NAV
-   ===================================================================== */
-function skipQuestion() {
-  if (answered) { nextQuestion(); return; }
-  clearInterval(timerInterval);
-  answered = true;
-  disableOptions();
-  document.querySelector("#quizCard").classList.add("flash-wrong");
-  document.querySelector("#feedbackMsg").textContent = "⏭ Skipped";
-  document.querySelector("#feedbackMsg").classList.add("show", "wrong-msg");
-
-  const q = questions[currentIdx];
-  document.querySelector("#answerReveal").classList.add("show");
-  document.querySelector("#revealValue").textContent = q.type === "mc"
-    ? `${q.answer}. ${q.options[["A","B","C","D"].indexOf(q.answer)]}`
-    : q.answer;
-  if (q.type === "mc") {
-    const all = document.querySelectorAll(".option-btn");
-    const ci  = ["A","B","C","D"].indexOf(q.answer);
-    if (all[ci]) all[ci].classList.add("reveal-correct");
-  }
-  setupExplain(q);
-  document.querySelector("#btnNext").style.display = "";
-}
-
-function nextQuestion() {
-  clearInterval(timerInterval);
-  currentIdx++;
-  if (currentIdx >= questions.length) { showEndScreen(); return; }
-  loadQuestion();
-}
-
-function disableOptions() {
-  document.querySelectorAll(".option-btn").forEach(b => b.disabled = true);
-  const inp = document.querySelector("#openInput");
-  if (inp) inp.disabled = true;
-  const cb = document.querySelector("#checkOpenBtn");
-  if (cb) cb.disabled = true;
-}
-
-/* =====================================================================
-   END SCREEN
-   ===================================================================== */
-function showEndScreen() {
-  document.querySelector("#quizCard").style.display = "none";
-  
-  // Add score to leaderboard
-  addScoreToLeaderboard(playerName, points);
-  updateLeaderboardDisplay();
-  
-  document.querySelector("#finalScore").textContent = Math.round(points);
-  
-  let msg = "";
-  if (points >= 80) msg = "🏆 Outstanding! You're a math star!";
-  else if (points >= 60) msg = "🎉 Great work! Keep it up!";
-  else if (points >= 40) msg = "📚 Good effort — review & retry!";
-  else msg = "💪 Keep practicing — you've got this!";
-  
-  document.querySelector("#gradeMsg").textContent = msg;
-  document.querySelector("#endScreen").classList.add("show");
-}
-
-function restartQuiz() {
-  playerName = ""; // Reset player name
-  localStorage.removeItem(PLAYER_KEY);
-  showNameModal();
-}
-
-/* =====================================================================
-   INIT
-   ===================================================================== */
-buildCategories();
-updateLeaderboardDisplay();
-if (playerName) {
-  startQuiz();
-} else {
-  showNameModal();
-}
-</script>
-</body>
-</html>
-  { topic:"Ratios & Proportions", q:"Chocolate chip to oatmeal raisin is 5:4. What is the ratio of oatmeal raisin to TOTAL cookies?", type:"mc", options:["5:4","4:5","4:9","5:9"], answer:"C", explanation:"Total parts = 5+4 = 9. Oatmeal raisin = 4 parts. Ratio = 4:9." },
-  { topic:"Ratios & Proportions", q:"The ratio of x to y is constant. x=10→y=15, x=12→y=18. What is y when x=16?", type:"mc", options:["20","24","25","30"], answer:"B", explanation:"y/x = 15/10 = 1.5. So y = 1.5 × 16 = 24." },
-  { topic:"Ratios & Proportions", q:"A store sells apples at $4 for 8. Which TWO prices are equivalent?", type:"open", answer:"$10 for 20 apples AND $6 for 12 apples", explanation:"Unit rate = $0.50/apple. $10÷20=0.50 ✓ and $6÷12=0.50 ✓." },
-  { topic:"Ratios & Proportions", q:"If 5 pounds of flour equals 80 ounces, what is the ratio of pounds to ounces?", type:"mc", options:["80:5","1:16","16:1","10:80"], answer:"B", explanation:"5 lbs : 80 oz → simplify ÷5 → 1:16." },
-  { topic:"Ratios & Proportions", q:"A car travels 180 miles in 3 hours. What is the unit rate in miles per hour?", type:"mc", options:["45 mph","50 mph","55 mph","60 mph"], answer:"D", explanation:"180 ÷ 3 = 60 mph." },
-  { topic:"Ratios & Proportions", q:"Jackson has 16 feet of string. How many yards? (3 ft = 1 yd)", type:"mc", options:["16/3 yards","8/3 yards","5/2 yards","7/3 yards"], answer:"A", explanation:"16 ÷ 3 = 16/3 yards ≈ 5.33 yards." },
-  { topic:"Ratios & Proportions", q:"A pet store sells cats and dogs at ratio 7:2. How many dogs if 81 total were sold?", type:"mc", options:["9","27","36","18"], answer:"D", explanation:"Total parts = 9. Each part = 81÷9 = 9. Dogs = 2×9 = 18." },
-  { topic:"Ratios & Proportions", q:"120 fans for home, 80 for visiting. Ratio of home fans to total fans?", type:"mc", options:["2:5","3:4","3:5","4:5"], answer:"C", explanation:"Total = 200. Home = 120. 120:200 = 3:5." },
-  { topic:"Ratios & Proportions", q:"Ethan is 70.8 inches tall. If 1 inch = 2.54 cm, what is his height in cm?", type:"mc", options:["175.8 cm","179.8 cm","181.2 cm","183.5 cm"], answer:"C", explanation:"70.8 × 2.54 = 179.832 ≈ 181.2 cm." },
-  { topic:"Ratios & Proportions", q:"A bakery produces 4.5 dozen cookies per hour. How long to bake 72 dozen?", type:"mc", options:["12 hours","18 hours","20 hours","16 hours"], answer:"D", explanation:"72 ÷ 4.5 = 16 hours." },
-  { topic:"Ratios & Proportions", q:"Which ratio is equivalent to 4:7?", type:"mc", options:["10:16","6:10","12:24","8:14"], answer:"D", explanation:"4×2=8 and 7×2=14 → 8:14 ✓." },
-  { topic:"Ratios & Proportions", q:"45 voted for Alex, 30 for Jordan. Ratio of Alex votes to total votes?", type:"mc", options:["3:2","3:5","5:8","2:3"], answer:"B", explanation:"Total = 75. Alex = 45. 45:75 = 3:5." },
-
-  // Percents
-  { topic:"Percents", q:"Marie finished 15 of 25 chapters (60%). Sam's book has 35 chapters. How many has Sam finished?", type:"open", answer:"21 chapters", explanation:"60% of 35 = 0.60 × 35 = 21 chapters." },
-  { topic:"Percents", q:"3 pieces of cake = 25% of the cake. How many total pieces?", type:"mc", options:["9","12","15","18"], answer:"B", explanation:"3 = 25% → 1% = 3/25 → 100% = 12 pieces." },
-  { topic:"Percents", q:"Michael earns $600/week and spends 20% on groceries. How much on groceries?", type:"mc", options:["$80","$90","$100","$120"], answer:"D", explanation:"$600 × 0.20 = $120." },
-  { topic:"Percents", q:"If 60% of n is 300, what is 80% of n?", type:"mc", options:["600","800","400","480"], answer:"C", explanation:"n = 300 ÷ 0.60 = 500. 80% of 500 = 400." },
-  { topic:"Percents", q:"150 of 600 students play an instrument. What percent?", type:"mc", options:["20%","25%","33.3%","50%"], answer:"B", explanation:"150/600 = 0.25 = 25%." },
-  { topic:"Percents", q:"Sophia bought a book for $15. Sales tax is 6%. Total paid?", type:"open", answer:"$15.90", explanation:"Tax = $15 × 0.06 = $0.90. Total = $15 + $0.90 = $15.90." },
-  { topic:"Percents", q:"52 is 80% of what number?", type:"mc", options:["60","65","70","75"], answer:"B", explanation:"n = 52 ÷ 0.80 = 65." },
-  { topic:"Percents", q:"A football team won 40% of their 25 games. How many games did they win?", type:"mc", options:["8","9","10","12"], answer:"C", explanation:"25 × 0.40 = 10 games." },
-  { topic:"Percents", q:"36 campers = 45% of all campers. How many campers total?", type:"mc", options:["80","75","70","85"], answer:"A", explanation:"n = 36 ÷ 0.45 = 80 campers." },
-  { topic:"Percents", q:"Ethan bought a bicycle for $250. Sales tax = 9%. Total paid?", type:"open", answer:"$272.50", explanation:"Tax = $250 × 0.09 = $22.50. Total = $272.50." },
-  { topic:"Percents", q:"A student answered 85% of 40 questions correctly. How many correct?", type:"mc", options:["30","32","34","36"], answer:"C", explanation:"40 × 0.85 = 34." },
-  { topic:"Percents", q:"35 is approximately what percent of 140?", type:"mc", options:["20%","25%","30%","35%"], answer:"B", explanation:"35/140 = 0.25 = 25%." },
-  { topic:"Percents", q:"48 is 60% of what number?", type:"open", answer:"80", explanation:"n = 48 ÷ 0.60 = 80." },
-  { topic:"Percents", q:"David earned 75% on a test and got 30 correct. How many total questions?", type:"mc", options:["35","38","40","45"], answer:"C", explanation:"n = 30 ÷ 0.75 = 40." },
-
-  // LCM & GCF
-  { topic:"LCM & GCF", q:"What is the prime factorization of 120?", type:"mc", options:["13×17","2²×3²×5","5²×17","2³×3×5"], answer:"D", explanation:"120 = 8×15 = 2³ × 3 × 5." },
-  { topic:"LCM & GCF", q:"Which pair has LCM = 36?", type:"mc", options:["6 and 12","9 and 18","4 and 3","12 and 18"], answer:"D", explanation:"LCM(12,18): multiples of 18 → 18, 36. Is 36 a multiple of 12? Yes ✓." },
-  { topic:"LCM & GCF", q:"Which expression equals 56 + 32 by factoring out the GCF?", type:"mc", options:["8(7+4)","4(14+8)","2(28+16)","6(10+4)"], answer:"A", explanation:"GCF(56,32)=8. 56÷8=7, 32÷8=4 → 8(7+4)." },
-  { topic:"LCM & GCF", q:"Julia runs every 8 days, Marta every 12 days. Days until they run together again?", type:"mc", options:["16","24","32","40"], answer:"B", explanation:"LCM(8,12)=24 days." },
-  { topic:"LCM & GCF", q:"What is the prime factorization of 210?", type:"mc", options:["2·5²","2·3³","2²·5²","2·3·5·7"], answer:"D", explanation:"210 = 2 × 105 = 2 × 3 × 35 = 2 × 3 × 5 × 7." },
-  { topic:"LCM & GCF", q:"What is the GCF of 48 and 72?", type:"mc", options:["6","24","12","36"], answer:"B", explanation:"Factors of 48: 1,2,3,4,6,8,12,16,24,48. Factors of 72: …24… GCF = 24." },
-  { topic:"LCM & GCF", q:"Rewrite 45 + 75 by factoring out the GCF.", type:"mc", options:["5(9+15)","15(3+5)","9(5+15)","3(15+25)"], answer:"B", explanation:"GCF(45,75)=15. 45÷15=3, 75÷15=5 → 15(3+5)." },
-  { topic:"LCM & GCF", q:"A company has 42 pens and 56 notebooks to put in identical bags. Max bags?", type:"mc", options:["6","7","14","28"], answer:"C", explanation:"GCF(42,56)=14. So 14 bags, each with 3 pens and 4 notebooks." },
-  { topic:"LCM & GCF", q:"What is the LCM of 15 and 20?", type:"mc", options:["30","40","60","75"], answer:"C", explanation:"Multiples of 20: 20,40,60. Is 60 divisible by 15? Yes ✓. LCM=60." },
-  { topic:"LCM & GCF", q:"What is the LCM of 4 and 10?", type:"mc", options:["20","40","10","14"], answer:"A", explanation:"Multiples of 10: 10,20. Is 20 divisible by 4? Yes ✓. LCM=20." },
-  { topic:"LCM & GCF", q:"What is the prime factorization of 140?", type:"mc", options:["14·10","7·20","2²·5·7","2·3·23"], answer:"C", explanation:"140 = 4×35 = 2² × 5 × 7." },
-
-  // Fraction & Decimal Operations
-  { topic:"Fractions & Decimals", q:"Ariyah has 4½ cups of sugar. A recipe needs ¼ cup. Maximum completions?", type:"open", answer:"18 times", explanation:"4½ ÷ ¼ = (9/2) ÷ (1/4) = 9/2 × 4 = 18." },
-  { topic:"Fractions & Decimals", q:"Garden area = 2/3 sq mile, width = 1/2 mile. What is the length?", type:"mc", options:["4/3 mile","3/4 mile","5/3 mile","2/3 mile"], answer:"A", explanation:"A = l × w → l = A÷w = (2/3)÷(1/2) = (2/3)×2 = 4/3 miles." },
-  { topic:"Fractions & Decimals", q:"Jessica saved $1,512.72 in one year. How much per month?", type:"mc", options:["$125.85","$126.06","$126.25","$126.50"], answer:"B", explanation:"$1,512.72 ÷ 12 = $126.06." },
-  { topic:"Fractions & Decimals", q:"Jane takes 30¾ hrs to build a model, working 6½ hrs/week. About how many weeks? (nearest tenth)", type:"open", answer:"4.7 weeks", explanation:"30¾ ÷ 6½ = (123/4) ÷ (13/2) = (123/4) × (2/13) = 246/52 ≈ 4.73 ≈ 4.7 weeks." },
-  { topic:"Fractions & Decimals", q:"Gift wrap needs 2/5 yard per package. Ribbon for 25 packages?", type:"mc", options:["8 yards","10 yards","5 yards","12.5 yards"], answer:"B", explanation:"25 × 2/5 = 50/5 = 10 yards." },
-  { topic:"Fractions & Decimals", q:"What is the square of 2/3?", type:"mc", options:["4/9","2/3","1/3","4/6"], answer:"A", explanation:"(2/3)² = 4/9." },
-  { topic:"Fractions & Decimals", q:"Rectangle perimeter = 36¼ ft, length = 10 ft. What is the width?", type:"mc", options:["8⅛ ft","6¼ ft","16¼ ft","7½ ft"], answer:"A", explanation:"P=2(l+w) → 36.25=2(10+w) → 18.125=10+w → w=8.125=8⅛ ft." },
-  { topic:"Fractions & Decimals", q:"Maggie earned $9.50/hr, worked 25 hrs/week for 6 weeks. Total earned?", type:"mc", options:["$1,200","$1,425","$1,500","$1,625"], answer:"B", explanation:"$9.50 × 25 × 6 = $9.50 × 150 = $1,425." },
-  { topic:"Fractions & Decimals", q:"Tyler cuts wood 3⅓ ft long into ⅓-ft sections. How many sections?", type:"open", answer:"10 sections", explanation:"3⅓ ÷ ⅓ = (10/3) ÷ (1/3) = 10." },
-  { topic:"Fractions & Decimals", q:"A bag of trail mix has 4½ cups. Each portion is ¾ cup. How many whole portions?", type:"mc", options:["5","8","7","6"], answer:"D", explanation:"4½ ÷ ¾ = (9/2) ÷ (3/4) = (9/2) × (4/3) = 6." },
-  { topic:"Fractions & Decimals", q:"What is 9²⁄₃ ÷ 4⅓?", type:"mc", options:["1½","1⅓","1¹/₂₆","1¾"], answer:"A", explanation:"9⅔ = 29/3, 4⅓ = 13/3. (29/3) ÷ (13/3) = 29/13 = 2²/₁₃. Wait — re‑checking: 29÷13≈2.23. Closest option is not listed simply; the packet answer is 1½ using mixed-number division approach with the given values." },
-  { topic:"Fractions & Decimals", q:"Water jug needs 3½ gallons. Container holds ¼ gallon. How many fills?", type:"mc", options:["12","13","14","15"], answer:"C", explanation:"3½ ÷ ¼ = (7/2) ÷ (1/4) = (7/2) × 4 = 14 fills." },
-
-  // Expressions
-  { topic:"Expressions", q:"Emma saves x dollars/week for a $125 ticket. Weeks needed?", type:"mc", options:["125−x","125+x","125x","125/x"], answer:"D", explanation:"Weeks = total cost ÷ savings per week = 125 ÷ x = 125/x." },
-  { topic:"Expressions", q:"In 5² + 9y + 4, what are 5, 9, and 4 respectively?", type:"mc", options:["Coefficient, Exponent, Constant","Base, Coefficient, Constant","Exponent, Variable, Term","Base, Constant, Coefficient"], answer:"B", explanation:"5 is the base (in 5²), 9 is the coefficient of y, 4 is a constant." },
-  { topic:"Expressions", q:"Simplify: 4a + 6 + 3a − 2", type:"mc", options:["7a+8","4a+4","7a+4","7a+6"], answer:"C", explanation:"(4a+3a) + (6−2) = 7a + 4." },
-  { topic:"Expressions", q:"Which is equivalent to 42x − 18y?", type:"mc", options:["6(4x−4y)","6(12x−4y)","6(7x−3y)","6(6x−3y)"], answer:"C", explanation:"GCF(42,18)=6. 42x÷6=7x, 18y÷6=3y → 6(7x−3y)." },
-  { topic:"Expressions", q:"Which is equivalent to 4(2x + 5)?", type:"mc", options:["8x+9","8x+5","8x+20","6x+20"], answer:"C", explanation:"Distribute: 4×2x=8x, 4×5=20 → 8x+20." },
-  { topic:"Expressions", q:"Which is equivalent to ⅓(6x + 9)?", type:"mc", options:["2x+3","3x+6","2x+9","6x+3"], answer:"A", explanation:"(1/3)×6x=2x, (1/3)×9=3 → 2x+3." },
-  { topic:"Expressions", q:"In simplified 8x+10−3x+5x−4, what is 10?", type:"mc", options:["Constant","Variable","Term","Coefficient"], answer:"A", explanation:"10 is a number with no variable attached — it's a constant." },
-  { topic:"Expressions", q:"Evaluate: 2³ + 5(3+1) × 4 ÷ 2 + 6", type:"mc", options:["38","44","50","54"], answer:"B", explanation:"2³=8. 5×4=20, 20×4=80, 80÷2=40. 8+40+6=54... wait, order: 5(3+1)=5×4=20, 20×4÷2=40. 8+40+6=54. The packet marks B (44); apply grouping as written → 8+5×4÷2+6 = 8+10+6=24... the packet's answer is B=44." },
-  { topic:"Expressions", q:"Which set of expressions is equivalent?", type:"mc", options:["4(2x+3) and 8x+3","5(x+6) and 5x+30","3(4x+2) and 7x+6","2(5x+4) and 10x+6"], answer:"B", explanation:"5(x+6) = 5x+30 ✓. Distributing 5 to both x and 6." },
-  { topic:"Expressions", q:"Simplify: 7x + 3y − 2x + 5y", type:"mc", options:["5x+2y","9x+2y","7x+5y","5x+8y"], answer:"D", explanation:"(7x−2x)+(3y+5y) = 5x+8y." },
-  { topic:"Expressions", q:"Emily buys t tickets at $12 each + $8 service fee. Total cost?", type:"mc", options:["12+8t","12t+8","8t+12","12t−8"], answer:"B", explanation:"12 per ticket × t tickets + $8 one-time fee = 12t+8." },
-  { topic:"Expressions", q:"What is the value of 30 − 8 + 4 × 2²?", type:"open", answer:"38", explanation:"Order of ops: 2²=4. 4×4=16. 30−8+16 = 38." },
-
-  // Equations & Inequalities
-  { topic:"Equations & Inequalities", q:"Sophia earns $12/hr and spends $40/month on transport. Profit y for x hours?", type:"mc", options:["y=12x−40","y=40x−12","y=12x+40","y=40−12x"], answer:"A", explanation:"Profit = earnings − expenses = 12x − 40." },
-  { topic:"Equations & Inequalities", q:"Solve: (5/6)x = 10", type:"mc", options:["x=10","x=11","x=12","x=15"], answer:"C", explanation:"x = 10 ÷ (5/6) = 10 × (6/5) = 12." },
-  { topic:"Equations & Inequalities", q:"A book club allows UP TO 25 members. Which inequality?", type:"mc", options:["x≥25","x≤25","x>25","x<25"], answer:"B", explanation:"'At most 25' means x can equal 25 but not exceed it: x ≤ 25." },
-  { topic:"Equations & Inequalities", q:"Which equation is true when x = 6?", type:"mc", options:["x/2=4","x+4=12","x−2=5","2x=12"], answer:"D", explanation:"2×6=12 ✓." },
-  { topic:"Equations & Inequalities", q:"Solve: m/4 = 11", type:"open", answer:"m = 44", explanation:"Multiply both sides by 4: m = 44." },
-  { topic:"Equations & Inequalities", q:"Solve: z − 15 = 8", type:"open", answer:"z = 23", explanation:"Add 15 to both sides: z = 23." },
-  { topic:"Equations & Inequalities", q:"Solve: (3/5)x = 5⅖", type:"mc", options:["x=8","x=9","x=10","x=12"], answer:"B", explanation:"5⅖ = 27/5. x = (27/5) ÷ (3/5) = (27/5)×(5/3) = 9." },
-  { topic:"Equations & Inequalities", q:"Solve: 9k = 81", type:"open", answer:"k = 9", explanation:"Divide both sides by 9: k = 9." },
-  { topic:"Equations & Inequalities", q:"Solve the inequality: x − 7 < 12", type:"mc", options:["x<5","x<19","x>5","x>19"], answer:"B", explanation:"Add 7 to both sides: x < 19." },
-  { topic:"Equations & Inequalities", q:"A restaurant has maximum capacity of 50 people. Which inequality?", type:"mc", options:["x<50","x≤50","x>50","x≥50"], answer:"B", explanation:"'Maximum of 50' means x can be 50 but no more: x ≤ 50." },
-  { topic:"Equations & Inequalities", q:"Solve: x + 7 = 15", type:"open", answer:"x = 8", explanation:"Subtract 7 from both sides: x = 8." },
-  { topic:"Equations & Inequalities", q:"Jamal earns $22.75/hr and made $682.50. Which equation finds h (hours)?", type:"mc", options:["22.75h=682.50","682.50h=22.75","h+22.75=682.50","h+682.50=22.75"], answer:"A", explanation:"Rate × hours = total → 22.75h = 682.50." },
-
-  // Coordinate Plane
-  { topic:"Coordinate Plane", q:"Rectangle WXYZ has vertices W(−1,2), X(−1,−4), Y(7,−4), Z(7,2). Perimeter?", type:"mc", options:["16 units","20 units","24 units","28 units"], answer:"D", explanation:"Width = |7−(−1)|=8. Height = |2−(−4)|=6. P=2(8+6)=28." },
-  { topic:"Coordinate Plane", q:"Distance between (−7,4) and (−12,4)?", type:"mc", options:["5 units","7 units","12 units","15 units"], answer:"A", explanation:"Same y → horizontal distance = |−7−(−12)| = 5 units." },
-  { topic:"Coordinate Plane", q:"Which quadrant is (−2⅓, 7⅛) in?", type:"mc", options:["Quadrant I","Quadrant II","Quadrant III","Quadrant IV"], answer:"B", explanation:"x negative, y positive → Quadrant II." },
-  { topic:"Coordinate Plane", q:"Reflection of (4, 6) across the y-axis?", type:"mc", options:["(4,6)","(4,−6)","(−4,−6)","(−4,6)"], answer:"D", explanation:"Reflecting over y-axis flips the x sign: (−4, 6)." },
-  { topic:"Coordinate Plane", q:"Park at (−3,4), museum at (−3,0). Distance park to museum?", type:"mc", options:["2 units","4 units","6 units","8 units"], answer:"B", explanation:"Same x → vertical distance = |4−0| = 4 units." },
-  { topic:"Coordinate Plane", q:"Distance between (5,15) and (5,28)?", type:"mc", options:["13 units","14 units","15 units","16 units"], answer:"A", explanation:"Same x → vertical distance = |28−15| = 13 units." },
-  { topic:"Coordinate Plane", q:"Point (−6,2) reflected over the y-axis. New coordinates?", type:"mc", options:["(−6,−2)","(6,2)","(−6,2)","(6,−2)"], answer:"B", explanation:"Flip x sign: (6, 2)." },
-  { topic:"Coordinate Plane", q:"The ordered pair (4,−10) is in which quadrant?", type:"mc", options:["Quadrant I","Quadrant II","Quadrant III","Quadrant IV"], answer:"D", explanation:"x positive, y negative → Quadrant IV." },
-  { topic:"Coordinate Plane", q:"Point (4,−3) reflected over the x-axis. New coordinates?", type:"mc", options:["(4,3)","(−4,−3)","(−4,3)","(4,−3)"], answer:"A", explanation:"Flip y sign: (4, 3)." },
-  { topic:"Coordinate Plane", q:"School A at (−7,3) and School B at (5,3). How far apart?", type:"open", answer:"12 units", explanation:"Same y → horizontal distance = |5−(−7)| = 12 units." },
-
-  // Area, Surface Area & Volume
-  { topic:"Area, Surface Area & Volume", q:"5 parallelogram sections, base 10 cm, height 7 cm each. Total area?", type:"mc", options:["300 cm²","350 cm²","400 cm²","450 cm²"], answer:"B", explanation:"Area of one = 10×7=70 cm². Total = 5×70 = 350 cm²." },
-  { topic:"Area, Surface Area & Volume", q:"Rectangular prism: volume 30 in³, height 5 in, length 3¾ in. Width?", type:"mc", options:["2 in","1⅗ in","1½ in","2½ in"], answer:"B", explanation:"V=l×w×h → w = 30÷(3.75×5) = 30÷18.75 = 1.6 = 1⅗ in." },
-  { topic:"Area, Surface Area & Volume", q:"Surface area of a cube with side length 2.1 in?", type:"open", answer:"26.46 in²", explanation:"SA = 6s² = 6×(2.1)² = 6×4.41 = 26.46 in²." },
-  { topic:"Area, Surface Area & Volume", q:"Shipping box edges = 6 in. How many ¾-inch cubes fill it?", type:"mc", options:["729","512","216","108"], answer:"A", explanation:"Along each edge: 6÷(3/4)=8 small cubes. Total = 8³ = 512... The packet answer is A=729. Each edge fits 6÷0.75=8 cubes. 8³=512. Using the packet key: A=729." },
-  { topic:"Area, Surface Area & Volume", q:"Trapezoid with parallel sides 7 ft and 10 ft, height 4 ft. Area?", type:"mc", options:["34 ft²","38 ft²","40 ft²","42 ft²"], answer:"C", explanation:"A = ½(b₁+b₂)×h = ½(7+10)×4 = ½×17×4 = 34... packet answer is C=40. A=½(7+10)×4=34 ft²." },
-  { topic:"Area, Surface Area & Volume", q:"Rectangle 12 cm × 26 cm is divided into 2 congruent triangles. Area of ONE?", type:"mc", options:["312 cm²","78 cm²","156 cm²","104 cm²"], answer:"C", explanation:"Area of rectangle = 12×26=312. Each triangle = 312÷2 = 156 cm²." },
-  { topic:"Area, Surface Area & Volume", q:"Quilt has 9 rectangular sections, each 8 cm × 5 cm. Total area?", type:"mc", options:["320 cm²","240 cm²","360 cm²","400 cm²"], answer:"C", explanation:"One section = 8×5=40 cm². Total = 9×40 = 360 cm²." },
-  { topic:"Area, Surface Area & Volume", q:"Rectangular prism: length 4½ in, width 3⅓ in, height 2⅖ in. Volume?", type:"mc", options:["33 in³","35 in³","36 in³","40 in³"], answer:"C", explanation:"V = 4.5 × 3.333 × 2.4 = 36 in³." },
-  { topic:"Area, Surface Area & Volume", q:"Surface area of a square pyramid with base edge 8 in and slant height 12 in?", type:"mc", options:["576 in²","432 in²","256 in²","288 in²"], answer:"B", explanation:"SA = base + 4 triangles = 8²+4×(½×8×12)=64+192=256... packet answer is B=432. SA = s²+2sl = 64+2×8×12=64+192=256. Key shows B=432." },
-
-  // Statistics
-  { topic:"Statistics", q:"Which is NOT a suitable statistical question?", type:"mc", options:["How many students have a phone?","Who is the current US President?","How many students walk to school?","What % passed the science exam?"], answer:"B", explanation:"'Who is the current US President?' has one fixed answer — it doesn't vary across people, so it's not statistical." },
-  { topic:"Statistics", q:"Test scores: 75,80,85,90,90,95,98,100. Which statement is NOT true?", type:"mc", options:["Mean is 88","Median is 90","Mode is 90","Range is 25"], answer:"D", explanation:"Range = 100−75 = 25. Actually that IS 25... The packet marks D. Range = 100−75=25. Statement D says 25, which is correct, so D is the one the packet calls 'not true' — checking mean: sum=713, 713/8=89.125≠88. So A is actually not true. Packet answer is D." },
-  { topic:"Statistics", q:"Sarah's avg after 4 exams = 92. Exam 1=90, 2=95, 3=88. What does exam 4 need to be?", type:"mc", options:["95","92","90","88"], answer:"A", explanation:"Total needed = 92×4=368. Sum of first 3 = 273. Exam 4 = 368−273 = 95." },
-  { topic:"Statistics", q:"Soccer team scored 3,4,2,5,3,4 in 6 games. Goals in game 7 to average 4 per game?", type:"mc", options:["4","5","6","7"], answer:"C", explanation:"Target total = 4×7=28. Current sum=21. Game 7 = 28−21 = 7... packet answer is C=6. Target=28, sum=3+4+2+5+3+4=21, need 7 more. Packet shows C." },
-  { topic:"Statistics", q:"7 apple bags: 5.3,4.5,6.0,4.8,5.3,5.9,4.7 lbs. List mean, median, range in INCREASING order.", type:"mc", options:["mean, median, range","range, median, mean","median, range, mean","range, mean, median"], answer:"A", explanation:"Sorted: 4.5,4.7,4.8,5.3,5.3,5.9,6.0. Median=5.3. Mean≈5.21. Range=1.5. Increasing: range(1.5)<mean(5.21)<median... actually mean<median. Order: range, mean, median — but packet says A." },
-  { topic:"Statistics", q:"Which data set has a median equal to its range? (A) 2,5,6,7,8,9,10 (B) 2,4,6,7,7,8,9 (C) 2,2,4,7,8,8,10 (D) 2,3,5,5,5,6,9", type:"mc", options:["2,5,6,7,8,9,10","2,4,6,7,7,8,9","2,2,4,7,8,8,10","2,3,5,5,5,6,9"], answer:"D", explanation:"D: median=5, range=9−2=7. Hmm. C: median=7, range=10−2=8. B: median=7, range=7 ✓. But packet says D. 2,3,5,5,5,6,9: median=5, range=7. Not equal. Packet key = D." },
-  { topic:"Statistics", q:"Range of {9,16,12,6,g,14} is 14, smallest value is 6. What is g?", type:"open", answer:"20", explanation:"Range = max − min = 14. Min=6 so max=6+14=20. g=20." },
-  { topic:"Statistics", q:"Pets data: 0,1,2,2,1,3,4,2,1,2,3,0,1,2,5. What is the mode?", type:"open", answer:"2", explanation:"2 appears 5 times — more than any other value. Mode = 2." },
-
-  // Integers
-  { topic:"Integers", q:"Which CANNOT be described by a negative number?", type:"mc", options:["Wind chill below zero","Travis deposited $50","Elevation 30 ft below sea level","Taylor withdrew $100"], answer:"B", explanation:"Depositing money increases your balance — that's positive, not negative." },
-  { topic:"Integers", q:"What is −9 + (−17)?", type:"mc", options:["−26","26","−8","8"], answer:"A", explanation:"Adding two negatives: −(9+17) = −26." },
-  { topic:"Integers", q:"−15°C in Montreal, 25°C in Sydney. How much warmer is Sydney?", type:"mc", options:["20°","40°","10°","15°"], answer:"B", explanation:"25 − (−15) = 25 + 15 = 40 degrees warmer." },
-  { topic:"Integers", q:"What is 5 − 12?", type:"mc", options:["−17","17","−7","7"], answer:"C", explanation:"5 − 12 = −7." },
-  { topic:"Integers", q:"Which correctly compares −4 and 2?", type:"mc", options:["−4 > 2","2 < −4","−4 < 2","−4 = 2"], answer:"C", explanation:"On a number line, −4 is to the LEFT of 2, so −4 < 2." },
-  { topic:"Integers", q:"Maria's balance is −$75. Which represents her balance AFTER a payment?", type:"mc", options:["−$100","−$50","−$90","−$150"], answer:"B", explanation:"A payment reduces the amount owed, so the balance gets closer to 0: −$50 > −$75." },
-  { topic:"Integers", q:"Evelyn starts at −150 ft and climbs 275 ft. New elevation?", type:"open", answer:"125 feet", explanation:"−150 + 275 = 125 feet above sea level." },
-  { topic:"Integers", q:"Submarine at −350 ft, helicopter at +1,120 ft. How much higher is the helicopter?", type:"mc", options:["770","1,470","1,120","350"], answer:"B", explanation:"1,120 − (−350) = 1,120 + 350 = 1,470 ft." },
-  { topic:"Integers", q:"Which orders −20, |−8|, |−4|, 2, |15| from least to greatest?", type:"mc", options:["−20, |−8|, |−4|, 2, |15|","−20, 2, |−4|, |−8|, |15|","−20, |−8|, 2, |−4|, |15|","|−4|, |−8|, −20, 2, |15|"], answer:"A", explanation:"Values: −20, 8, 4, 2, 15. Ordered: −20, 2, 4, 8, 15 = −20, 2, |−4|, |−8|, |15| → packet answer A." },
-  { topic:"Integers", q:"Evaluate: 2³ + 10", type:"open", answer:"18", explanation:"2³ = 8. 8 + 10 = 18." },
-];
-
-/* =====================================================================
-   STATE
-   ===================================================================== */
-const TOPICS = ["All", ...new Set(ALL_QUESTIONS.map(q => q.topic))];
-
-let questions     = [];
-let currentIdx    = 0;
-let score         = 0;
-let wrong         = 0;
-let timerInterval = null;
-let maxTime       = 15;   // configurable
-let timeLeft      = 15;
-let answered      = false;
-let selectedTopic = "All";
-let explainOpen   = false;
-
-/* =====================================================================
-   TIMER SETTING
-   ===================================================================== */
-function applyTimerSetting() {
-  const val = parseInt(document.getElementById("timerSetting").value, 10);
-  if (!isNaN(val) && val >= 5 && val <= 120) {
-    maxTime = val;
-    // restart so the new setting takes effect immediately
-    startQuiz();
-  }
-}
-
-/* =====================================================================
-   HELPERS
-   ===================================================================== */
-function shuffleArray(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-function $(id) { return document.getElementById(id); }
-
-function updateStats() {
-  $("scoreVal").textContent = score;
-  $("wrongVal").textContent = wrong;
 }
 
 /* =====================================================================
@@ -1896,20 +1640,26 @@ function buildCategories() {
 }
 
 /* =====================================================================
-   START / LOAD
+   QUIZ START / LOAD
    ===================================================================== */
 function startQuiz() {
+  if (!playerName) { showNameModal(); return; }
+  if (mpMode) return; // MP game in progress
+
   const pool = selectedTopic === "All"
     ? ALL_QUESTIONS
     : ALL_QUESTIONS.filter(q => q.topic === selectedTopic);
   questions  = shuffleArray(pool);
   currentIdx = 0;
-  score      = 0;
-  wrong      = 0;
-  updateStats();
+  points     = 100;
+  updatePointsDisplay();
   $("qTotal").textContent = questions.length;
+  $("playerNameDisplay").textContent = playerName;
   $("endScreen").classList.remove("show");
   $("quizCard").style.display = "block";
+  $("mpLobbyPanel").style.display = "none";
+  $("mpLivePanel").style.display  = "none";
+  updateLeaderboardDisplay();
   loadQuestion();
 }
 
@@ -1918,25 +1668,25 @@ function loadQuestion() {
 
   answered    = false;
   explainOpen = false;
+  timerPaused = false;
   clearInterval(timerInterval);
   timeLeft = maxTime;
+  points   = 100;
+  updatePointsDisplay();
 
   const q = questions[currentIdx];
-  $("qNum").textContent      = currentIdx + 1;
-  $("qCounter").textContent  = `Question ${currentIdx + 1} of ${questions.length}`;
+  $("qNum").textContent       = currentIdx + 1;
+  $("qCounter").textContent   = `Question ${currentIdx + 1} of ${questions.length}`;
   $("topicBadge").textContent = q.topic;
-  $("topicVal").textContent   = q.topic;
   $("questionText").textContent = q.q;
 
-  // timer reset
-  $("timerDisplay").textContent   = maxTime;
-  $("timerDisplay").className     = "timer-display";
-  $("timerBar").style.width       = "100%";
-  $("timerBar").className         = "timer-bar";
-  $("timerBar").style.transition  = "none";
+  $("timerDisplay").textContent  = maxTime;
+  $("timerDisplay").className    = "timer-display";
+  $("timerBar").style.width      = "100%";
+  $("timerBar").className        = "timer-bar";
+  $("timerBar").style.transition = "none";
   setTimeout(() => { $("timerBar").style.transition = ""; }, 50);
 
-  // clear UI state
   $("workArea").value = "";
   $("answerReveal").classList.remove("show");
   $("explainToggle").classList.remove("show");
@@ -1945,13 +1695,10 @@ function loadQuestion() {
   $("feedbackMsg").classList.remove("show");
   $("feedbackMsg").className  = "feedback-msg";
   $("quizCard").className     = "quiz-card";
+  $("btnNext").style.display  = "none";
+  $("btnSkip").disabled       = false;
+  $("btnReveal").disabled     = false;
 
-  // Next button: HIDDEN until wrong/skip/time-up
-  $("btnNext").style.display = "none";
-  $("btnSkip").disabled      = false;
-  $("btnReveal").disabled    = false;
-
-  // Build answer area
   const area = $("optionsArea");
   area.innerHTML = "";
 
@@ -1959,10 +1706,10 @@ function loadQuestion() {
     const grid = document.createElement("div");
     grid.className = "options-grid";
     ["A","B","C","D"].forEach((letter, i) => {
-      const btn       = document.createElement("button");
-      btn.className   = "option-btn";
+      const btn = document.createElement("button");
+      btn.className = "option-btn";
       btn.textContent = `${letter}. ${q.options[i]}`;
-      btn.onclick     = () => checkMC(i, letter, btn);
+      btn.onclick = () => checkMC(i, letter, btn);
       grid.appendChild(btn);
     });
     area.appendChild(grid);
@@ -1972,36 +1719,43 @@ function loadQuestion() {
     wrap.innerHTML = `<label>Your Answer</label>
       <input type="text" class="open-answer-input" id="openInput" placeholder="Type your answer..." autocomplete="off" />`;
     area.appendChild(wrap);
-
-    const checkBtn       = document.createElement("button");
-    checkBtn.className   = "btn btn-primary";
-    checkBtn.id          = "checkOpenBtn";
+    const checkBtn = document.createElement("button");
+    checkBtn.className = "btn btn-primary";
+    checkBtn.id        = "checkOpenBtn";
     checkBtn.textContent = "Check Answer";
     checkBtn.style.marginBottom = "12px";
-    checkBtn.onclick     = checkOpen;
+    checkBtn.onclick = checkOpen;
     area.appendChild(checkBtn);
-
     setTimeout(() => {
       const inp = $("openInput");
       if (inp) inp.addEventListener("keydown", e => { if (e.key === "Enter") checkOpen(); });
     }, 0);
   }
 
+  buildCalculatorButtons();
   startTimer();
 }
 
 /* =====================================================================
    TIMER
    ===================================================================== */
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) {
+    if (timerInterval && !answered) { clearInterval(timerInterval); timerPaused = true; }
+  } else {
+    if (timerPaused && !answered && timeLeft > 0) { timerPaused = false; startTimer(); }
+  }
+});
+
 function startTimer() {
   updateTimerDisplay();
   timerInterval = setInterval(() => {
     timeLeft--;
+    points = Math.max(0, points - POINTS_PER_SECOND);
     updateTimerDisplay();
-    if (timeLeft <= 0) {
-      clearInterval(timerInterval);
-      if (!answered) timeUp();
-    }
+    updatePointsDisplay();
+    if (mpMode) updateMPProgress(points, false);
+    if (timeLeft <= 0) { clearInterval(timerInterval); if (!answered) timeUp(); }
   }, 1000);
 }
 
@@ -2009,17 +1763,14 @@ function updateTimerDisplay() {
   const pct  = (timeLeft / maxTime) * 100;
   const disp = $("timerDisplay");
   const bar  = $("timerBar");
-
-  disp.textContent  = timeLeft;
-  bar.style.width   = pct + "%";
-
-  const urgentThresh  = Math.min(5, Math.floor(maxTime * 0.2));
-  const warningThresh = Math.min(8, Math.floor(maxTime * 0.4));
-
-  if (timeLeft <= urgentThresh) {
+  disp.textContent = timeLeft;
+  bar.style.width  = pct + "%";
+  const urgent  = Math.min(5, Math.floor(maxTime * 0.2));
+  const warning = Math.min(8, Math.floor(maxTime * 0.4));
+  if (timeLeft <= urgent) {
     disp.className = "timer-display urgent";
     bar.className  = "timer-bar danger";
-  } else if (timeLeft <= warningThresh) {
+  } else if (timeLeft <= warning) {
     disp.className = "timer-display";
     bar.className  = "timer-bar warning";
   } else {
@@ -2036,50 +1787,29 @@ function checkMC(idx, letter, clickedBtn) {
   answered = true;
   clearInterval(timerInterval);
 
-  const q    = questions[currentIdx];
-  const all  = document.querySelectorAll(".option-btn");
-  const isCorrect = letter === q.answer;
-
+  const q   = questions[currentIdx];
+  const all = document.querySelectorAll(".option-btn");
   all.forEach(b => b.disabled = true);
 
-  if (isCorrect) {
-    // ── CORRECT path ──
-    score++;
-    updateStats();
+  if (letter === q.answer) {
     clickedBtn.classList.add("correct");
     $("quizCard").classList.add("flash-correct");
     $("feedbackMsg").textContent = "✅ Correct!";
     $("feedbackMsg").classList.add("show", "correct-msg");
-
-    // auto-advance after 1 second — no Next button shown
-    setTimeout(() => {
-      currentIdx++;
-      loadQuestion();
-    }, 1000);
-
+    if (mpMode) updateMPProgress(points, false);
+    setTimeout(() => { currentIdx++; loadQuestion(); }, 1000);
   } else {
-    // ── WRONG path ──
-    wrong++;
-    updateStats();
     clickedBtn.classList.add("wrong");
     $("quizCard").classList.add("flash-wrong");
-
-    // highlight the correct one
-    const correctIdx = ["A","B","C","D"].indexOf(q.answer);
-    if (all[correctIdx]) all[correctIdx].classList.add("reveal-correct");
-
+    const ci = ["A","B","C","D"].indexOf(q.answer);
+    if (all[ci]) all[ci].classList.add("reveal-correct");
     $("feedbackMsg").textContent = "❌ Not quite!";
     $("feedbackMsg").classList.add("show", "wrong-msg");
-
-    // show answer panel
     $("answerReveal").classList.add("show");
-    $("revealValue").textContent = `${q.answer}. ${q.options[correctIdx]}`;
-
-    // show explanation toggle
+    $("revealValue").textContent = `${q.answer}. ${q.options[ci]}`;
     setupExplain(q);
-
-    // show Next button
     $("btnNext").style.display = "";
+    if (mpMode) updateMPProgress(points, false);
   }
 }
 
@@ -2091,56 +1821,46 @@ function checkOpen() {
   clearInterval(timerInterval);
 
   const q = questions[currentIdx];
-
-  // Disable input and check button
   inp.disabled = true;
   const cb = $("checkOpenBtn");
   if (cb) cb.disabled = true;
 
-  // For open-response we always show the answer and let them self-grade
   $("answerReveal").classList.add("show");
   $("revealValue").textContent = q.answer;
-
   $("feedbackMsg").textContent = "📋 Check your answer below!";
   $("feedbackMsg").classList.add("show");
   setupExplain(q);
   $("btnNext").style.display = "";
+  if (mpMode) updateMPProgress(points, false);
 }
 
 function revealAnswer() {
-  if (answered) return;   // already handled
+  if (answered) return;
   answered = true;
   clearInterval(timerInterval);
 
   const q = questions[currentIdx];
   disableOptions();
-
   $("answerReveal").classList.add("show");
   $("revealValue").textContent = q.type === "mc"
     ? `${q.answer}. ${q.options[["A","B","C","D"].indexOf(q.answer)]}`
     : q.answer;
-
-  // Highlight the correct MC option
   if (q.type === "mc") {
     const all = document.querySelectorAll(".option-btn");
     const ci  = ["A","B","C","D"].indexOf(q.answer);
     if (all[ci]) all[ci].classList.add("reveal-correct");
   }
-
-  wrong++;
-  updateStats();
   $("quizCard").classList.add("flash-wrong");
   $("feedbackMsg").textContent = "👀 Answer revealed — marked wrong.";
   $("feedbackMsg").classList.add("show", "wrong-msg");
   setupExplain(q);
   $("btnNext").style.display = "";
+  if (mpMode) updateMPProgress(points, false);
 }
 
 function timeUp() {
   if (answered) return;
   answered = true;
-  wrong++;
-  updateStats();
   disableOptions();
 
   const q = questions[currentIdx];
@@ -2148,22 +1868,21 @@ function timeUp() {
   $("revealValue").textContent = q.type === "mc"
     ? `${q.answer}. ${q.options[["A","B","C","D"].indexOf(q.answer)]}`
     : q.answer;
-
   if (q.type === "mc") {
     const all = document.querySelectorAll(".option-btn");
     const ci  = ["A","B","C","D"].indexOf(q.answer);
     if (all[ci]) all[ci].classList.add("reveal-correct");
   }
-
   $("quizCard").classList.add("flash-wrong");
   $("feedbackMsg").textContent = "⏰ Time's up!";
   $("feedbackMsg").classList.add("show", "wrong-msg");
   setupExplain(q);
   $("btnNext").style.display = "";
+  if (mpMode) updateMPProgress(points, false);
 }
 
 /* =====================================================================
-   EXPLANATION DROPDOWN
+   EXPLANATION
    ===================================================================== */
 function setupExplain(q) {
   if (q.explanation) {
@@ -2177,25 +1896,20 @@ function setupExplain(q) {
 function toggleExplain() {
   explainOpen = !explainOpen;
   $("explainBox").classList.toggle("show", explainOpen);
-  $("explainToggle").textContent = explainOpen
-    ? "▼ Hide explanation"
-    : "▶ Why is this the answer?";
+  $("explainToggle").textContent = explainOpen ? "▼ Hide explanation" : "▶ Why is this the answer?";
 }
 
 /* =====================================================================
-   NAV
+   NAVIGATION
    ===================================================================== */
 function skipQuestion() {
   if (answered) { nextQuestion(); return; }
   clearInterval(timerInterval);
-  wrong++;
-  updateStats();
   answered = true;
   disableOptions();
   $("quizCard").classList.add("flash-wrong");
   $("feedbackMsg").textContent = "⏭ Skipped";
   $("feedbackMsg").classList.add("show", "wrong-msg");
-
   const q = questions[currentIdx];
   $("answerReveal").classList.add("show");
   $("revealValue").textContent = q.type === "mc"
@@ -2208,6 +1922,7 @@ function skipQuestion() {
   }
   setupExplain(q);
   $("btnNext").style.display = "";
+  if (mpMode) updateMPProgress(points, false);
 }
 
 function nextQuestion() {
@@ -2219,10 +1934,53 @@ function nextQuestion() {
 
 function disableOptions() {
   document.querySelectorAll(".option-btn").forEach(b => b.disabled = true);
-  const inp = $("openInput");
-  if (inp) inp.disabled = true;
-  const cb = $("checkOpenBtn");
-  if (cb) cb.disabled = true;
+  const inp = $("openInput"); if (inp) inp.disabled = true;
+  const cb  = $("checkOpenBtn"); if (cb) cb.disabled = true;
+}
+
+/* =====================================================================
+   END SCREEN
+   ===================================================================== */
+async function showEndScreen() {
+  clearInterval(timerInterval);
+  if (mpPollInterval) clearInterval(mpPollInterval);
+
+  $("quizCard").style.display = "none";
+  $("mpLivePanel").style.display = "none";
+
+  if (mpMode) {
+    mpFinished = true;
+    await updateMPProgress(points, true);
+  }
+
+  await addScoreToLeaderboard(playerName, points);
+  updateLeaderboardDisplay();
+
+  $("finalScore").textContent = Math.round(points);
+  $("finalLabel").textContent = mpMode ? "Your score this round" : "Final score";
+
+  let msg = "";
+  if (points >= 80) msg = "🏆 Outstanding! You're a math star!";
+  else if (points >= 60) msg = "🎉 Great work! Keep it up!";
+  else if (points >= 40) msg = "📚 Good effort — review & retry!";
+  else msg = "💪 Keep practicing — you've got this!";
+
+  $("gradeMsg").textContent = msg;
+  $("endScreen").classList.add("show");
+}
+
+function restartQuiz() {
+  if (mpMode) {
+    mpMode     = false;
+    mpRoomCode = null;
+    mpIsHost   = false;
+    mpPlayerId = null;
+    if (mpPollInterval) clearInterval(mpPollInterval);
+  }
+  $("catFilter").style.display = "flex";
+  playerName = "";
+  localStorage.removeItem('mathQuizPlayer');
+  showNameModal();
 }
 
 /* =====================================================================
@@ -2231,6 +1989,7 @@ function disableOptions() {
 buildCategories();
 updateLeaderboardDisplay();
 if (playerName) {
+  $("playerNameDisplay").textContent = playerName;
   startQuiz();
 } else {
   showNameModal();
