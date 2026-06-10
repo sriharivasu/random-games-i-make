@@ -1358,7 +1358,7 @@ async function createRoom() {
     hostId: mpPlayerId,
     status: 'waiting',  // waiting | playing | done
     topic: selectedTopic,
-    questionOrder: mpQuestions.map((_, i) => i),
+    questionOrder: mpQuestions.map(q => ALL_QUESTIONS.indexOf(q)),
     players: {
       [mpPlayerId]: { name: playerName, score: 0, q: 0, done: false }
     },
@@ -1400,8 +1400,7 @@ async function joinRoom() {
 
     // Load questions from room's order
     const pool = room.topic === "All" ? ALL_QUESTIONS : ALL_QUESTIONS.filter(q => q.topic === room.topic);
-    const shuffled = [...pool];
-    mpQuestions = room.questionOrder.map(i => shuffled[i] || shuffled[i % shuffled.length]);
+    mpQuestions = room.questionOrder.map(i => ALL_QUESTIONS[i]).filter(Boolean);
 
     // Add self to room
     room.players[mpPlayerId] = { name: playerName, score: 0, q: 0, done: false };
