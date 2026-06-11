@@ -1,0 +1,1764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6th Grade Math Quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --yellow:#FFD166; --orange:#FF6B35; --teal:#06D6A0; --navy:#073B4C;
+  --sky:#118AB2; --pink:#EF476F; --light:#F7F9FB; --card:#FFFFFF;
+  --text:#073B4C; --muted:#5A7A8A; --radius:18px; --radius-sm:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito',sans-serif;background:var(--navy);min-height:100vh;display:flex;flex-direction:column;align-items:center;}
+
+/* ── Header ── */
+header{width:100%;background:var(--navy);padding:18px 24px 12px;text-align:center;border-bottom:4px solid var(--yellow);}
+header h1{font-family:'Fredoka One',sans-serif;font-size:2rem;color:var(--yellow);letter-spacing:1px;}
+header p{color:#A8C8D8;font-size:0.85rem;margin-top:3px;font-weight:600;}
+
+/* ── Top bar ── */
+.top-bar{width:100%;background:rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.08);padding:8px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.top-bar-left,.top-bar-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.top-bar label{color:#A8C8D8;font-size:0.82rem;font-weight:700;}
+.timer-input{width:56px;padding:4px 6px;border-radius:7px;border:1.5px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);color:#fff;font-family:'Nunito',sans-serif;font-size:0.85rem;font-weight:700;text-align:center;}
+.timer-input:focus{outline:none;border-color:var(--yellow);}
+.tbar-btn{background:var(--yellow);color:var(--navy);border:none;border-radius:7px;padding:5px 12px;font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:800;cursor:pointer;transition:transform .1s;}
+.tbar-btn:hover{transform:scale(1.04);}
+.tbar-btn.secondary{background:rgba(255,255,255,0.12);color:#cde;}
+.tbar-btn.danger{background:var(--pink);color:#fff;}
+.tbar-btn.pause-btn{background:var(--orange);color:#fff;}
+.mode-toggle{display:flex;gap:4px;}
+.mode-btn{background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);border-radius:20px;color:#cde;font-family:'Nunito',sans-serif;font-size:0.75rem;font-weight:700;padding:4px 10px;cursor:pointer;transition:all .15s;}
+.mode-btn.active{background:var(--sky);border-color:var(--sky);color:#fff;}
+
+/* ── Stats bar ── */
+.stats-bar{display:flex;gap:10px;justify-content:center;padding:9px 16px;background:rgba(255,255,255,0.05);width:100%;flex-wrap:wrap;}
+.stat-pill{background:rgba(255,255,255,0.1);border:1.5px solid rgba(255,255,255,0.15);border-radius:30px;padding:4px 14px;color:#fff;font-size:0.84rem;font-weight:700;display:flex;align-items:center;gap:5px;}
+.stat-pill span{color:var(--yellow);}
+.stat-pill .pts-val{font-family:'Fredoka One',sans-serif;font-size:1.1rem;}
+
+/* ── Main ── */
+main{width:100%;max-width:820px;padding:16px 14px 60px;}
+
+/* ── Category filter ── */
+.category-filter{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;justify-content:center;}
+.cat-btn{background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);border-radius:30px;color:#cde;font-family:'Nunito',sans-serif;font-size:0.75rem;font-weight:700;padding:4px 11px;cursor:pointer;transition:all .15s;}
+.cat-btn:hover,.cat-btn.active{background:var(--yellow);border-color:var(--yellow);color:var(--navy);}
+
+/* ── Deck selector ── */
+.deck-bar{display:flex;gap:8px;align-items:center;margin-bottom:14px;flex-wrap:wrap;}
+.deck-select{flex:1;min-width:160px;padding:7px 10px;border-radius:8px;border:1.5px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);color:#fff;font-family:'Nunito',sans-serif;font-size:0.83rem;font-weight:700;cursor:pointer;}
+.deck-select option{background:var(--navy);color:#fff;}
+.deck-btn{background:var(--teal);color:var(--navy);border:none;border-radius:8px;padding:7px 12px;font-family:'Nunito',sans-serif;font-size:0.78rem;font-weight:800;cursor:pointer;white-space:nowrap;}
+.deck-btn:hover{transform:scale(1.03);}
+.deck-btn.edit{background:var(--orange);color:#fff;}
+.deck-btn.del{background:var(--pink);color:#fff;}
+
+/* ── Quiz card ── */
+.quiz-card{background:var(--card);border-radius:var(--radius);padding:24px 24px 20px;box-shadow:0 8px 32px rgba(0,0,0,.25);transition:background .25s,box-shadow .25s;}
+.quiz-card.flash-correct{background:#C8F7E3;box-shadow:0 0 0 4px var(--teal),0 8px 32px rgba(0,0,0,.2);}
+.quiz-card.flash-wrong{background:#FFE0E8;box-shadow:0 0 0 4px var(--pink),0 8px 32px rgba(0,0,0,.2);}
+.quiz-card.paused{background:#EEF2F5;box-shadow:0 0 0 4px var(--orange),0 8px 32px rgba(0,0,0,.2);}
+.topic-badge{display:inline-block;background:var(--sky);color:#fff;font-size:0.7rem;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:10px;}
+.question-text{font-size:1.08rem;font-weight:700;color:var(--text);line-height:1.5;margin-bottom:16px;}
+.options-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:16px;}
+.option-btn{background:var(--light);border:2px solid #DDE6EC;border-radius:var(--radius-sm);padding:11px 13px;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:600;color:var(--text);cursor:pointer;text-align:left;transition:all .15s;line-height:1.4;}
+.option-btn:hover:not(:disabled){border-color:var(--sky);background:#E8F4FA;}
+.option-btn.correct{background:#C8F7E3;border-color:var(--teal);color:#025E44;font-weight:800;}
+.option-btn.wrong{background:#FFE4EA;border-color:var(--pink);color:#8B0020;}
+.option-btn.reveal-correct{background:#C8F7E3;border-color:var(--teal);color:#025E44;font-weight:800;}
+.open-answer-section{margin-bottom:14px;}
+.open-answer-section label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;}
+.open-answer-input{width:100%;padding:10px 12px;border:2px solid #DDE6EC;border-radius:var(--radius-sm);font-family:'Nunito',sans-serif;font-size:1rem;font-weight:600;color:var(--text);transition:border-color .15s;}
+.open-answer-input:focus{outline:none;border-color:var(--sky);}
+.work-area{margin-bottom:14px;}
+.work-area label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;}
+.work-area textarea{width:100%;height:80px;padding:10px 12px;border:2px solid #DDE6EC;border-radius:var(--radius-sm);font-family:'Nunito',sans-serif;font-size:.86rem;color:var(--text);resize:vertical;background:#FAFBFC;}
+.work-area textarea:focus{outline:none;border-color:var(--sky);}
+.timer-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.timer-display{font-family:'Fredoka One',sans-serif;font-size:1.8rem;color:var(--orange);min-width:48px;line-height:1;}
+.timer-display.urgent{color:var(--pink);animation:pulse .5s ease infinite alternate;}
+@keyframes pulse{from{transform:scale(1);}to{transform:scale(1.1);}}
+.timer-bar-wrap{flex:1;height:8px;background:#EEF2F5;border-radius:4px;overflow:hidden;}
+.timer-bar{height:100%;background:var(--teal);border-radius:4px;transition:width .92s linear,background .3s;}
+.timer-bar.warning{background:var(--orange);}
+.timer-bar.danger{background:var(--pink);}
+.answer-reveal{background:#F0FBF6;border:2px solid var(--teal);border-radius:var(--radius-sm);padding:11px 14px;margin-top:10px;display:none;}
+.answer-reveal.show{display:block;}
+.answer-reveal .ar-label{font-size:.76rem;font-weight:800;color:#025E44;text-transform:uppercase;letter-spacing:.5px;}
+.answer-reveal .ar-value{font-size:1rem;font-weight:700;color:var(--text);margin-top:3px;}
+.explain-toggle{background:none;border:none;color:var(--sky);font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;padding:5px 0 0;display:none;text-decoration:underline;text-underline-offset:3px;}
+.explain-toggle.show{display:inline-block;}
+.explain-box{background:#EDF6FF;border:1.5px solid #B5D4F4;border-radius:var(--radius-sm);padding:10px 13px;margin-top:7px;font-size:.88rem;color:#0C447C;line-height:1.55;display:none;}
+.explain-box.show{display:block;}
+.feedback-msg{text-align:center;font-size:1.1rem;font-weight:800;padding:5px 0 0;display:none;}
+.feedback-msg.show{display:block;}
+.feedback-msg.correct-msg{color:#019966;}
+.feedback-msg.wrong-msg{color:var(--pink);}
+.q-counter{font-size:.74rem;font-weight:800;color:var(--muted);text-align:right;margin-bottom:7px;text-transform:uppercase;letter-spacing:.5px;}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.btn{font-family:'Nunito',sans-serif;font-size:.88rem;font-weight:800;border:none;border-radius:var(--radius-sm);padding:10px 18px;cursor:pointer;transition:transform .12s,opacity .12s;flex:1;min-width:90px;}
+.btn:hover{transform:translateY(-1px);}
+.btn:active{transform:scale(.97);}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+.btn-primary{background:var(--sky);color:#fff;}
+.btn-reveal{background:var(--orange);color:#fff;}
+.btn-next{background:var(--teal);color:#073B4C;}
+.btn-skip{background:#EEF2F5;color:var(--muted);}
+.btn-pause{background:var(--orange);color:#fff;}
+.pause-overlay{display:none;position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(255,165,0,.08);border-radius:var(--radius);align-items:center;justify-content:center;font-family:'Fredoka One',sans-serif;font-size:2rem;color:var(--orange);z-index:2;}
+.pause-overlay.show{display:flex;}
+
+/* ── End screen ── */
+.end-screen{text-align:center;padding:36px 20px;display:none;}
+.end-screen.show{display:block;}
+.end-screen .score-big{font-family:'Fredoka One',sans-serif;font-size:4.5rem;color:var(--yellow);line-height:1;}
+.end-screen .score-label{font-size:.95rem;color:#A8C8D8;margin-top:5px;font-weight:700;}
+.end-screen .grade-msg{font-size:1.25rem;font-weight:800;color:#fff;margin:16px 0;}
+.end-screen .btn-restart{background:var(--yellow);color:var(--navy);font-family:'Nunito',sans-serif;font-size:.95rem;font-weight:800;border:none;border-radius:var(--radius-sm);padding:12px 28px;cursor:pointer;transition:transform .12s;margin-top:6px;}
+.end-screen .btn-restart:hover{transform:scale(1.04);}
+
+/* ── Modals ── */
+.modal-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);display:flex;align-items:center;justify-content:center;z-index:1000;}
+.modal-content{background:var(--card);border-radius:var(--radius);padding:36px 28px;text-align:center;max-width:440px;width:94%;box-shadow:0 16px 48px rgba(0,0,0,.3);max-height:90vh;overflow-y:auto;}
+.modal-content h2{font-family:'Fredoka One',sans-serif;font-size:1.65rem;color:var(--text);margin-bottom:6px;}
+.modal-content p.modal-sub{color:var(--muted);font-size:.85rem;margin-bottom:16px;}
+.modal-content label{display:block;font-size:.87rem;font-weight:700;color:var(--muted);margin-bottom:5px;text-align:left;}
+.modal-content input,.modal-content textarea,.modal-content select{width:100%;padding:10px 12px;border:2px solid #DDE6EC;border-radius:var(--radius-sm);font-family:'Nunito',sans-serif;font-size:.95rem;margin-bottom:12px;color:var(--text);}
+.modal-content input:focus,.modal-content textarea:focus,.modal-content select:focus{outline:none;border-color:var(--sky);}
+.modal-content textarea{height:130px;resize:vertical;font-size:.82rem;}
+.modal-btn{background:var(--sky);color:#fff;border:none;border-radius:var(--radius-sm);padding:10px 28px;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:800;cursor:pointer;transition:transform .12s;width:100%;margin-top:3px;}
+.modal-btn:hover{transform:scale(1.02);}
+.modal-btn.green{background:var(--teal);color:var(--navy);}
+.modal-btn.orange{background:var(--orange);color:#fff;}
+.modal-btn-secondary{background:#EEF2F5;color:var(--muted);border:none;border-radius:var(--radius-sm);padding:9px 28px;font-family:'Nunito',sans-serif;font-size:.85rem;font-weight:800;cursor:pointer;transition:transform .12s;width:100%;margin-top:7px;}
+.modal-btn-secondary:hover{transform:scale(1.02);}
+.modal-divider{display:flex;align-items:center;gap:10px;margin:14px 0;color:var(--muted);font-size:.78rem;font-weight:700;}
+.modal-divider::before,.modal-divider::after{content:'';flex:1;height:1px;background:#DDE6EC;}
+
+/* ── Calculator ── */
+.points-display{font-family:'Fredoka One',sans-serif;font-size:1.1rem;color:var(--yellow);}
+.calculator-btn{background:var(--orange);color:#fff;border:none;border-radius:8px;padding:5px 10px;font-family:'Nunito',sans-serif;font-size:.76rem;font-weight:700;cursor:pointer;transition:transform .1s;}
+.calculator-btn:hover{transform:scale(1.05);}
+.calculator-modal{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 16px 48px rgba(0,0,0,.3);z-index:999;min-width:270px;display:none;}
+.calculator-modal.show{display:block;}
+.calc-close{float:right;background:none;border:none;font-size:1.4rem;color:var(--text);cursor:pointer;}
+.calc-title{font-weight:800;color:var(--text);margin-bottom:8px;text-align:center;}
+.calc-cost{font-size:.72rem;color:var(--muted);text-align:center;margin-bottom:10px;}
+.calc-display{background:#f5f5f5;border:2px solid #ddd;border-radius:8px;padding:9px;margin-bottom:9px;text-align:right;font-size:1.1rem;min-height:28px;font-family:'Courier New',monospace;font-weight:700;}
+.calc-buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;}
+.calc-btn{padding:9px 4px;border:1px solid #ddd;border-radius:4px;cursor:pointer;font-weight:700;font-size:.85rem;background:#f9f9f9;transition:background .1s;}
+.calc-btn:hover{background:#efefef;}
+.calc-btn.operator{background:var(--orange);color:#fff;}
+.calc-btn.equals{background:var(--teal);color:var(--navy);}
+.calc-btn.clear{background:#FFE4EA;color:#8B0020;}
+
+/* ── Panels ── */
+.panel{background:var(--card);border-radius:var(--radius);padding:18px;margin-bottom:16px;box-shadow:0 4px 16px rgba(0,0,0,.1);}
+.panel-title{font-family:'Fredoka One',sans-serif;font-size:1.15rem;color:var(--text);margin-bottom:12px;text-align:center;}
+
+/* ── Leaderboard ── */
+.lb-controls{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.ctrl-group{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;}
+.ctrl-btn,.time-btn{padding:6px 11px;border:2px solid var(--navy);border-radius:8px;background:#fff;color:var(--navy);font-weight:700;cursor:pointer;font-size:.78rem;font-family:'Nunito',sans-serif;transition:all .2s;}
+.ctrl-btn:hover,.time-btn:hover{background:var(--light);}
+.ctrl-btn.active,.time-btn.active{background:var(--orange);color:#fff;border-color:var(--orange);}
+.lb-list{list-style:none;}
+.lb-item{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--light);border-radius:var(--radius-sm);margin-bottom:7px;font-weight:600;gap:8px;}
+.lb-item:last-child{margin-bottom:0;}
+.lb-rank{font-weight:800;color:var(--orange);min-width:34px;}
+.lb-name{color:var(--navy);flex-grow:1;}
+.lb-meta{color:var(--muted);font-size:.76rem;min-width:100px;text-align:right;}
+.lb-score{color:var(--teal);font-weight:800;font-size:1.05rem;min-width:48px;text-align:right;}
+.lb-loading{text-align:center;padding:18px;color:var(--muted);font-size:.85rem;}
+
+/* ── Multiplayer ── */
+.room-code-display{background:var(--navy);color:var(--yellow);font-family:'Fredoka One',sans-serif;font-size:1.9rem;letter-spacing:6px;text-align:center;border-radius:var(--radius-sm);padding:11px;margin:9px 0;}
+.player-list{list-style:none;margin:9px 0;}
+.player-list-item{display:flex;align-items:center;gap:7px;padding:7px 11px;background:var(--light);border-radius:8px;margin-bottom:5px;font-weight:700;color:var(--text);font-size:.86rem;}
+.player-dot{width:9px;height:9px;border-radius:50%;background:var(--teal);flex-shrink:0;}
+.player-dot.waiting{background:var(--orange);animation:pulse 1s ease infinite alternate;}
+.mp-btn{font-family:'Nunito',sans-serif;font-size:.87rem;font-weight:800;border:none;border-radius:var(--radius-sm);padding:9px 16px;cursor:pointer;transition:transform .12s;margin:3px;}
+.mp-btn:hover{transform:scale(1.03);}
+.mp-btn-create{background:var(--sky);color:#fff;}
+.mp-btn-join{background:var(--teal);color:var(--navy);}
+.mp-btn-start{background:var(--orange);color:#fff;width:100%;margin:7px 0 0;}
+.mp-btn-leave{background:#EEF2F5;color:var(--muted);width:100%;margin:7px 0 0;}
+.mp-status{font-size:.82rem;color:var(--muted);text-align:center;margin:7px 0;font-weight:600;}
+.mp-live-scores{background:rgba(6,214,160,.08);border:1.5px solid var(--teal);border-radius:var(--radius-sm);padding:11px;margin-bottom:14px;}
+.mp-live-title{font-size:.74rem;font-weight:800;color:#025E44;text-transform:uppercase;letter-spacing:.5px;margin-bottom:7px;}
+.mp-score-row{display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:.85rem;font-weight:700;color:var(--text);border-bottom:1px solid rgba(6,214,160,.15);}
+.mp-score-row:last-child{border-bottom:none;}
+.mp-score-pts{color:var(--teal);}
+.mp-score-row.me{color:var(--sky);}
+
+/* ── Friends ── */
+.friend-item{display:flex;justify-content:space-between;align-items:center;padding:9px 12px;background:var(--light);border-radius:8px;margin-bottom:6px;gap:8px;}
+.friend-name{font-weight:700;color:var(--text);flex-grow:1;}
+.friend-score{color:var(--teal);font-weight:800;font-size:.9rem;}
+.friend-status{width:8px;height:8px;border-radius:50%;background:#ccc;flex-shrink:0;}
+.friend-status.online{background:var(--teal);}
+.friend-remove{background:none;border:none;color:var(--pink);font-size:1rem;cursor:pointer;padding:0 4px;}
+.add-friend-row{display:flex;gap:6px;margin-top:10px;}
+.add-friend-row input{flex:1;padding:8px 10px;border:2px solid #DDE6EC;border-radius:8px;font-family:'Nunito',sans-serif;font-size:.85rem;color:var(--text);}
+.add-friend-row input:focus{outline:none;border-color:var(--sky);}
+.add-friend-row button{background:var(--sky);color:#fff;border:none;border-radius:8px;padding:8px 14px;font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:800;cursor:pointer;}
+
+/* ── Account ── */
+.account-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #EEF2F5;}
+.account-row:last-child{border-bottom:none;}
+.account-label{font-size:.82rem;font-weight:700;color:var(--muted);}
+.account-value{font-size:.9rem;font-weight:700;color:var(--text);}
+
+/* ── Question bank editor ── */
+.qb-entry{background:var(--light);border-radius:10px;padding:12px;margin-bottom:10px;position:relative;}
+.qb-entry-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px;}
+.qb-entry-q{font-size:.85rem;font-weight:700;color:var(--text);flex:1;}
+.qb-entry-topic{background:var(--sky);color:#fff;font-size:.65rem;font-weight:800;padding:2px 8px;border-radius:10px;white-space:nowrap;}
+.qb-entry-del{background:none;border:none;color:var(--pink);font-size:.9rem;cursor:pointer;padding:0;}
+.qb-entry-answer{font-size:.78rem;color:var(--teal);font-weight:700;}
+.deck-tag{background:var(--orange);color:#fff;font-size:.65rem;font-weight:800;padding:2px 7px;border-radius:10px;margin-left:5px;}
+
+@media(max-width:500px){
+  .options-grid{grid-template-columns:1fr;}
+  header h1{font-size:1.6rem;}
+  .quiz-card{padding:16px 12px 14px;}
+  .btn-row{flex-direction:column;}
+  .modal-content{padding:26px 16px;}
+  .calculator-modal{min-width:240px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📐 6th Grade Math Quiz</h1>
+  <p>Answer fast · Show your work · Review mistakes</p>
+</header>
+
+<!-- Top bar -->
+<div class="top-bar">
+  <div class="top-bar-left">
+    <label for="timerSetting">⏱</label>
+    <input type="number" id="timerSetting" class="timer-input" value="15" min="5" max="120"/>
+    <button class="tbar-btn" onclick="applyTimerSetting()">Set</button>
+    <div class="mode-toggle">
+      <button class="mode-btn active" id="modeSolo" onclick="setMode('solo')">Solo</button>
+      <button class="mode-btn" id="modeMP" onclick="setMode('mp')">Multiplayer</button>
+    </div>
+  </div>
+  <div class="top-bar-right">
+    <button class="tbar-btn secondary" onclick="openAccountModal()">👤 Account</button>
+    <button class="tbar-btn secondary" onclick="openFriendsModal()">👥 Friends</button>
+    <button class="tbar-btn secondary" onclick="openQBModal()">📚 Decks</button>
+    <button class="tbar-btn pause-btn" id="pauseBtn" onclick="togglePause()" style="display:none;">⏸ Pause</button>
+    <button class="calculator-btn" onclick="openCalculator()">🧮 −3pts</button>
+  </div>
+</div>
+
+<!-- Stats bar -->
+<div class="stats-bar">
+  <div class="stat-pill">Q <span id="qNum">—</span>/<span id="qTotal">—</span></div>
+  <div class="stat-pill">💰 <span class="pts-val" id="pointsVal">5.00</span></div>
+  <div class="stat-pill">👤 <span id="playerNameDisplay">—</span></div>
+  <div class="stat-pill" id="deckPill">📚 <span id="deckName">Default</span></div>
+</div>
+
+<!-- ── Modals ── -->
+
+<!-- Account Modal -->
+<div class="modal-overlay" id="accountModal" style="display:none;">
+  <div class="modal-content">
+    <h2>👤 Account</h2>
+    <p class="modal-sub" id="accountSubtitle">Manage your profile</p>
+    <div id="accountBody"></div>
+    <button class="modal-btn-secondary" onclick="closeModal('accountModal')">Close</button>
+  </div>
+</div>
+
+<!-- Friends Modal -->
+<div class="modal-overlay" id="friendsModal" style="display:none;">
+  <div class="modal-content">
+    <h2>👥 Friends</h2>
+    <p class="modal-sub">Track your friends' scores</p>
+    <div id="friendsBody"></div>
+    <button class="modal-btn-secondary" onclick="closeModal('friendsModal')">Close</button>
+  </div>
+</div>
+
+<!-- Question Bank / Decks Modal -->
+<div class="modal-overlay" id="qbModal" style="display:none;">
+  <div class="modal-content" style="max-width:520px;">
+    <h2>📚 Question Decks</h2>
+    <p class="modal-sub">Switch decks or create your own</p>
+    <div id="qbBody"></div>
+    <button class="modal-btn-secondary" onclick="closeModal('qbModal')">Close</button>
+  </div>
+</div>
+
+<!-- Add/Edit Question Modal -->
+<div class="modal-overlay" id="addQModal" style="display:none;">
+  <div class="modal-content">
+    <h2 id="addQTitle">➕ Add Question</h2>
+    <p class="modal-sub">Added to your custom deck</p>
+    <label>Topic / Category</label>
+    <input type="text" id="aqTopic" placeholder="e.g. Fractions & Decimals"/>
+    <label>Question</label>
+    <input type="text" id="aqQuestion" placeholder="Enter the question..."/>
+    <label>Type</label>
+    <select id="aqType" onchange="renderMCFields()">
+      <option value="open">Open Answer</option>
+      <option value="mc">Multiple Choice</option>
+    </select>
+    <div id="aqMCFields" style="display:none;">
+      <label>Option A</label><input type="text" id="aqA" placeholder="Option A"/>
+      <label>Option B</label><input type="text" id="aqB" placeholder="Option B"/>
+      <label>Option C</label><input type="text" id="aqC" placeholder="Option C"/>
+      <label>Option D</label><input type="text" id="aqD" placeholder="Option D"/>
+      <label>Correct Answer (A/B/C/D)</label>
+      <select id="aqAnswer"><option>A</option><option>B</option><option>C</option><option>D</option></select>
+    </div>
+    <div id="aqOpenField">
+      <label>Answer</label>
+      <input type="text" id="aqOpenAnswer" placeholder="Correct answer..."/>
+    </div>
+    <label>Explanation (optional)</label>
+    <input type="text" id="aqExplain" placeholder="Why is this the answer?"/>
+    <button class="modal-btn green" onclick="saveCustomQuestion()">💾 Save Question</button>
+    <button class="modal-btn-secondary" onclick="closeModal('addQModal')">Cancel</button>
+  </div>
+</div>
+
+<!-- Name Modal -->
+<div class="modal-overlay" id="nameModal" style="display:none;">
+  <div class="modal-content">
+    <h2>📐 Let's Play!</h2>
+    <p class="modal-sub">6th Grade Math Quiz</p>
+    <label for="playerNameInput">Your name:</label>
+    <input type="text" id="playerNameInput" placeholder="Enter your name..." autocomplete="off" maxlength="20"/>
+    <button class="modal-btn" onclick="setPlayerName()">🚀 Start Quiz</button>
+    <div class="modal-divider">or</div>
+    <button class="modal-btn-secondary" onclick="showMultiplayerSetup()">🎮 Play Multiplayer</button>
+  </div>
+</div>
+
+<!-- Multiplayer Modal -->
+<div class="modal-overlay" id="mpModal" style="display:none;">
+  <div class="modal-content">
+    <h2>🎮 Multiplayer</h2>
+    <p class="modal-sub">Play live against friends!</p>
+    <label for="mpNameInput">Your name:</label>
+    <input type="text" id="mpNameInput" placeholder="Enter your name..." autocomplete="off" maxlength="20"/>
+    <div class="modal-divider">Choose an option</div>
+    <button class="modal-btn mp-btn-create" onclick="createRoom()">➕ Create New Room</button>
+    <div style="margin:10px 0;">
+      <label for="joinCodeInput">Room code to join:</label>
+      <input type="text" id="joinCodeInput" placeholder="e.g. 4827" autocomplete="off" maxlength="4" style="text-align:center;letter-spacing:4px;font-size:1.2rem;"/>
+      <button class="modal-btn mp-btn-join" onclick="joinRoom()">🔗 Join Room</button>
+    </div>
+    <button class="modal-btn-secondary" onclick="showNameModal()">← Back</button>
+  </div>
+</div>
+
+<!-- Calculator -->
+<div class="calculator-modal" id="calculatorModal">
+  <button class="calc-close" onclick="closeCalculator()">✕</button>
+  <div class="calc-title">Calculator</div>
+  <div class="calc-cost">Costs 3 points per use</div>
+  <div class="calc-display" id="calcDisplay">0</div>
+  <div class="calc-buttons" id="calcButtons"></div>
+</div>
+
+<main>
+  <div class="category-filter" id="catFilter"></div>
+
+  <!-- Deck bar -->
+  <div class="deck-bar" id="deckBar">
+    <select class="deck-select" id="deckSelect" onchange="switchDeck()"></select>
+    <button class="deck-btn" onclick="openQBModal()">📚 Manage</button>
+  </div>
+
+  <!-- Multiplayer live scores -->
+  <div id="mpLivePanel" style="display:none;">
+    <div class="mp-live-scores">
+      <div class="mp-live-title">🏆 Live Scores</div>
+      <div id="mpLiveScores"></div>
+    </div>
+  </div>
+
+  <!-- Multiplayer lobby -->
+  <div class="panel" id="mpLobbyPanel" style="display:none;">
+    <div class="panel-title">🎮 Multiplayer Lobby</div>
+    <div id="mpLobbyContent"></div>
+  </div>
+
+  <!-- Leaderboard -->
+  <div class="panel" id="leaderboardPanel">
+    <div class="panel-title">🏆 Leaderboard</div>
+    <div class="lb-controls">
+      <div class="ctrl-group">
+        <button class="ctrl-btn active" id="togglePublic" onclick="setLBMode('public')">🌍 Global</button>
+        <button class="ctrl-btn" id="togglePersonal" onclick="setLBMode('personal')">👤 My Scores</button>
+        <button class="ctrl-btn" id="toggleFriends" onclick="setLBMode('friends')">👥 Friends</button>
+      </div>
+      <div class="ctrl-group">
+        <button class="time-btn active" id="timeToday"   onclick="setTimeRange('today')">Today</button>
+        <button class="time-btn" id="timeWeekly"  onclick="setTimeRange('weekly')">Weekly</button>
+        <button class="time-btn" id="timeMonthly" onclick="setTimeRange('monthly')">Monthly</button>
+        <button class="time-btn" id="timeAllTime" onclick="setTimeRange('allTime')">All Time</button>
+      </div>
+    </div>
+    <ul class="lb-list" id="leaderboardList"><li class="lb-loading">Loading scores...</li></ul>
+  </div>
+
+  <!-- Quiz card -->
+  <div class="quiz-card" id="quizCard" style="display:none;position:relative;">
+    <div class="pause-overlay" id="pauseOverlay">⏸ Paused</div>
+    <div class="q-counter" id="qCounter"></div>
+    <div class="topic-badge" id="topicBadge"></div>
+    <div class="question-text" id="questionText"></div>
+    <div class="timer-row">
+      <div class="timer-display" id="timerDisplay">15</div>
+      <div class="timer-bar-wrap"><div class="timer-bar" id="timerBar"></div></div>
+    </div>
+    <div id="optionsArea"></div>
+    <div class="work-area">
+      <label>✏️ Show your work</label>
+      <textarea id="workArea" placeholder="Write out your steps..."></textarea>
+    </div>
+    <div class="answer-reveal" id="answerReveal">
+      <div class="ar-label">Correct Answer</div>
+      <div class="ar-value" id="revealValue"></div>
+    </div>
+    <button class="explain-toggle" id="explainToggle" onclick="toggleExplain()">▶ Why is this the answer?</button>
+    <div class="explain-box" id="explainBox"></div>
+    <div class="feedback-msg" id="feedbackMsg"></div>
+    <div class="btn-row">
+      <button class="btn btn-skip"   id="btnSkip"   onclick="skipQuestion()">Skip</button>
+      <button class="btn btn-reveal" id="btnReveal" onclick="revealAnswer()">Reveal</button>
+      <button class="btn btn-pause"  id="btnPause"  onclick="togglePause()">⏸</button>
+      <button class="btn btn-next"   id="btnNext"   onclick="nextQuestion()" style="display:none;">Next →</button>
+    </div>
+  </div>
+
+  <!-- End screen -->
+  <div class="end-screen" id="endScreen">
+    <div class="score-big"  id="finalScore"></div>
+    <div class="score-label" id="finalLabel"></div>
+    <div class="grade-msg"  id="gradeMsg"></div>
+    <button class="btn-restart" onclick="restartQuiz()">🔄 Play Again</button>
+  </div>
+</main>
+
+<script>
+/* =====================================================================
+   BUILT-IN QUESTION BANK
+   ===================================================================== */
+const BUILTIN_QUESTIONS = [
+  {topic:"Ratios & Proportions",q:"A car travels at 60 miles per hour. How far will it travel in 20 minutes?",type:"open",answer:"20 miles",explanation:"60 mph ÷ 60 = 1 mile/min × 20 = 20 miles."},
+  {topic:"Ratios & Proportions",q:"At a zoo there are 3 lions for every 7 tigers. Which total could be the zoo's count?",type:"mc",options:["21 lions and 49 tigers","25 lions and 63 tigers","32 lions and 70 tigers","33 lions and 78 tigers"],answer:"A",explanation:"3:7 → ×7 → 21:49 ✓"},
+  {topic:"Ratios & Proportions",q:"Chocolate chip to oatmeal raisin is 5:4. What is the ratio of oatmeal raisin to TOTAL cookies?",type:"mc",options:["5:4","4:5","4:9","5:9"],answer:"C",explanation:"Total parts = 9. Oatmeal raisin = 4 → 4:9."},
+  {topic:"Ratios & Proportions",q:"The ratio of x to y is constant. x=10→y=15. What is y when x=16?",type:"mc",options:["20","24","25","30"],answer:"B",explanation:"y/x = 1.5. y = 1.5×16 = 24."},
+  {topic:"Ratios & Proportions",q:"If 5 pounds of flour equals 80 ounces, what is the ratio of pounds to ounces?",type:"mc",options:["80:5","1:16","16:1","10:80"],answer:"B",explanation:"5:80 ÷5 → 1:16."},
+  {topic:"Ratios & Proportions",q:"A car travels 180 miles in 3 hours. What is the unit rate in miles per hour?",type:"mc",options:["45 mph","50 mph","55 mph","60 mph"],answer:"D",explanation:"180 ÷ 3 = 60 mph."},
+  {topic:"Ratios & Proportions",q:"A pet store sells cats and dogs at ratio 7:2. How many dogs if 81 total were sold?",type:"mc",options:["9","27","36","18"],answer:"D",explanation:"Total parts=9. Each part=9. Dogs=2×9=18."},
+  {topic:"Ratios & Proportions",q:"120 fans for home, 80 for visiting. Ratio of home fans to total fans?",type:"mc",options:["2:5","3:4","3:5","4:5"],answer:"C",explanation:"120:200 = 3:5."},
+  {topic:"Ratios & Proportions",q:"A bakery produces 4.5 dozen cookies per hour. How long to bake 72 dozen?",type:"mc",options:["12 hours","18 hours","20 hours","16 hours"],answer:"D",explanation:"72 ÷ 4.5 = 16 hours."},
+  {topic:"Ratios & Proportions",q:"Which ratio is equivalent to 4:7?",type:"mc",options:["10:16","6:10","12:24","8:14"],answer:"D",explanation:"4×2=8, 7×2=14 → 8:14 ✓"},
+  {topic:"Percents",q:"Marie finished 60% of her chapters. Sam's book has 35 chapters. How many has Sam finished at the same rate?",type:"open",answer:"21 chapters",explanation:"60% of 35 = 21."},
+  {topic:"Percents",q:"3 pieces of cake = 25% of the cake. How many total pieces?",type:"mc",options:["9","12","15","18"],answer:"B",explanation:"3=25% → 100%=12."},
+  {topic:"Percents",q:"Michael earns $600/week and spends 20% on groceries. How much?",type:"mc",options:["$80","$90","$100","$120"],answer:"D",explanation:"$600×0.20=$120."},
+  {topic:"Percents",q:"If 60% of n is 300, what is 80% of n?",type:"mc",options:["600","800","400","480"],answer:"C",explanation:"n=500. 80%×500=400."},
+  {topic:"Percents",q:"150 of 600 students play an instrument. What percent?",type:"mc",options:["20%","25%","33.3%","50%"],answer:"B",explanation:"150/600=25%."},
+  {topic:"Percents",q:"52 is 80% of what number?",type:"mc",options:["60","65","70","75"],answer:"B",explanation:"n=52÷0.80=65."},
+  {topic:"Percents",q:"A football team won 40% of their 25 games. How many wins?",type:"mc",options:["8","9","10","12"],answer:"C",explanation:"25×0.40=10."},
+  {topic:"Percents",q:"36 campers = 45% of all campers. Total?",type:"mc",options:["80","75","70","85"],answer:"A",explanation:"n=36÷0.45=80."},
+  {topic:"LCM & GCF",q:"What is the prime factorization of 120?",type:"mc",options:["13×17","2²×3²×5","5²×17","2³×3×5"],answer:"D",explanation:"120=2³×3×5."},
+  {topic:"LCM & GCF",q:"Julia runs every 8 days, Marta every 12 days. Days until they run together?",type:"mc",options:["16","24","32","40"],answer:"B",explanation:"LCM(8,12)=24."},
+  {topic:"LCM & GCF",q:"What is the GCF of 48 and 72?",type:"mc",options:["6","24","12","36"],answer:"B",explanation:"GCF=24."},
+  {topic:"LCM & GCF",q:"Rewrite 45 + 75 by factoring out the GCF.",type:"mc",options:["5(9+15)","15(3+5)","9(5+15)","3(15+25)"],answer:"B",explanation:"GCF=15 → 15(3+5)."},
+  {topic:"LCM & GCF",q:"A company has 42 pens and 56 notebooks for identical bags. Max bags?",type:"mc",options:["6","7","14","28"],answer:"C",explanation:"GCF(42,56)=14."},
+  {topic:"LCM & GCF",q:"What is the LCM of 15 and 20?",type:"mc",options:["30","40","60","75"],answer:"C",explanation:"LCM=60."},
+  {topic:"Fractions & Decimals",q:"Ariyah has 4½ cups of sugar. A recipe needs ¼ cup. Maximum completions?",type:"open",answer:"18 times",explanation:"4½÷¼=18."},
+  {topic:"Fractions & Decimals",q:"Garden area = 2/3 sq mile, width = 1/2 mile. What is the length?",type:"mc",options:["4/3 mile","3/4 mile","5/3 mile","2/3 mile"],answer:"A",explanation:"(2/3)÷(1/2)=4/3."},
+  {topic:"Fractions & Decimals",q:"Gift wrap needs 2/5 yard per package. Ribbon for 25 packages?",type:"mc",options:["8 yards","10 yards","5 yards","12.5 yards"],answer:"B",explanation:"25×2/5=10."},
+  {topic:"Fractions & Decimals",q:"What is the square of 2/3?",type:"mc",options:["4/9","2/3","1/3","4/6"],answer:"A",explanation:"(2/3)²=4/9."},
+  {topic:"Fractions & Decimals",q:"A bag of trail mix has 4½ cups. Each portion is ¾ cup. How many whole portions?",type:"mc",options:["5","8","7","6"],answer:"D",explanation:"4½÷¾=6."},
+  {topic:"Fractions & Decimals",q:"Water jug needs 3½ gallons. Container holds ¼ gallon. How many fills?",type:"mc",options:["12","13","14","15"],answer:"C",explanation:"3½÷¼=14."},
+  {topic:"Expressions",q:"Emma saves x dollars/week for a $125 ticket. Weeks needed?",type:"mc",options:["125−x","125+x","125x","125/x"],answer:"D",explanation:"Weeks=125÷x=125/x."},
+  {topic:"Expressions",q:"Simplify: 4a + 6 + 3a − 2",type:"mc",options:["7a+8","4a+4","7a+4","7a+6"],answer:"C",explanation:"7a+4."},
+  {topic:"Expressions",q:"Which is equivalent to 42x − 18y?",type:"mc",options:["6(4x−4y)","6(12x−4y)","6(7x−3y)","6(6x−3y)"],answer:"C",explanation:"GCF=6 → 6(7x−3y)."},
+  {topic:"Expressions",q:"Which is equivalent to 4(2x + 5)?",type:"mc",options:["8x+9","8x+5","8x+20","6x+20"],answer:"C",explanation:"8x+20."},
+  {topic:"Expressions",q:"Simplify: 7x + 3y − 2x + 5y",type:"mc",options:["5x+2y","9x+2y","7x+5y","5x+8y"],answer:"D",explanation:"5x+8y."},
+  {topic:"Expressions",q:"What is the value of 30 − 8 + 4 × 2²?",type:"open",answer:"38",explanation:"2²=4, 4×4=16, 30−8+16=38."},
+  {topic:"Equations & Inequalities",q:"Solve: (5/6)x = 10",type:"mc",options:["x=10","x=11","x=12","x=15"],answer:"C",explanation:"x=10×(6/5)=12."},
+  {topic:"Equations & Inequalities",q:"A book club allows UP TO 25 members. Which inequality?",type:"mc",options:["x≥25","x≤25","x>25","x<25"],answer:"B",explanation:"x≤25."},
+  {topic:"Equations & Inequalities",q:"Solve: m/4 = 11",type:"open",answer:"m = 44",explanation:"m=44."},
+  {topic:"Equations & Inequalities",q:"Solve: z − 15 = 8",type:"open",answer:"z = 23",explanation:"z=23."},
+  {topic:"Equations & Inequalities",q:"Solve: 9k = 81",type:"open",answer:"k = 9",explanation:"k=9."},
+  {topic:"Equations & Inequalities",q:"Solve the inequality: x − 7 < 12",type:"mc",options:["x<5","x<19","x>5","x>19"],answer:"B",explanation:"x<19."},
+  {topic:"Equations & Inequalities",q:"Solve: x + 7 = 15",type:"open",answer:"x = 8",explanation:"x=8."},
+  {topic:"Coordinate Plane",q:"Rectangle WXYZ: W(−1,2), X(−1,−4), Y(7,−4), Z(7,2). Perimeter?",type:"mc",options:["16 units","20 units","24 units","28 units"],answer:"D",explanation:"Width=8, Height=6. P=28."},
+  {topic:"Coordinate Plane",q:"Distance between (−7,4) and (−12,4)?",type:"mc",options:["5 units","7 units","12 units","15 units"],answer:"A",explanation:"|−7−(−12)|=5."},
+  {topic:"Coordinate Plane",q:"Which quadrant is (−2⅓, 7⅛) in?",type:"mc",options:["Quadrant I","Quadrant II","Quadrant III","Quadrant IV"],answer:"B",explanation:"x−, y+ → Q II."},
+  {topic:"Coordinate Plane",q:"Reflection of (4, 6) across the y-axis?",type:"mc",options:["(4,6)","(4,−6)","(−4,−6)","(−4,6)"],answer:"D",explanation:"Flip x → (−4,6)."},
+  {topic:"Coordinate Plane",q:"Point (−6,2) reflected over the y-axis?",type:"mc",options:["(−6,−2)","(6,2)","(−6,2)","(6,−2)"],answer:"B",explanation:"(6,2)."},
+  {topic:"Coordinate Plane",q:"School A at (−7,3) and School B at (5,3). How far apart?",type:"open",answer:"12 units",explanation:"|5−(−7)|=12."},
+  {topic:"Area, Surface Area & Volume",q:"5 parallelogram sections, base 10 cm, height 7 cm each. Total area?",type:"mc",options:["300 cm²","350 cm²","400 cm²","450 cm²"],answer:"B",explanation:"5×70=350 cm²."},
+  {topic:"Area, Surface Area & Volume",q:"Surface area of a cube with side length 2.1 in?",type:"open",answer:"26.46 in²",explanation:"6×(2.1)²=26.46."},
+  {topic:"Area, Surface Area & Volume",q:"Rectangle 12 cm × 26 cm divided into 2 triangles. Area of ONE?",type:"mc",options:["312 cm²","78 cm²","156 cm²","104 cm²"],answer:"C",explanation:"312÷2=156."},
+  {topic:"Area, Surface Area & Volume",q:"Quilt has 9 rectangular sections, each 8 cm × 5 cm. Total area?",type:"mc",options:["320 cm²","240 cm²","360 cm²","400 cm²"],answer:"C",explanation:"9×40=360."},
+  {topic:"Statistics",q:"Which is NOT a suitable statistical question?",type:"mc",options:["How many students have a phone?","Who is the current US President?","How many students walk to school?","What % passed the science exam?"],answer:"B",explanation:"Fixed answer — not statistical."},
+  {topic:"Statistics",q:"Sarah's avg after 4 exams = 92. Exams 1–3 = 90,95,88. Exam 4?",type:"mc",options:["95","92","90","88"],answer:"A",explanation:"368−273=95."},
+  {topic:"Statistics",q:"Range of {9,16,12,6,g,14} is 14. What is g?",type:"open",answer:"20",explanation:"6+14=20."},
+  {topic:"Statistics",q:"Pets data: 0,1,2,2,1,3,4,2,1,2,3,0,1,2,5. Mode?",type:"open",answer:"2",explanation:"2 appears most often."},
+  {topic:"Integers",q:"What is −9 + (−17)?",type:"mc",options:["−26","26","−8","8"],answer:"A",explanation:"−26."},
+  {topic:"Integers",q:"−15°C in Montreal, 25°C in Sydney. How much warmer is Sydney?",type:"mc",options:["20°","40°","10°","15°"],answer:"B",explanation:"25−(−15)=40°."},
+  {topic:"Integers",q:"What is 5 − 12?",type:"mc",options:["−17","17","−7","7"],answer:"C",explanation:"−7."},
+  {topic:"Integers",q:"Evelyn starts at −150 ft and climbs 275 ft. New elevation?",type:"open",answer:"125 feet",explanation:"−150+275=125."},
+  {topic:"Integers",q:"Submarine at −350 ft, helicopter at +1,120 ft. How much higher?",type:"mc",options:["770","1,470","1,120","350"],answer:"B",explanation:"1120+350=1470."},
+  {topic:"Integers",q:"Evaluate: 2³ + 10",type:"open",answer:"18",explanation:"8+10=18."},
+];
+
+/* =====================================================================
+   DECKS  — "builtin" deck + custom decks in localStorage
+   ===================================================================== */
+const DECKS_KEY    = 'mathQuizDecks_v2';
+const ACTIVE_DECK_KEY = 'mathQuizActiveDeck';
+
+function getDecks() {
+  try { return JSON.parse(localStorage.getItem(DECKS_KEY) || '{}'); } catch { return {}; }
+}
+function saveDecks(d) { localStorage.setItem(DECKS_KEY, JSON.stringify(d)); }
+function getActiveDeckId() { return localStorage.getItem(ACTIVE_DECK_KEY) || 'builtin'; }
+function setActiveDeckId(id) { localStorage.setItem(ACTIVE_DECK_KEY, id); }
+
+function getActiveQuestions() {
+  const id = getActiveDeckId();
+  if (id === 'builtin') return BUILTIN_QUESTIONS;
+  const decks = getDecks();
+  return (decks[id] && decks[id].questions && decks[id].questions.length > 0)
+    ? decks[id].questions
+    : BUILTIN_QUESTIONS;
+}
+
+function getDeckName(id) {
+  if (id === 'builtin') return 'Default (Built-in)';
+  const d = getDecks();
+  return d[id] ? d[id].name : 'Unknown';
+}
+
+/* =====================================================================
+   ACCOUNTS — localStorage, switch/sign-out
+   ===================================================================== */
+const ACCOUNTS_KEY    = 'mathQuizAccounts_v2';
+const ACTIVE_ACC_KEY  = 'mathQuizActiveAccount';
+
+function getAccounts() {
+  try { return JSON.parse(localStorage.getItem(ACCOUNTS_KEY) || '{}'); } catch { return {}; }
+}
+function saveAccounts(a) { localStorage.setItem(ACCOUNTS_KEY, JSON.stringify(a)); }
+function getActiveAccount() { return localStorage.getItem(ACTIVE_ACC_KEY) || ''; }
+function setActiveAccount(name) { localStorage.setItem(ACTIVE_ACC_KEY, name); }
+
+function ensureAccount(name) {
+  if (!name) return;
+  const accounts = getAccounts();
+  if (!accounts[name]) {
+    accounts[name] = { name, createdAt: Date.now(), totalScore: 0, gamesPlayed: 0 };
+    saveAccounts(accounts);
+  }
+  setActiveAccount(name);
+}
+
+/* =====================================================================
+   FRIENDS — stored per account
+   ===================================================================== */
+const FRIENDS_KEY = 'mathQuizFriends_v2';
+
+function getFriends() {
+  try { return JSON.parse(localStorage.getItem(FRIENDS_KEY) || '[]'); } catch { return []; }
+}
+function saveFriends(f) { localStorage.setItem(FRIENDS_KEY, JSON.stringify(f)); }
+
+/* =====================================================================
+   STATE
+   ===================================================================== */
+const TOPICS_FN = () => ["All", ...new Set(getActiveQuestions().map(q => q.topic))];
+
+let questions     = [];
+let currentIdx    = 0;
+let points        = 5;
+let timerInterval = null;
+let maxTime       = 15;
+let timeLeft      = 15;
+let answered      = false;
+let selectedTopic = "All";
+let explainOpen   = false;
+let playerName    = getActiveAccount() || localStorage.getItem('mathQuizPlayer') || "";
+let timerPaused   = false;
+let gamePaused    = false;
+let currentMode   = 'solo'; // 'solo' | 'mp'
+
+// Points: start at 5, scale down proportionally
+const MAX_POINTS       = 5;
+const POINTS_PER_TICK  = 5 / 15; // recalculated on timer start
+let   pointsPerTick    = MAX_POINTS / maxTime;
+const CALCULATOR_COST  = 3;
+
+// Multiplayer
+let mpMode        = false;
+let mpRoomCode    = null;
+let mpIsHost      = false;
+let mpPlayerId    = null;
+let mpPollInterval= null;
+let mpQuestions   = [];
+let mpFinished    = false;
+
+// Leaderboard
+let lbMode    = 'public';
+let timeRange = 'today';
+let lbAutoInterval = null;
+
+/* =====================================================================
+   HELPERS
+   ===================================================================== */
+function $(id) { return document.getElementById(id); }
+function shuffleArray(arr) {
+  const a=[...arr];
+  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}
+  return a;
+}
+function generateRoomCode() { return String(Math.floor(1000+Math.random()*9000)); }
+function generatePlayerId() { return Math.random().toString(36).substr(2,9); }
+function closeModal(id) { $(id).style.display='none'; }
+
+function updatePointsDisplay() {
+  $("pointsVal").textContent = points.toFixed(2);
+}
+
+function fmtScore(s) { return (typeof s === 'number') ? s.toFixed(2) : s; }
+
+/* =====================================================================
+   MODE TOGGLE (Solo / Multiplayer)
+   ===================================================================== */
+function setMode(mode) {
+  currentMode = mode;
+  $('modeSolo').className = 'mode-btn' + (mode==='solo' ? ' active' : '');
+  $('modeMP').className   = 'mode-btn' + (mode==='mp'   ? ' active' : '');
+  if (mode === 'mp') {
+    if (!mpMode) showMultiplayerSetup();
+  }
+}
+
+/* =====================================================================
+   TIMER SETTING
+   ===================================================================== */
+function applyTimerSetting() {
+  const val = parseInt($("timerSetting").value, 10);
+  if (!isNaN(val) && val >= 5 && val <= 120) {
+    maxTime = val;
+    pointsPerTick = MAX_POINTS / maxTime;
+    if (playerName && !mpMode) startQuiz();
+  }
+}
+
+/* =====================================================================
+   PAUSE
+   ===================================================================== */
+function togglePause() {
+  if (!playerName || answered) return;
+  gamePaused = !gamePaused;
+  if (gamePaused) {
+    clearInterval(timerInterval);
+    timerPaused = true;
+    $("quizCard").classList.add("paused");
+    $("pauseOverlay").classList.add("show");
+    $("btnPause").textContent = "▶ Resume";
+    $("pauseBtn").textContent = "▶ Resume";
+  } else {
+    gamePaused = false;
+    timerPaused = false;
+    $("quizCard").classList.remove("paused");
+    $("pauseOverlay").classList.remove("show");
+    $("btnPause").textContent = "⏸";
+    $("pauseBtn").textContent = "⏸ Pause";
+    startTimer();
+  }
+}
+
+/* =====================================================================
+   MODALS  — Account, Friends, Question Bank
+   ===================================================================== */
+function openAccountModal() {
+  renderAccountModal();
+  $("accountModal").style.display='flex';
+}
+
+function renderAccountModal() {
+  const accounts = getAccounts();
+  const active   = playerName;
+  const names    = Object.keys(accounts);
+
+  let html = '';
+  if (active) {
+    const acc = accounts[active] || {};
+    html += `<div class="account-row"><span class="account-label">Signed in as</span><span class="account-value">👤 ${active}</span></div>`;
+    html += `<div class="account-row"><span class="account-label">Games played</span><span class="account-value">${acc.gamesPlayed||0}</span></div>`;
+    html += `<div class="account-row"><span class="account-label">Best score</span><span class="account-value">${fmtScore(acc.bestScore||0)} pts</span></div>`;
+    html += `<div class="modal-divider">Switch Account</div>`;
+  } else {
+    html += `<p style="color:var(--muted);font-size:.85rem;margin-bottom:12px;">Not signed in.</p>`;
+  }
+
+  // Existing accounts to switch to
+  if (names.length > 0) {
+    html += `<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px;">`;
+    names.forEach(n => {
+      if (n === active) return;
+      html += `<button class="modal-btn" style="background:var(--light);color:var(--navy);font-size:.85rem;" onclick="switchAccount('${n}')">↩ ${n}</button>`;
+    });
+    html += `</div>`;
+  }
+
+  html += `<div class="modal-divider">New Account</div>`;
+  html += `<label>Name</label><input type="text" id="newAccName" placeholder="New player name..." maxlength="20"/>`;
+  html += `<button class="modal-btn green" onclick="createNewAccount()">➕ Create Account</button>`;
+
+  if (active) {
+    html += `<button class="modal-btn" style="background:var(--pink);color:#fff;margin-top:8px;" onclick="signOut()">🚪 Sign Out</button>`;
+  }
+
+  $("accountBody").innerHTML = html;
+}
+
+function createNewAccount() {
+  const name = $("newAccName") ? $("newAccName").value.trim() : '';
+  if (!name) return;
+  ensureAccount(name);
+  playerName = name;
+  $("playerNameDisplay").textContent = playerName;
+  localStorage.setItem('mathQuizPlayer', playerName);
+  renderAccountModal();
+  if (!mpMode) startQuiz();
+}
+
+function switchAccount(name) {
+  ensureAccount(name);
+  playerName = name;
+  $("playerNameDisplay").textContent = playerName;
+  localStorage.setItem('mathQuizPlayer', playerName);
+  closeModal('accountModal');
+  if (!mpMode) startQuiz();
+}
+
+function signOut() {
+  playerName = '';
+  setActiveAccount('');
+  localStorage.removeItem('mathQuizPlayer');
+  $("playerNameDisplay").textContent = '—';
+  closeModal('accountModal');
+  showNameModal();
+}
+
+/* ── Friends ── */
+function openFriendsModal() {
+  renderFriendsModal();
+  $("friendsModal").style.display='flex';
+}
+
+async function renderFriendsModal() {
+  const friends = getFriends();
+  let html = '';
+
+  // Load personal board for friend score lookup
+  const personal = getPersonalBoard();
+  const scoreMap = {};
+  personal.forEach(e => {
+    if (!scoreMap[e.name] || e.score > scoreMap[e.name]) scoreMap[e.name] = e.score;
+  });
+
+  if (friends.length === 0) {
+    html += `<p style="color:var(--muted);font-size:.85rem;text-align:center;padding:12px 0;">No friends added yet.</p>`;
+  } else {
+    friends.forEach((f, i) => {
+      const best = scoreMap[f] !== undefined ? fmtScore(scoreMap[f]) + ' pts' : '—';
+      html += `<div class="friend-item">
+        <span class="friend-name">👤 ${f}</span>
+        <span class="friend-score">${best}</span>
+        <button class="friend-remove" onclick="removeFriend(${i})" title="Remove">✕</button>
+      </div>`;
+    });
+  }
+
+  html += `<div class="add-friend-row">
+    <input type="text" id="newFriendInput" placeholder="Friend's name..." maxlength="20"/>
+    <button onclick="addFriend()">Add</button>
+  </div>`;
+
+  $("friendsBody").innerHTML = html;
+}
+
+function addFriend() {
+  const inp = $("newFriendInput");
+  const name = inp ? inp.value.trim() : '';
+  if (!name) return;
+  const friends = getFriends();
+  if (!friends.includes(name)) {
+    friends.push(name);
+    saveFriends(friends);
+  }
+  renderFriendsModal();
+}
+
+function removeFriend(idx) {
+  const friends = getFriends();
+  friends.splice(idx, 1);
+  saveFriends(friends);
+  renderFriendsModal();
+}
+
+/* ── Question Bank / Decks ── */
+function openQBModal() {
+  renderQBModal();
+  $("qbModal").style.display='flex';
+}
+
+function renderQBModal() {
+  const decks   = getDecks();
+  const activeId = getActiveDeckId();
+  const deckIds  = Object.keys(decks);
+
+  let html = '';
+
+  // Deck switcher
+  html += `<div style="margin-bottom:14px;">`;
+  html += `<div class="qb-entry" style="background:${activeId==='builtin'?'#E8F4FA':'var(--light)'}">`;
+  html += `<div class="qb-entry-header"><span class="qb-entry-q">📚 Default (Built-in) — ${BUILTIN_QUESTIONS.length} questions</span>`;
+  if (activeId !== 'builtin') html += `<button class="deck-btn" onclick="activateDeck('builtin')">Use</button>`;
+  else html += `<span style="color:var(--teal);font-weight:800;font-size:.8rem;">✔ Active</span>`;
+  html += `</div></div>`;
+
+  deckIds.forEach(id => {
+    const d = decks[id];
+    const isActive = id === activeId;
+    html += `<div class="qb-entry" style="background:${isActive?'#E8F4FA':'var(--light)'}">`;
+    html += `<div class="qb-entry-header">`;
+    html += `<span class="qb-entry-q">📝 ${d.name} — ${d.questions.length} question${d.questions.length!==1?'s':''}</span>`;
+    html += `<div style="display:flex;gap:4px;">`;
+    if (!isActive) html += `<button class="deck-btn" onclick="activateDeck('${id}')">Use</button>`;
+    else html += `<span style="color:var(--teal);font-weight:800;font-size:.8rem;">✔ Active</span>`;
+    html += `<button class="deck-btn del" onclick="deleteDeck('${id}')">🗑</button>`;
+    html += `</div></div>`;
+    // Show questions
+    if (d.questions.length > 0) {
+      html += `<div style="margin-top:6px;">`;
+      d.questions.slice(0,3).forEach((q,qi) => {
+        html += `<div style="font-size:.75rem;color:var(--muted);padding:2px 0;">• ${q.q.substring(0,60)}${q.q.length>60?'…':''}</div>`;
+      });
+      if (d.questions.length > 3) html += `<div style="font-size:.72rem;color:var(--muted);">…and ${d.questions.length-3} more</div>`;
+      html += `</div>`;
+    }
+    html += `</div>`;
+  });
+  html += `</div>`;
+
+  // Create new deck
+  html += `<div class="modal-divider">Create New Deck</div>`;
+  html += `<label>Deck Name</label><input type="text" id="newDeckName" placeholder="e.g. My Algebra Deck"/>`;
+  html += `<button class="modal-btn green" onclick="createDeck()">➕ Create Empty Deck</button>`;
+
+  html += `<div class="modal-divider">Add Questions</div>`;
+  html += `<p style="font-size:.8rem;color:var(--muted);margin-bottom:10px;">Select a custom deck above then add questions to it.</p>`;
+
+  if (activeId !== 'builtin') {
+    html += `<button class="modal-btn orange" onclick="openAddQModal()">➕ Add Question to "${getDeckName(activeId)}"</button>`;
+
+    // Show all questions in active deck with delete
+    const dq = decks[activeId] ? decks[activeId].questions : [];
+    if (dq.length > 0) {
+      html += `<div style="margin-top:12px;">`;
+      dq.forEach((q,qi) => {
+        html += `<div class="qb-entry">
+          <div class="qb-entry-header">
+            <span class="qb-entry-q">${q.q.substring(0,70)}${q.q.length>70?'…':''}</span>
+            <span class="qb-entry-topic">${q.topic}</span>
+            <button class="qb-entry-del" onclick="deleteCustomQuestion('${activeId}',${qi})">✕</button>
+          </div>
+          <div class="qb-entry-answer">Answer: ${q.answer}</div>
+        </div>`;
+      });
+      html += `</div>`;
+    }
+  }
+
+  // Paste/import JSON
+  html += `<div class="modal-divider">Import JSON</div>`;
+  html += `<p style="font-size:.78rem;color:var(--muted);margin-bottom:6px;">Paste an array of question objects (same format as the built-in bank) to import into the active deck.</p>`;
+  html += `<textarea id="importJSON" placeholder='[{"topic":"Math","q":"2+2=?","type":"open","answer":"4"}]'></textarea>`;
+  html += `<button class="modal-btn" onclick="importJSON()">📥 Import</button>`;
+
+  $("qbBody").innerHTML = html;
+}
+
+function createDeck() {
+  const name = $("newDeckName") ? $("newDeckName").value.trim() : '';
+  if (!name) return alert("Enter a deck name.");
+  const decks = getDecks();
+  const id = 'deck_' + Date.now();
+  decks[id] = { name, questions: [], createdAt: Date.now() };
+  saveDecks(decks);
+  activateDeck(id);
+  renderQBModal();
+}
+
+function activateDeck(id) {
+  setActiveDeckId(id);
+  updateDeckUI();
+  renderQBModal();
+  buildCategories();
+  if (!mpMode && playerName) startQuiz();
+}
+
+function deleteDeck(id) {
+  if (!confirm("Delete this deck?")) return;
+  const decks = getDecks();
+  delete decks[id];
+  saveDecks(decks);
+  if (getActiveDeckId() === id) setActiveDeckId('builtin');
+  updateDeckUI();
+  renderQBModal();
+  buildCategories();
+}
+
+function updateDeckUI() {
+  const id = getActiveDeckId();
+  const name = getDeckName(id);
+  $("deckName").textContent = name.length > 20 ? name.substring(0,18)+'…' : name;
+  // Rebuild deck select
+  const sel = $("deckSelect");
+  sel.innerHTML = '';
+  const bOpt = document.createElement('option');
+  bOpt.value = 'builtin'; bOpt.textContent = 'Default (Built-in)';
+  if (id === 'builtin') bOpt.selected = true;
+  sel.appendChild(bOpt);
+  const decks = getDecks();
+  Object.keys(decks).forEach(did => {
+    const opt = document.createElement('option');
+    opt.value = did; opt.textContent = decks[did].name;
+    if (did === id) opt.selected = true;
+    sel.appendChild(opt);
+  });
+}
+
+function switchDeck() {
+  const id = $("deckSelect").value;
+  activateDeck(id);
+}
+
+function openAddQModal(editDeckId) {
+  closeModal('qbModal');
+  $("aqTopic").value = '';
+  $("aqQuestion").value = '';
+  $("aqType").value = 'open';
+  $("aqA").value = $("aqB").value = $("aqC").value = $("aqD").value = '';
+  $("aqOpenAnswer").value = '';
+  $("aqExplain").value = '';
+  renderMCFields();
+  $("addQModal").style.display='flex';
+}
+
+function renderMCFields() {
+  const isMC = $("aqType").value === 'mc';
+  $("aqMCFields").style.display = isMC ? 'block' : 'none';
+  $("aqOpenField").style.display= isMC ? 'none' : 'block';
+}
+
+function saveCustomQuestion() {
+  const topic  = $("aqTopic").value.trim() || 'Custom';
+  const q      = $("aqQuestion").value.trim();
+  const type   = $("aqType").value;
+  const explain= $("aqExplain").value.trim();
+  if (!q) return alert("Enter a question.");
+
+  let entry;
+  if (type === 'mc') {
+    const opts = [$("aqA").value.trim(),$("aqB").value.trim(),$("aqC").value.trim(),$("aqD").value.trim()];
+    if (opts.some(o=>!o)) return alert("Fill in all 4 options.");
+    entry = { topic, q, type:'mc', options:opts, answer:$("aqAnswer").value, explanation:explain };
+  } else {
+    const ans = $("aqOpenAnswer").value.trim();
+    if (!ans) return alert("Enter an answer.");
+    entry = { topic, q, type:'open', answer:ans, explanation:explain };
+  }
+
+  const id = getActiveDeckId();
+  if (id === 'builtin') return alert("Select a custom deck first (create one in Decks).");
+  const decks = getDecks();
+  if (!decks[id]) return alert("Deck not found.");
+  decks[id].questions.push(entry);
+  saveDecks(decks);
+  closeModal('addQModal');
+  openQBModal();
+  buildCategories();
+  if (playerName && !mpMode) startQuiz();
+}
+
+function deleteCustomQuestion(deckId, qi) {
+  const decks = getDecks();
+  if (!decks[deckId]) return;
+  decks[deckId].questions.splice(qi, 1);
+  saveDecks(decks);
+  renderQBModal();
+  buildCategories();
+}
+
+function importJSON() {
+  const raw = $("importJSON").value.trim();
+  if (!raw) return alert("Paste JSON first.");
+  let arr;
+  try { arr = JSON.parse(raw); } catch { return alert("Invalid JSON."); }
+  if (!Array.isArray(arr)) return alert("Must be a JSON array.");
+  const id = getActiveDeckId();
+  if (id === 'builtin') return alert("Create & select a custom deck first.");
+  const decks = getDecks();
+  if (!decks[id]) return alert("Deck not found.");
+  let added = 0;
+  arr.forEach(item => {
+    if (item.q && item.answer && item.type) {
+      decks[id].questions.push({
+        topic: item.topic||'Custom', q:item.q, type:item.type,
+        options:item.options||[], answer:item.answer, explanation:item.explanation||''
+      });
+      added++;
+    }
+  });
+  saveDecks(decks);
+  alert(`Imported ${added} question(s).`);
+  $("importJSON").value='';
+  renderQBModal();
+  buildCategories();
+}
+
+/* =====================================================================
+   MODALS — Name / Multiplayer
+   ===================================================================== */
+function showNameModal() {
+  $("mpModal").style.display='none';
+  $("nameModal").style.display='flex';
+  setTimeout(() => $("playerNameInput").focus(), 100);
+}
+
+function setPlayerName() {
+  const name = $("playerNameInput").value.trim();
+  if (!name) return;
+  playerName = name;
+  ensureAccount(name);
+  $("nameModal").style.display='none';
+  $("playerNameDisplay").textContent = playerName;
+  startQuiz();
+}
+
+function showMultiplayerSetup() {
+  const soloName = $("playerNameInput") ? $("playerNameInput").value.trim() : '';
+  $("nameModal").style.display='none';
+  $("mpModal").style.display='flex';
+  if (soloName) $("mpNameInput").value = soloName;
+  else if (playerName) $("mpNameInput").value = playerName;
+  setTimeout(() => $("mpNameInput").focus(), 100);
+}
+
+/* =====================================================================
+   LEADERBOARD — personal in localStorage, global in window.storage
+   Auto-refreshes every 15s while on page
+   ===================================================================== */
+const PERSONAL_LB_KEY = 'mathQuizPersonalLB_v3';
+
+function getPersonalBoard() {
+  try { return JSON.parse(localStorage.getItem(PERSONAL_LB_KEY) || '[]'); } catch { return []; }
+}
+function savePersonalBoard(b) { localStorage.setItem(PERSONAL_LB_KEY, JSON.stringify(b)); }
+
+async function addScoreToLeaderboard(name, score) {
+  const now  = new Date();
+  const entry= { name, score:parseFloat(score.toFixed(2)), timestamp:now.getTime(),
+                 date:now.toLocaleDateString(), time:now.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'}) };
+
+  // personal
+  let personal = getPersonalBoard();
+  personal.push(entry);
+  personal.sort((a,b)=>b.score-a.score);
+  personal = personal.slice(0,500);
+  savePersonalBoard(personal);
+
+  // update account stats
+  const accounts = getAccounts();
+  if (accounts[name]) {
+    accounts[name].gamesPlayed = (accounts[name].gamesPlayed||0)+1;
+    if (!accounts[name].bestScore || score > accounts[name].bestScore)
+      accounts[name].bestScore = parseFloat(score.toFixed(2));
+    saveAccounts(accounts);
+  }
+
+  // shared global
+  try {
+    const key = `lb:${now.getTime()}:${Math.random().toString(36).substr(2,5)}`;
+    await window.storage.set(key, JSON.stringify(entry), true);
+  } catch(e) { console.warn('Shared storage unavailable:', e); }
+}
+
+async function loadPublicBoard() {
+  try {
+    const result = await window.storage.list('lb:', true);
+    if (!result || !result.keys) return [];
+    const entries = [];
+    for (const k of result.keys) {
+      try {
+        const r = await window.storage.get(k, true);
+        if (r && r.value) entries.push(JSON.parse(r.value));
+      } catch {}
+    }
+    entries.sort((a,b)=>b.score-a.score);
+    return entries;
+  } catch { return []; }
+}
+
+function filterByTime(entries) {
+  const now = Date.now();
+  let start = 0;
+  if (timeRange==='today')   { const d=new Date();d.setHours(0,0,0,0);start=d.getTime(); }
+  else if (timeRange==='weekly')  start = now - 7*86400000;
+  else if (timeRange==='monthly') start = now - 30*86400000;
+  return entries.filter(e=>(e.timestamp||0)>=start);
+}
+
+function setLBMode(mode) {
+  lbMode = mode;
+  $('togglePublic').className  = mode==='public'  ?'ctrl-btn active':'ctrl-btn';
+  $('togglePersonal').className= mode==='personal'?'ctrl-btn active':'ctrl-btn';
+  $('toggleFriends').className = mode==='friends' ?'ctrl-btn active':'ctrl-btn';
+  updateLeaderboardDisplay();
+}
+
+function setTimeRange(range) {
+  timeRange = range;
+  $('timeToday').className  = range==='today'  ?'time-btn active':'time-btn';
+  $('timeWeekly').className = range==='weekly' ?'time-btn active':'time-btn';
+  $('timeMonthly').className= range==='monthly'?'time-btn active':'time-btn';
+  $('timeAllTime').className= range==='allTime'?'time-btn active':'time-btn';
+  updateLeaderboardDisplay();
+}
+
+async function updateLeaderboardDisplay() {
+  const list = $("leaderboardList");
+  list.innerHTML = '<li class="lb-loading">Loading…</li>';
+
+  let entries = [];
+  if (lbMode === 'public') {
+    entries = await loadPublicBoard();
+    // Fallback to personal if shared storage not available
+    if (entries.length === 0) entries = getPersonalBoard();
+  } else if (lbMode === 'personal') {
+    entries = getPersonalBoard();
+    if (playerName) entries = entries.filter(e=>e.name===playerName);
+  } else if (lbMode === 'friends') {
+    const friends = getFriends();
+    const all = getPersonalBoard();
+    // include self + friends
+    const names = [...friends];
+    if (playerName) names.push(playerName);
+    entries = all.filter(e=>names.includes(e.name));
+  }
+
+  entries = filterByTime(entries);
+  entries.sort((a,b)=>b.score-a.score);
+  entries = entries.slice(0,10);
+
+  list.innerHTML = '';
+  if (entries.length === 0) {
+    list.innerHTML = `<li style="text-align:center;padding:18px;color:#999;font-size:.85rem;">
+      ${lbMode==='personal'?'No personal scores yet!':lbMode==='friends'?'No friend scores found.':'No scores yet — be the first!'}</li>`;
+    return;
+  }
+
+  entries.forEach((entry, idx) => {
+    const li = document.createElement("li");
+    li.className = "lb-item";
+    const medal = ['🥇','🥈','🥉'][idx]||'';
+    const timeStr = entry.time ? ` @ ${entry.time}` : '';
+    const isMe = entry.name === playerName;
+    li.style.background = isMe ? '#E8F4FA' : '';
+    li.innerHTML = `<span class="lb-rank">${medal} #${idx+1}</span>
+      <span class="lb-name">${entry.name}${isMe?' 👈':''}</span>
+      <span class="lb-meta">${entry.date||''}${timeStr}</span>
+      <span class="lb-score">${fmtScore(entry.score)}</span>`;
+    list.appendChild(li);
+  });
+}
+
+function startLBAutoRefresh() {
+  if (lbAutoInterval) clearInterval(lbAutoInterval);
+  lbAutoInterval = setInterval(updateLeaderboardDisplay, 15000);
+}
+
+/* =====================================================================
+   MULTIPLAYER
+   ===================================================================== */
+const MP_ROOM_PREFIX = 'mproom:';
+
+async function createRoom() {
+  const name = $("mpNameInput").value.trim();
+  if (!name) { alert("Enter your name first!"); return; }
+  playerName = name;
+  ensureAccount(name);
+  localStorage.setItem('mathQuizPlayer', playerName);
+  $("playerNameDisplay").textContent = playerName;
+
+  mpPlayerId = generatePlayerId();
+  mpRoomCode = generateRoomCode();
+  mpIsHost   = true;
+  mpMode     = true;
+  mpFinished = false;
+
+  const pool = selectedTopic==='All' ? getActiveQuestions() : getActiveQuestions().filter(q=>q.topic===selectedTopic);
+  mpQuestions = shuffleArray(pool).slice(0,20);
+
+  const allQs = getActiveQuestions();
+  const room = {
+    code:mpRoomCode, host:playerName, hostId:mpPlayerId,
+    status:'waiting',
+    topic:selectedTopic,
+    questionOrder: mpQuestions.map(q => allQs.indexOf(q)),
+    players:{ [mpPlayerId]:{name:playerName,score:0,q:0,done:false} },
+    createdAt:Date.now()
+  };
+
+  try {
+    await window.storage.set(MP_ROOM_PREFIX+mpRoomCode, JSON.stringify(room), true);
+    $("mpModal").style.display='none';
+    showLobby(room);
+    startMPPoll();
+  } catch(e) { alert("Could not create room. Storage unavailable."); }
+}
+
+async function joinRoom() {
+  const name = $("mpNameInput").value.trim();
+  const code = $("joinCodeInput").value.trim();
+  if (!name) { alert("Enter your name!"); return; }
+  if (!code) { alert("Enter a room code!"); return; }
+  playerName = name;
+  ensureAccount(name);
+  localStorage.setItem('mathQuizPlayer', playerName);
+  $("playerNameDisplay").textContent = playerName;
+  try {
+    const result = await window.storage.get(MP_ROOM_PREFIX+code, true);
+    if (!result) { alert("Room not found."); return; }
+    const room = JSON.parse(result.value);
+    if (room.status==='playing') { alert("Game already started!"); return; }
+    if (room.status==='done')    { alert("Game already ended."); return; }
+
+    mpPlayerId = generatePlayerId();
+    mpRoomCode = code;
+    mpIsHost   = false;
+    mpMode     = true;
+    mpFinished = false;
+    mpQuestions = room.questionOrder.map(i => BUILTIN_QUESTIONS[i]||BUILTIN_QUESTIONS[i%BUILTIN_QUESTIONS.length]).filter(Boolean);
+
+    room.players[mpPlayerId] = {name:playerName,score:0,q:0,done:false};
+    await window.storage.set(MP_ROOM_PREFIX+code, JSON.stringify(room), true);
+    $("mpModal").style.display='none';
+    showLobby(room);
+    startMPPoll();
+  } catch(e) { alert("Could not join room: "+e.message); }
+}
+
+function showLobby(room) {
+  $("quizCard").style.display='none';
+  $("endScreen").classList.remove("show");
+  $("catFilter").style.display='none';
+  $("mpLobbyPanel").style.display='block';
+  renderLobby(room);
+}
+
+function renderLobby(room) {
+  const players = Object.values(room.players);
+  const isHost  = room.hostId===mpPlayerId;
+  $("mpLobbyContent").innerHTML = `
+    <p style="text-align:center;color:var(--muted);font-size:.82rem;margin-bottom:5px;">Share this code:</p>
+    <div class="room-code-display">${room.code}</div>
+    <p class="mp-status">👥 ${players.length} player${players.length!==1?'s':''}</p>
+    <ul class="player-list">${players.map(p=>`<li class="player-list-item">
+      <span class="player-dot ${room.hostId===Object.keys(room.players).find(k=>room.players[k].name===p.name)?'ready':'waiting'}"></span>
+      ${p.name}${room.hostId===Object.keys(room.players).find(k=>room.players[k].name===p.name)?' 👑':''}</li>`).join('')}</ul>
+    ${isHost?`<button class="mp-btn mp-btn-start" onclick="startMPGame()">${players.length<2?'⏳ Waiting for players…':'▶ Start Game!'}</button>`
+            :`<p class="mp-status">⏳ Waiting for host…</p>`}
+    <button class="mp-btn mp-btn-leave" onclick="leaveRoom()">✕ Leave Room</button>`;
+}
+
+async function startMPGame() {
+  try {
+    const r = await window.storage.get(MP_ROOM_PREFIX+mpRoomCode, true);
+    const room = JSON.parse(r.value);
+    room.status='playing';
+    await window.storage.set(MP_ROOM_PREFIX+mpRoomCode, JSON.stringify(room), true);
+  } catch(e) { alert("Could not start game."); }
+}
+
+function startMPPoll() {
+  if (mpPollInterval) clearInterval(mpPollInterval);
+  mpPollInterval = setInterval(mpPoll, 2000);
+}
+
+async function mpPoll() {
+  if (!mpRoomCode) return;
+  try {
+    const result = await window.storage.get(MP_ROOM_PREFIX+mpRoomCode, true);
+    if (!result) return;
+    const room = JSON.parse(result.value);
+
+    if (room.status==='playing' && !mpFinished) {
+      const myData = room.players[mpPlayerId];
+      if (myData && !myData.done) {
+        if ($("mpLobbyPanel").style.display!=='none') {
+          $("mpLobbyPanel").style.display='none';
+          $("mpLivePanel").style.display='block';
+          $("catFilter").style.display='none';
+          questions  = mpQuestions;
+          currentIdx = myData.q||0;
+          points     = MAX_POINTS;
+          pointsPerTick = MAX_POINTS/maxTime;
+          updatePointsDisplay();
+          $("qTotal").textContent = questions.length;
+          $("quizCard").style.display='block';
+          $("endScreen").classList.remove("show");
+          $("pauseBtn").style.display='inline-flex';
+          loadQuestion();
+        }
+        renderMPLiveScores(room);
+      } else if (myData && myData.done) {
+        renderMPLiveScores(room);
+      }
+    } else if (room.status==='waiting') {
+      renderLobby(room);
+    }
+  } catch(e) { console.warn('MP poll error:',e); }
+}
+
+function renderMPLiveScores(room) {
+  const players = Object.entries(room.players).map(([id,p])=>({...p,id})).sort((a,b)=>b.score-a.score);
+  $("mpLiveScores").innerHTML = players.map(p=>{
+    const isMe = p.id===mpPlayerId;
+    return `<div class="mp-score-row ${isMe?'me':''}">
+      <span>${isMe?'👉 ':''}${p.name}${p.done?' ✅':''}</span>
+      <span class="mp-score-pts">${fmtScore(p.score)}</span></div>`;
+  }).join('');
+}
+
+async function updateMPProgress(newPoints, done) {
+  if (!mpRoomCode||!mpPlayerId) return;
+  try {
+    const r = await window.storage.get(MP_ROOM_PREFIX+mpRoomCode, true);
+    if (!r) return;
+    const room = JSON.parse(r.value);
+    if (room.players[mpPlayerId]) {
+      room.players[mpPlayerId].score = parseFloat(newPoints.toFixed(2));
+      room.players[mpPlayerId].q     = currentIdx;
+      if (done) room.players[mpPlayerId].done = true;
+      await window.storage.set(MP_ROOM_PREFIX+mpRoomCode, JSON.stringify(room), true);
+    }
+  } catch {}
+}
+
+async function leaveRoom() {
+  if (mpPollInterval) clearInterval(mpPollInterval);
+  if (mpRoomCode && mpPlayerId) {
+    try {
+      const r = await window.storage.get(MP_ROOM_PREFIX+mpRoomCode, true);
+      if (r) {
+        const room = JSON.parse(r.value);
+        delete room.players[mpPlayerId];
+        await window.storage.set(MP_ROOM_PREFIX+mpRoomCode, JSON.stringify(room), true);
+      }
+    } catch {}
+  }
+  mpMode=false; mpRoomCode=null; mpIsHost=false; mpPlayerId=null;
+  $("mpLobbyPanel").style.display='none';
+  $("mpLivePanel").style.display='none';
+  $("catFilter").style.display='flex';
+  setMode('solo');
+  if (playerName) startQuiz(); else showNameModal();
+}
+
+/* =====================================================================
+   CALCULATOR
+   ===================================================================== */
+let calcDisplay="0", calcPrevious="", calcOperation=null, calcNewNumber=true;
+
+function buildCalculatorButtons() {
+  const layout=[['7','8','9','÷'],['4','5','6','×'],['1','2','3','−'],['0','.','=','+'],['C']];
+  const container=$("calcButtons"); container.innerHTML="";
+  layout.forEach(row=>row.forEach(btn=>{
+    const b=document.createElement("button"); b.className="calc-btn"; b.textContent=btn;
+    if(['+','−','×','÷'].includes(btn))b.classList.add("operator");
+    if(btn==='=')b.classList.add("equals");
+    if(btn==='C')b.classList.add("clear");
+    if(btn==='C')b.onclick=calcClear;
+    else if(btn==='=')b.onclick=calcEquals;
+    else if(['+','−','×','÷'].includes(btn))b.onclick=()=>calcOp(btn);
+    else b.onclick=()=>calcAppend(btn);
+    container.appendChild(b);
+  }));
+}
+function updateCalcDisplay(){$("calcDisplay").textContent=calcDisplay||"0";}
+function calcAppend(c){
+  if(calcNewNumber){calcDisplay=c==='.'?'0.':c;calcNewNumber=false;}
+  else{if(c==='.'&&calcDisplay.includes('.'))return;calcDisplay+=c;}
+  updateCalcDisplay();
+}
+function calcOp(op){
+  if(calcNewNumber&&!calcPrevious)return;
+  if(!calcNewNumber)calcEquals();
+  calcPrevious=calcDisplay;calcOperation=op;calcNewNumber=true;
+}
+function calcEquals(){
+  if(!calcOperation||calcNewNumber)return;
+  const p=parseFloat(calcPrevious),c=parseFloat(calcDisplay);
+  let r=0;
+  if(calcOperation==='+')r=p+c; else if(calcOperation==='−')r=p-c;
+  else if(calcOperation==='×')r=p*c; else if(calcOperation==='÷')r=p/c;
+  calcDisplay=r.toString();calcPrevious="";calcOperation=null;calcNewNumber=true;
+  updateCalcDisplay();
+}
+function calcClear(){calcDisplay="0";calcPrevious="";calcOperation=null;calcNewNumber=true;updateCalcDisplay();}
+function openCalculator(){
+  if(points<CALCULATOR_COST){alert("Not enough points!");return;}
+  calcClear();$("calculatorModal").classList.add("show");
+}
+function closeCalculator(){
+  $("calculatorModal").classList.remove("show");
+  points=Math.max(0,points-CALCULATOR_COST);
+  updatePointsDisplay();
+}
+
+/* =====================================================================
+   CATEGORIES
+   ===================================================================== */
+function buildCategories() {
+  const c=$("catFilter"); c.innerHTML="";
+  const topics=TOPICS_FN();
+  // reset selectedTopic if no longer valid
+  if(!topics.includes(selectedTopic)) selectedTopic="All";
+  topics.forEach(t=>{
+    const btn=document.createElement("button");
+    btn.className="cat-btn"+(t===selectedTopic?" active":"");
+    btn.textContent=t;
+    btn.onclick=()=>{
+      selectedTopic=t;
+      document.querySelectorAll(".cat-btn").forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+      if(!mpMode&&playerName) startQuiz();
+    };
+    c.appendChild(btn);
+  });
+}
+
+/* =====================================================================
+   START / LOAD
+   ===================================================================== */
+function startQuiz() {
+  if (!playerName) { showNameModal(); return; }
+  if (mpMode) return;
+
+  const pool = selectedTopic==="All"
+    ? getActiveQuestions()
+    : getActiveQuestions().filter(q=>q.topic===selectedTopic);
+  questions  = shuffleArray(pool);
+  currentIdx = 0;
+  points     = MAX_POINTS;
+  pointsPerTick = MAX_POINTS/maxTime;
+  gamePaused = false;
+  updatePointsDisplay();
+  $("qTotal").textContent = questions.length;
+  $("playerNameDisplay").textContent = playerName;
+  $("endScreen").classList.remove("show");
+  $("quizCard").style.display='block';
+  $("mpLobbyPanel").style.display='none';
+  $("mpLivePanel").style.display='none';
+  $("pauseBtn").style.display='inline-flex';
+  updateLeaderboardDisplay();
+  loadQuestion();
+}
+
+function loadQuestion() {
+  if (currentIdx>=questions.length) { showEndScreen(); return; }
+  answered=false; explainOpen=false; timerPaused=false; gamePaused=false;
+  clearInterval(timerInterval);
+  timeLeft=maxTime;
+  points=MAX_POINTS;
+  pointsPerTick=MAX_POINTS/maxTime;
+  updatePointsDisplay();
+
+  const q=questions[currentIdx];
+  $("qNum").textContent       = currentIdx+1;
+  $("qCounter").textContent   = `Question ${currentIdx+1} of ${questions.length}`;
+  $("topicBadge").textContent = q.topic;
+  $("questionText").textContent= q.q;
+
+  $("timerDisplay").textContent  = maxTime;
+  $("timerDisplay").className    = "timer-display";
+  $("timerBar").style.width      = "100%";
+  $("timerBar").className        = "timer-bar";
+  $("timerBar").style.transition = "none";
+  setTimeout(()=>{$("timerBar").style.transition=""}, 50);
+
+  $("workArea").value="";
+  $("answerReveal").classList.remove("show");
+  $("explainToggle").classList.remove("show");
+  $("explainBox").classList.remove("show");
+  $("explainBox").textContent="";
+  $("feedbackMsg").classList.remove("show");
+  $("feedbackMsg").className="feedback-msg";
+  $("quizCard").className="quiz-card";
+  $("pauseOverlay").classList.remove("show");
+  $("btnNext").style.display="none";
+  $("btnSkip").disabled=false;
+  $("btnReveal").disabled=false;
+  $("btnPause").textContent="⏸";
+  $("pauseBtn").textContent="⏸ Pause";
+
+  const area=$("optionsArea"); area.innerHTML="";
+  if (q.type==="mc") {
+    const grid=document.createElement("div"); grid.className="options-grid";
+    ["A","B","C","D"].forEach((letter,i)=>{
+      const btn=document.createElement("button"); btn.className="option-btn";
+      btn.textContent=`${letter}. ${q.options[i]}`;
+      btn.onclick=()=>checkMC(i,letter,btn);
+      grid.appendChild(btn);
+    });
+    area.appendChild(grid);
+  } else {
+    const wrap=document.createElement("div"); wrap.className="open-answer-section";
+    wrap.innerHTML=`<label>Your Answer</label><input type="text" class="open-answer-input" id="openInput" placeholder="Type your answer..." autocomplete="off"/>`;
+    area.appendChild(wrap);
+    const checkBtn=document.createElement("button"); checkBtn.className="btn btn-primary";
+    checkBtn.id="checkOpenBtn"; checkBtn.textContent="Check Answer";
+    checkBtn.style.marginBottom="10px"; checkBtn.onclick=checkOpen;
+    area.appendChild(checkBtn);
+    setTimeout(()=>{const inp=$("openInput");if(inp)inp.addEventListener("keydown",e=>{if(e.key==="Enter")checkOpen();});},0);
+  }
+
+  buildCalculatorButtons();
+  startTimer();
+}
+
+/* =====================================================================
+   TIMER
+   ===================================================================== */
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){if(timerInterval&&!answered){clearInterval(timerInterval);timerPaused=true;}}
+  else{if(timerPaused&&!answered&&!gamePaused&&timeLeft>0){timerPaused=false;startTimer();}}
+});
+
+function startTimer() {
+  updateTimerDisplay();
+  timerInterval=setInterval(()=>{
+    if(gamePaused) return;
+    timeLeft--;
+    points=Math.max(0, points-pointsPerTick);
+    updateTimerDisplay();
+    updatePointsDisplay();
+    if(mpMode) updateMPProgress(points,false);
+    if(timeLeft<=0){clearInterval(timerInterval);if(!answered)timeUp();}
+  },1000);
+}
+
+function updateTimerDisplay() {
+  const pct=(timeLeft/maxTime)*100;
+  const disp=$("timerDisplay"),bar=$("timerBar");
+  disp.textContent=timeLeft;
+  bar.style.width=pct+"%";
+  const urgent=Math.min(5,Math.floor(maxTime*0.2));
+  const warning=Math.min(8,Math.floor(maxTime*0.4));
+  if(timeLeft<=urgent){disp.className="timer-display urgent";bar.className="timer-bar danger";}
+  else if(timeLeft<=warning){disp.className="timer-display";bar.className="timer-bar warning";}
+  else{disp.className="timer-display";bar.className="timer-bar";}
+}
+
+/* =====================================================================
+   ANSWER CHECKING
+   ===================================================================== */
+function checkMC(idx,letter,clickedBtn) {
+  if(answered||gamePaused)return;
+  answered=true; clearInterval(timerInterval);
+  const q=questions[currentIdx];
+  const all=document.querySelectorAll(".option-btn");
+  all.forEach(b=>b.disabled=true);
+
+  if(letter===q.answer){
+    clickedBtn.classList.add("correct");
+    $("quizCard").classList.add("flash-correct");
+    $("feedbackMsg").textContent="✅ Correct!";
+    $("feedbackMsg").classList.add("show","correct-msg");
+    if(mpMode) updateMPProgress(points,false);
+    setTimeout(()=>{currentIdx++;loadQuestion();},900);
+  } else {
+    clickedBtn.classList.add("wrong");
+    $("quizCard").classList.add("flash-wrong");
+    const ci=["A","B","C","D"].indexOf(q.answer);
+    if(all[ci])all[ci].classList.add("reveal-correct");
+    $("feedbackMsg").textContent="❌ Not quite!";
+    $("feedbackMsg").classList.add("show","wrong-msg");
+    $("answerReveal").classList.add("show");
+    $("revealValue").textContent=`${q.answer}. ${q.options[ci]}`;
+    setupExplain(q); $("btnNext").style.display="";
+    if(mpMode) updateMPProgress(points,false);
+  }
+}
+
+function checkOpen() {
+  if(answered||gamePaused)return;
+  const inp=$("openInput"); if(!inp||!inp.value.trim())return;
+  answered=true; clearInterval(timerInterval);
+  const q=questions[currentIdx];
+  inp.disabled=true;
+  const cb=$("checkOpenBtn"); if(cb)cb.disabled=true;
+  $("answerReveal").classList.add("show");
+  $("revealValue").textContent=q.answer;
+  $("feedbackMsg").textContent="📋 Check your answer below!";
+  $("feedbackMsg").classList.add("show");
+  setupExplain(q); $("btnNext").style.display="";
+  if(mpMode) updateMPProgress(points,false);
+}
+
+function revealAnswer() {
+  if(answered)return;
+  answered=true; clearInterval(timerInterval);
+  const q=questions[currentIdx]; disableOptions();
+  $("answerReveal").classList.add("show");
+  $("revealValue").textContent=q.type==="mc"?`${q.answer}. ${q.options[["A","B","C","D"].indexOf(q.answer)]}`:q.answer;
+  if(q.type==="mc"){const all=document.querySelectorAll(".option-btn");const ci=["A","B","C","D"].indexOf(q.answer);if(all[ci])all[ci].classList.add("reveal-correct");}
+  $("quizCard").classList.add("flash-wrong");
+  $("feedbackMsg").textContent="👀 Answer revealed — marked wrong.";
+  $("feedbackMsg").classList.add("show","wrong-msg");
+  setupExplain(q); $("btnNext").style.display="";
+  if(mpMode) updateMPProgress(points,false);
+}
+
+function timeUp() {
+  if(answered)return;
+  answered=true; disableOptions();
+  const q=questions[currentIdx];
+  $("answerReveal").classList.add("show");
+  $("revealValue").textContent=q.type==="mc"?`${q.answer}. ${q.options[["A","B","C","D"].indexOf(q.answer)]}`:q.answer;
+  if(q.type==="mc"){const all=document.querySelectorAll(".option-btn");const ci=["A","B","C","D"].indexOf(q.answer);if(all[ci])all[ci].classList.add("reveal-correct");}
+  $("quizCard").classList.add("flash-wrong");
+  $("feedbackMsg").textContent="⏰ Time's up!";
+  $("feedbackMsg").classList.add("show","wrong-msg");
+  setupExplain(q); $("btnNext").style.display="";
+  if(mpMode) updateMPProgress(points,false);
+}
+
+/* =====================================================================
+   EXPLANATION
+   ===================================================================== */
+function setupExplain(q) {
+  if(q.explanation){
+    $("explainBox").textContent=q.explanation;
+    $("explainToggle").classList.add("show");
+    $("explainToggle").textContent="▶ Why is this the answer?";
+    explainOpen=false;
+  }
+}
+function toggleExplain() {
+  explainOpen=!explainOpen;
+  $("explainBox").classList.toggle("show",explainOpen);
+  $("explainToggle").textContent=explainOpen?"▼ Hide explanation":"▶ Why is this the answer?";
+}
+
+/* =====================================================================
+   NAVIGATION
+   ===================================================================== */
+function skipQuestion() {
+  if(answered){nextQuestion();return;}
+  if(gamePaused)return;
+  clearInterval(timerInterval); answered=true; disableOptions();
+  $("quizCard").classList.add("flash-wrong");
+  $("feedbackMsg").textContent="⏭ Skipped";
+  $("feedbackMsg").classList.add("show","wrong-msg");
+  const q=questions[currentIdx];
+  $("answerReveal").classList.add("show");
+  $("revealValue").textContent=q.type==="mc"?`${q.answer}. ${q.options[["A","B","C","D"].indexOf(q.answer)]}`:q.answer;
+  if(q.type==="mc"){const all=document.querySelectorAll(".option-btn");const ci=["A","B","C","D"].indexOf(q.answer);if(all[ci])all[ci].classList.add("reveal-correct");}
+  setupExplain(q); $("btnNext").style.display="";
+  if(mpMode) updateMPProgress(points,false);
+}
+
+function nextQuestion() {
+  clearInterval(timerInterval); gamePaused=false;
+  currentIdx++;
+  if(currentIdx>=questions.length){showEndScreen();return;}
+  loadQuestion();
+}
+
+function disableOptions() {
+  document.querySelectorAll(".option-btn").forEach(b=>b.disabled=true);
+  const inp=$("openInput");if(inp)inp.disabled=true;
+  const cb=$("checkOpenBtn");if(cb)cb.disabled=true;
+}
+
+/* =====================================================================
+   END SCREEN
+   ===================================================================== */
+async function showEndScreen() {
+  clearInterval(timerInterval);
+  if(mpPollInterval) clearInterval(mpPollInterval);
+  $("quizCard").style.display='none';
+  $("mpLivePanel").style.display='none';
+  $("pauseBtn").style.display='none';
+
+  if(mpMode){mpFinished=true;await updateMPProgress(points,true);}
+
+  await addScoreToLeaderboard(playerName, points);
+  updateLeaderboardDisplay();
+
+  $("finalScore").textContent = points.toFixed(2);
+  $("finalLabel").textContent = mpMode?"Your score this round":"Final score";
+
+  let msg="";
+  if(points>=4)      msg="🏆 Outstanding! You're a math star!";
+  else if(points>=3) msg="🎉 Great work! Keep it up!";
+  else if(points>=2) msg="📚 Good effort — review & retry!";
+  else               msg="💪 Keep practicing — you've got this!";
+
+  $("gradeMsg").textContent=msg;
+  $("endScreen").classList.add("show");
+}
+
+function restartQuiz() {
+  if(mpMode){mpMode=false;mpRoomCode=null;mpIsHost=false;mpPlayerId=null;if(mpPollInterval)clearInterval(mpPollInterval);}
+  $("catFilter").style.display='flex';
+  setMode('solo');
+  playerName=''; setActiveAccount(''); localStorage.removeItem('mathQuizPlayer');
+  showNameModal();
+}
+
+/* =====================================================================
+   INIT
+   ===================================================================== */
+buildCategories();
+updateDeckUI();
+updateLeaderboardDisplay();
+startLBAutoRefresh();
+
+if(playerName) {
+  $("playerNameDisplay").textContent=playerName;
+  startQuiz();
+} else {
+  showNameModal();
+}
+</script>
+</body>
+</html>
