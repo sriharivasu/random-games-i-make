@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word Wizard Academy — 6th Grade ELA</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     TITLE SCREEN
+══════════════════════════════════════════════ -->
+<div id="title-screen" class="screen active">
+  <div class="title-logo">🧙‍♀️</div>
+  <h1 class="game-title">Word Wizard<br>Academy</h1>
+  <p class="subtitle">6th Grade Reading &amp; ELA EOG Review</p>
+
+  <div class="hero-description">
+    🏰 You are a Word Wizard in training! Battle monsters by answering
+    ELA questions. Get it right — and cast a spell. Get it wrong — and
+    the monster fights back. Defeat all 6 monsters to save the Academy!
+  </div>
+
+  <div class="name-input-group">
+    <label for="wizard-name">Your Wizard Name</label>
+    <input id="wizard-name" type="text" maxlength="20" placeholder="Enter your name..." autocomplete="off" />
+  </div>
+
+  <button id="start-btn" class="btn btn-gold">⚔️ Begin Your Quest!</button>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     CATEGORY SELECT SCREEN
+══════════════════════════════════════════════ -->
+<div id="category-screen" class="screen">
+  <div class="cat-screen-title">🪄 Choose Your Focus</div>
+  <div class="cat-screen-sub">Pick a topic to practice, or mix them all!</div>
+  <div id="cat-grid" class="cat-grid"></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     GAME SCREEN
+══════════════════════════════════════════════ -->
+<div id="game-screen" class="screen">
+
+  <!-- HUD -->
+  <div class="hud">
+    <div class="hud-stat">
+      <span class="label">Wizard</span>
+      <span class="value" id="hud-name">—</span>
+    </div>
+    <div class="hud-stat">
+      <span class="label">❤️</span>
+      <div class="hp-bar-wrap">
+        <div class="hp-bar"><div class="hp-fill player" id="player-hp-fill" style="width:100%"></div></div>
+        <span class="value" id="player-hp-text">5/5</span>
+      </div>
+    </div>
+    <div class="hud-stat">
+      <span class="label">👺 HP</span>
+      <div class="hp-bar-wrap">
+        <div class="hp-bar"><div class="hp-fill monster" id="monster-hp-fill" style="width:100%"></div></div>
+        <span class="value" id="monster-hp-text">3/3</span>
+      </div>
+    </div>
+    <div class="hud-stat">
+      <span class="label">Streak</span>
+      <span class="value" id="hud-streak">--</span>
+    </div>
+    <div class="hud-stat">
+      <span class="label">Level</span>
+      <span class="value" id="hud-level">1</span>
+    </div>
+    <div class="hud-stat">
+      <span class="label">Score</span>
+      <span class="value" id="hud-score">0</span>
+    </div>
+  </div>
+
+  <!-- ARENA -->
+  <div class="arena">
+    <!-- Player -->
+    <div class="fighter" id="player-fighter">
+      <div class="fighter-emoji" id="player-emoji">🧙‍♀️</div>
+      <div class="fighter-name" id="player-name-label">Wizard</div>
+      <div class="fighter-hp" id="player-hearts"></div>
+    </div>
+
+    <div class="vs-badge">VS</div>
+
+    <!-- Monster -->
+    <div class="fighter" id="monster-fighter">
+      <div class="fighter-emoji" id="monster-emoji">👺</div>
+      <div class="fighter-name" id="monster-name-label">Grammar Gremlin</div>
+      <div class="fighter-hp" id="monster-hearts"></div>
+    </div>
+
+    <!-- Spell Flash -->
+    <div class="spell-flash" id="spell-flash">💥</div>
+  </div>
+
+  <!-- QUESTION CARD -->
+  <div class="question-card">
+    <div class="question-meta">
+      <span class="category-badge cat-vocabulary" id="q-category">Vocabulary</span>
+      <span class="diff-stars" id="q-difficulty">⭐☆☆</span>
+    </div>
+    <p class="question-text" id="q-text">Loading question...</p>
+    <div class="options-grid" id="options-grid"></div>
+    <div class="feedback-box" id="feedback-box"></div>
+    <div class="next-btn-wrap" id="next-btn-wrap">
+      <button class="btn btn-purple" id="next-btn" data-action="next">Next Question →</button>
+    </div>
+  </div>
+
+</div><!-- /game-screen -->
+
+
+<!-- ══════════════════════════════════════════════
+     LEVEL UP OVERLAY
+══════════════════════════════════════════════ -->
+<div class="level-up-overlay" id="level-up-overlay">
+  <div class="level-up-card">
+    <div class="level-up-emoji" id="lu-monster-emoji">👺</div>
+    <div class="level-up-title">Monster Defeated!</div>
+    <p class="level-up-desc">
+      You defeated the <strong id="lu-monster-name">Grammar Gremlin</strong>!<br>
+      Get ready for Level <strong id="lu-level">2</strong>. You also healed +2 ❤️!
+    </p>
+    <button class="btn btn-gold" id="lu-continue-btn">⚔️ Face the Next Monster!</button>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════
+     END SCREEN
+══════════════════════════════════════════════ -->
+<div id="end-screen" class="screen">
+  <div class="end-trophy" id="end-trophy">🏆</div>
+  <h2 class="end-title" id="end-title">You Win!</h2>
+  <p class="subtitle" id="end-subtitle">Amazing ELA skills!</p>
+
+  <div class="end-stats">
+    <div class="end-stat-item">
+      <div class="end-stat-val" id="end-score">0</div>
+      <div class="end-stat-label">Total Score</div>
+    </div>
+    <div class="end-stat-item">
+      <div class="end-stat-val" id="end-accuracy">0%</div>
+      <div class="end-stat-label">Accuracy</div>
+    </div>
+    <div class="end-stat-item">
+      <div class="end-stat-val" id="end-streak">0</div>
+      <div class="end-stat-label">Correct Answers</div>
+    </div>
+  </div>
+
+  <button id="play-again-btn" class="btn btn-gold">🔄 Play Again</button>
+</div>
+
+
+<script src="questions.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
